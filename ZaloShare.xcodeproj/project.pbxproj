@@ -1,0 +1,852 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5C8A70D31FE276100064BB0E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A70D21FE276100064BB0E /* AppDelegate.m */; };
+		5C8A70DB1FE276100064BB0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C8A70DA1FE276100064BB0E /* Assets.xcassets */; };
+		5C8A70DE1FE276100064BB0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8A70DC1FE276100064BB0E /* LaunchScreen.storyboard */; };
+		5C8A70E11FE276100064BB0E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A70E01FE276100064BB0E /* main.m */; };
+		5C8A70EB1FE276100064BB0E /* ZaloShareTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A70EA1FE276100064BB0E /* ZaloShareTests.m */; };
+		5C8A717A1FE2767A0064BB0E /* ZLCompressUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71451FE2767A0064BB0E /* ZLCompressUtils.m */; };
+		5C8A717B1FE2767A0064BB0E /* ZLSharePackageEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71461FE2767A0064BB0E /* ZLSharePackageEntry.m */; };
+		5C8A717C1FE2767A0064BB0E /* HMUploadAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A714A1FE2767A0064BB0E /* HMUploadAdapter.m */; };
+		5C8A717D1FE2767A0064BB0E /* HMTaskTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A714C1FE2767A0064BB0E /* HMTaskTimer.m */; };
+		5C8A717E1FE2767A0064BB0E /* HMNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A714E1FE2767A0064BB0E /* HMNetworkManager.m */; };
+		5C8A717F1FE2767A0064BB0E /* HMPriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A714F1FE2767A0064BB0E /* HMPriorityQueue.m */; };
+		5C8A71801FE2767A0064BB0E /* HMURLUploadCallbackEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71541FE2767A0064BB0E /* HMURLUploadCallbackEntry.m */; };
+		5C8A71811FE2767A0064BB0E /* HMURLUploadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71571FE2767A0064BB0E /* HMURLUploadTask.m */; };
+		5C8A71821FE2767A0064BB0E /* HMURLUploadCompletionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71581FE2767A0064BB0E /* HMURLUploadCompletionEntity.m */; };
+		5C8A71831FE2767A0064BB0E /* HMURLSessionManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A715A1FE2767A0064BB0E /* HMURLSessionManger.m */; };
+		5C8A71841FE2767A0064BB0E /* ZLSharePackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A715D1FE2767A0064BB0E /* ZLSharePackage.m */; };
+		5C8A71851FE2767A0064BB0E /* ZLShareExtensionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71601FE2767A0064BB0E /* ZLShareExtensionManager.m */; };
+		5C8A71861FE2767A0064BB0E /* DXConversationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71621FE2767A0064BB0E /* DXConversationManager.m */; };
+		5C8A71871FE2767A0064BB0E /* DXImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71641FE2767A0064BB0E /* DXImageManager.m */; };
+		5C8A71881FE2767A0064BB0E /* DXConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71691FE2767A0064BB0E /* DXConversationModel.m */; };
+		5C8A71891FE2767A0064BB0E /* DXContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A716A1FE2767A0064BB0E /* DXContactModel.m */; };
+		5C8A718A1FE2767A0064BB0E /* icon_friend@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8A716C1FE2767A0064BB0E /* icon_friend@3x.png */; };
+		5C8A718B1FE2767A0064BB0E /* icon_friend.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8A716D1FE2767A0064BB0E /* icon_friend.png */; };
+		5C8A718C1FE2767A0064BB0E /* icon_friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8A716E1FE2767A0064BB0E /* icon_friend@2x.png */; };
+		5C8A718D1FE2767A0064BB0E /* DXShareNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71731FE2767A0064BB0E /* DXShareNavigationController.m */; };
+		5C8A718E1FE2767A0064BB0E /* DXShareSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71751FE2767A0064BB0E /* DXShareSearchResultViewController.m */; };
+		5C8A718F1FE2767A0064BB0E /* DXShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71761FE2767A0064BB0E /* DXShareViewController.m */; };
+		5C8A71901FE2767A0064BB0E /* DXConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71781FE2767A0064BB0E /* DXConversationTableViewCell.m */; };
+		5C8A71991FE279630064BB0E /* ShareRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71981FE279630064BB0E /* ShareRootViewController.m */; };
+		5C8A719C1FE279630064BB0E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8A719A1FE279630064BB0E /* MainInterface.storyboard */; };
+		5C8A71A01FE279630064BB0E /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5C8A71951FE279630064BB0E /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5C8A71A71FE279B90064BB0E /* DXImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71641FE2767A0064BB0E /* DXImageManager.m */; };
+		5C8A71A81FE279B90064BB0E /* DXConversationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71621FE2767A0064BB0E /* DXConversationManager.m */; };
+		5C8A71A91FE279BF0064BB0E /* DXConversationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71691FE2767A0064BB0E /* DXConversationModel.m */; };
+		5C8A71AA1FE279BF0064BB0E /* DXContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A716A1FE2767A0064BB0E /* DXContactModel.m */; };
+		5C8A71AB1FE279C30064BB0E /* icon_friend.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8A716D1FE2767A0064BB0E /* icon_friend.png */; };
+		5C8A71AC1FE279C30064BB0E /* icon_friend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8A716E1FE2767A0064BB0E /* icon_friend@2x.png */; };
+		5C8A71AD1FE279C30064BB0E /* icon_friend@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5C8A716C1FE2767A0064BB0E /* icon_friend@3x.png */; };
+		5C8A71AE1FE279C60064BB0E /* DXShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71761FE2767A0064BB0E /* DXShareViewController.m */; };
+		5C8A71AF1FE279C60064BB0E /* DXShareSearchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71751FE2767A0064BB0E /* DXShareSearchResultViewController.m */; };
+		5C8A71B01FE279C90064BB0E /* DXShareNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71731FE2767A0064BB0E /* DXShareNavigationController.m */; };
+		5C8A71B11FE279CC0064BB0E /* DXConversationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71781FE2767A0064BB0E /* DXConversationTableViewCell.m */; };
+		5C8A71B21FE279D30064BB0E /* ZLCompressUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71451FE2767A0064BB0E /* ZLCompressUtils.m */; };
+		5C8A71B31FE279D30064BB0E /* ZLSharePackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A715D1FE2767A0064BB0E /* ZLSharePackage.m */; };
+		5C8A71B41FE279D30064BB0E /* ZLSharePackageEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71461FE2767A0064BB0E /* ZLSharePackageEntry.m */; };
+		5C8A71B51FE279D30064BB0E /* ZLShareExtensionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71601FE2767A0064BB0E /* ZLShareExtensionManager.m */; };
+		5C8A71B61FE279D90064BB0E /* HMUploadAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A714A1FE2767A0064BB0E /* HMUploadAdapter.m */; };
+		5C8A71B71FE279E10064BB0E /* HMURLSessionManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A715A1FE2767A0064BB0E /* HMURLSessionManger.m */; };
+		5C8A71B81FE279EA0064BB0E /* HMNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A714E1FE2767A0064BB0E /* HMNetworkManager.m */; };
+		5C8A71B91FE279EA0064BB0E /* HMPriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A714F1FE2767A0064BB0E /* HMPriorityQueue.m */; };
+		5C8A71BA1FE279EA0064BB0E /* HMTaskTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A714C1FE2767A0064BB0E /* HMTaskTimer.m */; };
+		5C8A71BB1FE27A010064BB0E /* HMURLUploadCallbackEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71541FE2767A0064BB0E /* HMURLUploadCallbackEntry.m */; };
+		5C8A71BC1FE27A010064BB0E /* HMURLUploadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71571FE2767A0064BB0E /* HMURLUploadTask.m */; };
+		5C8A71BD1FE27A010064BB0E /* HMURLUploadCompletionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71581FE2767A0064BB0E /* HMURLUploadCompletionEntity.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5C8A70E71FE276100064BB0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5C8A70C61FE276100064BB0E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C8A70CD1FE276100064BB0E;
+			remoteInfo = ZaloShare;
+		};
+		5C8A719E1FE279630064BB0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5C8A70C61FE276100064BB0E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5C8A71941FE279630064BB0E;
+			remoteInfo = ShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5C8A71A41FE279630064BB0E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5C8A71A01FE279630064BB0E /* ShareExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		5C8A70CE1FE276100064BB0E /* ZaloShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZaloShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C8A70D11FE276100064BB0E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5C8A70D21FE276100064BB0E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5C8A70DA1FE276100064BB0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5C8A70DD1FE276100064BB0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5C8A70DF1FE276100064BB0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C8A70E01FE276100064BB0E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		5C8A70E61FE276100064BB0E /* ZaloShareTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZaloShareTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C8A70EA1FE276100064BB0E /* ZaloShareTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZaloShareTests.m; sourceTree = "<group>"; };
+		5C8A70EC1FE276100064BB0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C8A71441FE2767A0064BB0E /* ZLSharePackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSharePackage.h; sourceTree = "<group>"; };
+		5C8A71451FE2767A0064BB0E /* ZLCompressUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCompressUtils.m; sourceTree = "<group>"; };
+		5C8A71461FE2767A0064BB0E /* ZLSharePackageEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSharePackageEntry.m; sourceTree = "<group>"; };
+		5C8A71481FE2767A0064BB0E /* HMUploadAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMUploadAdapter.h; sourceTree = "<group>"; };
+		5C8A71491FE2767A0064BB0E /* HMURLSessionManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMURLSessionManger.h; sourceTree = "<group>"; };
+		5C8A714A1FE2767A0064BB0E /* HMUploadAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMUploadAdapter.m; sourceTree = "<group>"; };
+		5C8A714C1FE2767A0064BB0E /* HMTaskTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMTaskTimer.m; sourceTree = "<group>"; };
+		5C8A714D1FE2767A0064BB0E /* Constaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constaint.h; sourceTree = "<group>"; };
+		5C8A714E1FE2767A0064BB0E /* HMNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMNetworkManager.m; sourceTree = "<group>"; };
+		5C8A714F1FE2767A0064BB0E /* HMPriorityQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMPriorityQueue.m; sourceTree = "<group>"; };
+		5C8A71501FE2767A0064BB0E /* HMTaskTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTaskTimer.h; sourceTree = "<group>"; };
+		5C8A71511FE2767A0064BB0E /* HMNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMNetworkManager.h; sourceTree = "<group>"; };
+		5C8A71521FE2767A0064BB0E /* HMPriorityQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMPriorityQueue.h; sourceTree = "<group>"; };
+		5C8A71541FE2767A0064BB0E /* HMURLUploadCallbackEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMURLUploadCallbackEntry.m; sourceTree = "<group>"; };
+		5C8A71551FE2767A0064BB0E /* HMURLUploadCompletionEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMURLUploadCompletionEntity.h; sourceTree = "<group>"; };
+		5C8A71561FE2767A0064BB0E /* HMURLUploadTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMURLUploadTask.h; sourceTree = "<group>"; };
+		5C8A71571FE2767A0064BB0E /* HMURLUploadTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMURLUploadTask.m; sourceTree = "<group>"; };
+		5C8A71581FE2767A0064BB0E /* HMURLUploadCompletionEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMURLUploadCompletionEntity.m; sourceTree = "<group>"; };
+		5C8A71591FE2767A0064BB0E /* HMURLUploadCallbackEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMURLUploadCallbackEntry.h; sourceTree = "<group>"; };
+		5C8A715A1FE2767A0064BB0E /* HMURLSessionManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMURLSessionManger.m; sourceTree = "<group>"; };
+		5C8A715B1FE2767A0064BB0E /* ZLShareExtensionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLShareExtensionManager.h; sourceTree = "<group>"; };
+		5C8A715C1FE2767A0064BB0E /* ZLShareDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLShareDefine.h; sourceTree = "<group>"; };
+		5C8A715D1FE2767A0064BB0E /* ZLSharePackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSharePackage.m; sourceTree = "<group>"; };
+		5C8A715E1FE2767A0064BB0E /* ZLSharePackageEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSharePackageEntry.h; sourceTree = "<group>"; };
+		5C8A715F1FE2767A0064BB0E /* ZLCompressUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCompressUtils.h; sourceTree = "<group>"; };
+		5C8A71601FE2767A0064BB0E /* ZLShareExtensionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLShareExtensionManager.m; sourceTree = "<group>"; };
+		5C8A71621FE2767A0064BB0E /* DXConversationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXConversationManager.m; sourceTree = "<group>"; };
+		5C8A71631FE2767A0064BB0E /* DXImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXImageManager.h; sourceTree = "<group>"; };
+		5C8A71641FE2767A0064BB0E /* DXImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXImageManager.m; sourceTree = "<group>"; };
+		5C8A71651FE2767A0064BB0E /* DXConversationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXConversationManager.h; sourceTree = "<group>"; };
+		5C8A71671FE2767A0064BB0E /* DXConversationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXConversationModel.h; sourceTree = "<group>"; };
+		5C8A71681FE2767A0064BB0E /* DXContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXContactModel.h; sourceTree = "<group>"; };
+		5C8A71691FE2767A0064BB0E /* DXConversationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXConversationModel.m; sourceTree = "<group>"; };
+		5C8A716A1FE2767A0064BB0E /* DXContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXContactModel.m; sourceTree = "<group>"; };
+		5C8A716C1FE2767A0064BB0E /* icon_friend@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_friend@3x.png"; sourceTree = "<group>"; };
+		5C8A716D1FE2767A0064BB0E /* icon_friend.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_friend.png; sourceTree = "<group>"; };
+		5C8A716E1FE2767A0064BB0E /* icon_friend@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_friend@2x.png"; sourceTree = "<group>"; };
+		5C8A71701FE2767A0064BB0E /* DXShareSearchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXShareSearchResultViewController.h; sourceTree = "<group>"; };
+		5C8A71721FE2767A0064BB0E /* DXShareNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXShareNavigationController.h; sourceTree = "<group>"; };
+		5C8A71731FE2767A0064BB0E /* DXShareNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXShareNavigationController.m; sourceTree = "<group>"; };
+		5C8A71741FE2767A0064BB0E /* DXShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXShareViewController.h; sourceTree = "<group>"; };
+		5C8A71751FE2767A0064BB0E /* DXShareSearchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXShareSearchResultViewController.m; sourceTree = "<group>"; };
+		5C8A71761FE2767A0064BB0E /* DXShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXShareViewController.m; sourceTree = "<group>"; };
+		5C8A71781FE2767A0064BB0E /* DXConversationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXConversationTableViewCell.m; sourceTree = "<group>"; };
+		5C8A71791FE2767A0064BB0E /* DXConversationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXConversationTableViewCell.h; sourceTree = "<group>"; };
+		5C8A71951FE279630064BB0E /* ShareExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C8A71971FE279630064BB0E /* ShareRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareRootViewController.h; sourceTree = "<group>"; };
+		5C8A71981FE279630064BB0E /* ShareRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareRootViewController.m; sourceTree = "<group>"; };
+		5C8A719B1FE279630064BB0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		5C8A719D1FE279630064BB0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5C8A71A51FE2799F0064BB0E /* ZaloShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZaloShare.entitlements; sourceTree = "<group>"; };
+		5C8A71A61FE279A50064BB0E /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5C8A70CB1FE276100064BB0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C8A70E31FE276100064BB0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C8A71921FE279630064BB0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5C8A70C51FE276100064BB0E = {
+			isa = PBXGroup;
+			children = (
+				5C8A70D01FE276100064BB0E /* ZaloShare */,
+				5C8A70E91FE276100064BB0E /* ZaloShareTests */,
+				5C8A71961FE279630064BB0E /* ShareExtension */,
+				5C8A70CF1FE276100064BB0E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5C8A70CF1FE276100064BB0E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5C8A70CE1FE276100064BB0E /* ZaloShare.app */,
+				5C8A70E61FE276100064BB0E /* ZaloShareTests.xctest */,
+				5C8A71951FE279630064BB0E /* ShareExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5C8A70D01FE276100064BB0E /* ZaloShare */ = {
+			isa = PBXGroup;
+			children = (
+				5C8A71A51FE2799F0064BB0E /* ZaloShare.entitlements */,
+				5C8A71611FE2767A0064BB0E /* Manager */,
+				5C8A71661FE2767A0064BB0E /* Models */,
+				5C8A716B1FE2767A0064BB0E /* Resources */,
+				5C8A716F1FE2767A0064BB0E /* Screens */,
+				5C8A71431FE2767A0064BB0E /* ZLShareExtensionManager */,
+				5C8A70D11FE276100064BB0E /* AppDelegate.h */,
+				5C8A70D21FE276100064BB0E /* AppDelegate.m */,
+				5C8A70DA1FE276100064BB0E /* Assets.xcassets */,
+				5C8A70DC1FE276100064BB0E /* LaunchScreen.storyboard */,
+				5C8A70DF1FE276100064BB0E /* Info.plist */,
+				5C8A70E01FE276100064BB0E /* main.m */,
+			);
+			path = ZaloShare;
+			sourceTree = "<group>";
+		};
+		5C8A70E91FE276100064BB0E /* ZaloShareTests */ = {
+			isa = PBXGroup;
+			children = (
+				5C8A70EA1FE276100064BB0E /* ZaloShareTests.m */,
+				5C8A70EC1FE276100064BB0E /* Info.plist */,
+			);
+			path = ZaloShareTests;
+			sourceTree = "<group>";
+		};
+		5C8A71431FE2767A0064BB0E /* ZLShareExtensionManager */ = {
+			isa = PBXGroup;
+			children = (
+				5C8A715C1FE2767A0064BB0E /* ZLShareDefine.h */,
+				5C8A715F1FE2767A0064BB0E /* ZLCompressUtils.h */,
+				5C8A71451FE2767A0064BB0E /* ZLCompressUtils.m */,
+				5C8A71441FE2767A0064BB0E /* ZLSharePackage.h */,
+				5C8A715D1FE2767A0064BB0E /* ZLSharePackage.m */,
+				5C8A715E1FE2767A0064BB0E /* ZLSharePackageEntry.h */,
+				5C8A71461FE2767A0064BB0E /* ZLSharePackageEntry.m */,
+				5C8A715B1FE2767A0064BB0E /* ZLShareExtensionManager.h */,
+				5C8A71601FE2767A0064BB0E /* ZLShareExtensionManager.m */,
+				5C8A71471FE2767A0064BB0E /* HMURLSessionManager */,
+			);
+			path = ZLShareExtensionManager;
+			sourceTree = "<group>";
+		};
+		5C8A71471FE2767A0064BB0E /* HMURLSessionManager */ = {
+			isa = PBXGroup;
+			children = (
+				5C8A71481FE2767A0064BB0E /* HMUploadAdapter.h */,
+				5C8A714A1FE2767A0064BB0E /* HMUploadAdapter.m */,
+				5C8A71491FE2767A0064BB0E /* HMURLSessionManger.h */,
+				5C8A715A1FE2767A0064BB0E /* HMURLSessionManger.m */,
+				5C8A714B1FE2767A0064BB0E /* Common */,
+				5C8A71531FE2767A0064BB0E /* Model */,
+			);
+			path = HMURLSessionManager;
+			sourceTree = "<group>";
+		};
+		5C8A714B1FE2767A0064BB0E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				5C8A714D1FE2767A0064BB0E /* Constaint.h */,
+				5C8A71511FE2767A0064BB0E /* HMNetworkManager.h */,
+				5C8A714E1FE2767A0064BB0E /* HMNetworkManager.m */,
+				5C8A71521FE2767A0064BB0E /* HMPriorityQueue.h */,
+				5C8A714F1FE2767A0064BB0E /* HMPriorityQueue.m */,
+				5C8A71501FE2767A0064BB0E /* HMTaskTimer.h */,
+				5C8A714C1FE2767A0064BB0E /* HMTaskTimer.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		5C8A71531FE2767A0064BB0E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5C8A71591FE2767A0064BB0E /* HMURLUploadCallbackEntry.h */,
+				5C8A71541FE2767A0064BB0E /* HMURLUploadCallbackEntry.m */,
+				5C8A71561FE2767A0064BB0E /* HMURLUploadTask.h */,
+				5C8A71571FE2767A0064BB0E /* HMURLUploadTask.m */,
+				5C8A71551FE2767A0064BB0E /* HMURLUploadCompletionEntity.h */,
+				5C8A71581FE2767A0064BB0E /* HMURLUploadCompletionEntity.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5C8A71611FE2767A0064BB0E /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				5C8A71631FE2767A0064BB0E /* DXImageManager.h */,
+				5C8A71641FE2767A0064BB0E /* DXImageManager.m */,
+				5C8A71651FE2767A0064BB0E /* DXConversationManager.h */,
+				5C8A71621FE2767A0064BB0E /* DXConversationManager.m */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		5C8A71661FE2767A0064BB0E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5C8A71671FE2767A0064BB0E /* DXConversationModel.h */,
+				5C8A71691FE2767A0064BB0E /* DXConversationModel.m */,
+				5C8A71681FE2767A0064BB0E /* DXContactModel.h */,
+				5C8A716A1FE2767A0064BB0E /* DXContactModel.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5C8A716B1FE2767A0064BB0E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5C8A716D1FE2767A0064BB0E /* icon_friend.png */,
+				5C8A716E1FE2767A0064BB0E /* icon_friend@2x.png */,
+				5C8A716C1FE2767A0064BB0E /* icon_friend@3x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		5C8A716F1FE2767A0064BB0E /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				5C8A71741FE2767A0064BB0E /* DXShareViewController.h */,
+				5C8A71761FE2767A0064BB0E /* DXShareViewController.m */,
+				5C8A71701FE2767A0064BB0E /* DXShareSearchResultViewController.h */,
+				5C8A71751FE2767A0064BB0E /* DXShareSearchResultViewController.m */,
+				5C8A71711FE2767A0064BB0E /* NavigationController */,
+				5C8A71771FE2767A0064BB0E /* Views */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		5C8A71711FE2767A0064BB0E /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				5C8A71721FE2767A0064BB0E /* DXShareNavigationController.h */,
+				5C8A71731FE2767A0064BB0E /* DXShareNavigationController.m */,
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
+		5C8A71771FE2767A0064BB0E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5C8A71791FE2767A0064BB0E /* DXConversationTableViewCell.h */,
+				5C8A71781FE2767A0064BB0E /* DXConversationTableViewCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5C8A71961FE279630064BB0E /* ShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				5C8A71A61FE279A50064BB0E /* ShareExtension.entitlements */,
+				5C8A71971FE279630064BB0E /* ShareRootViewController.h */,
+				5C8A71981FE279630064BB0E /* ShareRootViewController.m */,
+				5C8A719A1FE279630064BB0E /* MainInterface.storyboard */,
+				5C8A719D1FE279630064BB0E /* Info.plist */,
+			);
+			path = ShareExtension;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5C8A70CD1FE276100064BB0E /* ZaloShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C8A70EF1FE276100064BB0E /* Build configuration list for PBXNativeTarget "ZaloShare" */;
+			buildPhases = (
+				5C8A70CA1FE276100064BB0E /* Sources */,
+				5C8A70CB1FE276100064BB0E /* Frameworks */,
+				5C8A70CC1FE276100064BB0E /* Resources */,
+				5C8A71A41FE279630064BB0E /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5C8A719F1FE279630064BB0E /* PBXTargetDependency */,
+			);
+			name = ZaloShare;
+			productName = ZaloShare;
+			productReference = 5C8A70CE1FE276100064BB0E /* ZaloShare.app */;
+			productType = "com.apple.product-type.application";
+		};
+		5C8A70E51FE276100064BB0E /* ZaloShareTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C8A70F21FE276100064BB0E /* Build configuration list for PBXNativeTarget "ZaloShareTests" */;
+			buildPhases = (
+				5C8A70E21FE276100064BB0E /* Sources */,
+				5C8A70E31FE276100064BB0E /* Frameworks */,
+				5C8A70E41FE276100064BB0E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5C8A70E81FE276100064BB0E /* PBXTargetDependency */,
+			);
+			name = ZaloShareTests;
+			productName = ZaloShareTests;
+			productReference = 5C8A70E61FE276100064BB0E /* ZaloShareTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		5C8A71941FE279630064BB0E /* ShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5C8A71A11FE279630064BB0E /* Build configuration list for PBXNativeTarget "ShareExtension" */;
+			buildPhases = (
+				5C8A71911FE279630064BB0E /* Sources */,
+				5C8A71921FE279630064BB0E /* Frameworks */,
+				5C8A71931FE279630064BB0E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareExtension;
+			productName = ShareExtension;
+			productReference = 5C8A71951FE279630064BB0E /* ShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5C8A70C61FE276100064BB0E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = "Nhữ Duy Đoàn";
+				TargetAttributes = {
+					5C8A70CD1FE276100064BB0E = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+					5C8A70E51FE276100064BB0E = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 5C8A70CD1FE276100064BB0E;
+					};
+					5C8A71941FE279630064BB0E = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 5C8A70C91FE276100064BB0E /* Build configuration list for PBXProject "ZaloShare" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5C8A70C51FE276100064BB0E;
+			productRefGroup = 5C8A70CF1FE276100064BB0E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5C8A70CD1FE276100064BB0E /* ZaloShare */,
+				5C8A70E51FE276100064BB0E /* ZaloShareTests */,
+				5C8A71941FE279630064BB0E /* ShareExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5C8A70CC1FE276100064BB0E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C8A718A1FE2767A0064BB0E /* icon_friend@3x.png in Resources */,
+				5C8A70DE1FE276100064BB0E /* LaunchScreen.storyboard in Resources */,
+				5C8A718B1FE2767A0064BB0E /* icon_friend.png in Resources */,
+				5C8A70DB1FE276100064BB0E /* Assets.xcassets in Resources */,
+				5C8A718C1FE2767A0064BB0E /* icon_friend@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C8A70E41FE276100064BB0E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C8A71931FE279630064BB0E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C8A71AD1FE279C30064BB0E /* icon_friend@3x.png in Resources */,
+				5C8A71AB1FE279C30064BB0E /* icon_friend.png in Resources */,
+				5C8A719C1FE279630064BB0E /* MainInterface.storyboard in Resources */,
+				5C8A71AC1FE279C30064BB0E /* icon_friend@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5C8A70CA1FE276100064BB0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C8A71891FE2767A0064BB0E /* DXContactModel.m in Sources */,
+				5C8A717F1FE2767A0064BB0E /* HMPriorityQueue.m in Sources */,
+				5C8A71821FE2767A0064BB0E /* HMURLUploadCompletionEntity.m in Sources */,
+				5C8A718F1FE2767A0064BB0E /* DXShareViewController.m in Sources */,
+				5C8A71881FE2767A0064BB0E /* DXConversationModel.m in Sources */,
+				5C8A71801FE2767A0064BB0E /* HMURLUploadCallbackEntry.m in Sources */,
+				5C8A71811FE2767A0064BB0E /* HMURLUploadTask.m in Sources */,
+				5C8A717A1FE2767A0064BB0E /* ZLCompressUtils.m in Sources */,
+				5C8A71871FE2767A0064BB0E /* DXImageManager.m in Sources */,
+				5C8A718D1FE2767A0064BB0E /* DXShareNavigationController.m in Sources */,
+				5C8A718E1FE2767A0064BB0E /* DXShareSearchResultViewController.m in Sources */,
+				5C8A71841FE2767A0064BB0E /* ZLSharePackage.m in Sources */,
+				5C8A71831FE2767A0064BB0E /* HMURLSessionManger.m in Sources */,
+				5C8A70E11FE276100064BB0E /* main.m in Sources */,
+				5C8A71901FE2767A0064BB0E /* DXConversationTableViewCell.m in Sources */,
+				5C8A717C1FE2767A0064BB0E /* HMUploadAdapter.m in Sources */,
+				5C8A71851FE2767A0064BB0E /* ZLShareExtensionManager.m in Sources */,
+				5C8A71861FE2767A0064BB0E /* DXConversationManager.m in Sources */,
+				5C8A717D1FE2767A0064BB0E /* HMTaskTimer.m in Sources */,
+				5C8A717E1FE2767A0064BB0E /* HMNetworkManager.m in Sources */,
+				5C8A70D31FE276100064BB0E /* AppDelegate.m in Sources */,
+				5C8A717B1FE2767A0064BB0E /* ZLSharePackageEntry.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C8A70E21FE276100064BB0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C8A70EB1FE276100064BB0E /* ZaloShareTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5C8A71911FE279630064BB0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C8A71AE1FE279C60064BB0E /* DXShareViewController.m in Sources */,
+				5C8A71A91FE279BF0064BB0E /* DXConversationModel.m in Sources */,
+				5C8A71AA1FE279BF0064BB0E /* DXContactModel.m in Sources */,
+				5C8A71B11FE279CC0064BB0E /* DXConversationTableViewCell.m in Sources */,
+				5C8A71B01FE279C90064BB0E /* DXShareNavigationController.m in Sources */,
+				5C8A71991FE279630064BB0E /* ShareRootViewController.m in Sources */,
+				5C8A71A81FE279B90064BB0E /* DXConversationManager.m in Sources */,
+				5C8A71B81FE279EA0064BB0E /* HMNetworkManager.m in Sources */,
+				5C8A71B51FE279D30064BB0E /* ZLShareExtensionManager.m in Sources */,
+				5C8A71AF1FE279C60064BB0E /* DXShareSearchResultViewController.m in Sources */,
+				5C8A71BD1FE27A010064BB0E /* HMURLUploadCompletionEntity.m in Sources */,
+				5C8A71A71FE279B90064BB0E /* DXImageManager.m in Sources */,
+				5C8A71B31FE279D30064BB0E /* ZLSharePackage.m in Sources */,
+				5C8A71BC1FE27A010064BB0E /* HMURLUploadTask.m in Sources */,
+				5C8A71B71FE279E10064BB0E /* HMURLSessionManger.m in Sources */,
+				5C8A71B21FE279D30064BB0E /* ZLCompressUtils.m in Sources */,
+				5C8A71BB1FE27A010064BB0E /* HMURLUploadCallbackEntry.m in Sources */,
+				5C8A71B41FE279D30064BB0E /* ZLSharePackageEntry.m in Sources */,
+				5C8A71BA1FE279EA0064BB0E /* HMTaskTimer.m in Sources */,
+				5C8A71B61FE279D90064BB0E /* HMUploadAdapter.m in Sources */,
+				5C8A71B91FE279EA0064BB0E /* HMPriorityQueue.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5C8A70E81FE276100064BB0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5C8A70CD1FE276100064BB0E /* ZaloShare */;
+			targetProxy = 5C8A70E71FE276100064BB0E /* PBXContainerItemProxy */;
+		};
+		5C8A719F1FE279630064BB0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5C8A71941FE279630064BB0E /* ShareExtension */;
+			targetProxy = 5C8A719E1FE279630064BB0E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		5C8A70DC1FE276100064BB0E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5C8A70DD1FE276100064BB0E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		5C8A719A1FE279630064BB0E /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5C8A719B1FE279630064BB0E /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5C8A70ED1FE276100064BB0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		5C8A70EE1FE276100064BB0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5C8A70F01FE276100064BB0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ZaloShare/ZaloShare.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QZQXR3HEM8;
+				INFOPLIST_FILE = ZaloShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nhuduydoan.ZaloShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5C8A70F11FE276100064BB0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ZaloShare/ZaloShare.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QZQXR3HEM8;
+				INFOPLIST_FILE = ZaloShare/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nhuduydoan.ZaloShare;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		5C8A70F31FE276100064BB0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QZQXR3HEM8;
+				INFOPLIST_FILE = ZaloShareTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nhuduydoan.ZaloShareTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZaloShare.app/ZaloShare";
+			};
+			name = Debug;
+		};
+		5C8A70F41FE276100064BB0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QZQXR3HEM8;
+				INFOPLIST_FILE = ZaloShareTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nhuduydoan.ZaloShareTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ZaloShare.app/ZaloShare";
+			};
+			name = Release;
+		};
+		5C8A71A21FE279630064BB0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QZQXR3HEM8;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nhuduydoan.ZaloShare.ShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5C8A71A31FE279630064BB0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QZQXR3HEM8;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.nhuduydoan.ZaloShare.ShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5C8A70C91FE276100064BB0E /* Build configuration list for PBXProject "ZaloShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C8A70ED1FE276100064BB0E /* Debug */,
+				5C8A70EE1FE276100064BB0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C8A70EF1FE276100064BB0E /* Build configuration list for PBXNativeTarget "ZaloShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C8A70F01FE276100064BB0E /* Debug */,
+				5C8A70F11FE276100064BB0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C8A70F21FE276100064BB0E /* Build configuration list for PBXNativeTarget "ZaloShareTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C8A70F31FE276100064BB0E /* Debug */,
+				5C8A70F41FE276100064BB0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5C8A71A11FE279630064BB0E /* Build configuration list for PBXNativeTarget "ShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5C8A71A21FE279630064BB0E /* Debug */,
+				5C8A71A31FE279630064BB0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5C8A70C61FE276100064BB0E /* Project object */;
+}
