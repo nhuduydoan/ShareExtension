@@ -18,12 +18,13 @@
 
 NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
-@interface ZLPickConversationViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, DXConversationSearchResultViewControllerDelegate>
+@interface ZLPickConversationViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DXConversationSearchResultViewControllerDelegate>
 
+@property (strong, nonatomic) UIView *headerView;
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIView *sectionTitleView;
 
-@property (strong, nonatomic) UISearchController *searchController;
+@property (strong, nonatomic) UISearchBar *searchBar;
 @property (strong, nonatomic) DXConversationSearchResultViewController *searchResultViewController;
 
 @property (strong, nonatomic) NSArray *data;
@@ -56,9 +57,10 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     // Do any additional setup after loading the view.
     
     [self setupNavigationItems];
-    [self setupViews];
+    [self setupHeaderView];
+    [self setupTableView];
+    [self setupSearchResultViewController];
     [self getAllData];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,45 +71,37 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 #pragma mark - Setup Views
 
 - (void)setupNavigationItems {
-    self.title = @"Chia sẻ";
     UIBarButtonItem *closeBarItem = [[UIBarButtonItem alloc]
                                      initWithTitle:@"Huỷ"
                                      style:UIBarButtonItemStylePlain
                                      target:self action:@selector(touchUpInsideCloseBarItem)];
     self.navigationItem.leftBarButtonItem = closeBarItem;
     self.navigationController.navigationBar.translucent = NO;
+    self.searchBar = [self setUpSearchBar];
+    self.navigationItem.titleView = self.searchBar;
 }
 
-- (void)setupViews {
-    [self setupTableView];
-    [self setupSearchController];
-    
-    self.tableView.backgroundColor = [UIColor clearColor];
+- (void)setupHeaderView {
     self.view.backgroundColor = [UIColor whiteColor];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 80)];
+    headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    headerView.backgroundColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1.0];
+    self.headerView = headerView;
 }
 
-- (void)setupSearchController {
-    self.searchResultViewController = [[DXConversationSearchResultViewController alloc] init];
-    self.searchResultViewController.delegate = self;
-    self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultViewController];
-    self.searchController.searchResultsUpdater = self;
-    self.searchController.delegate = self;
-    self.searchController.dimsBackgroundDuringPresentation = YES; // default is YES
-    self.tableView.tableHeaderView = self.searchController.searchBar;
-    [self setupSearchBar:self.searchController.searchBar];
-    self.definesPresentationContext = YES;
-}
-
-- (void)setupSearchBar:(UISearchBar *)searchBar {
-    
+- (UISearchBar *)setUpSearchBar {
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:self.headerView.bounds];
+    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     searchBar.delegate = self;
-    [searchBar sizeToFit];
-    searchBar.translucent = NO;
+    searchBar.backgroundImage = [UIImage new];
+    [searchBar setValue:@"Huỷ" forKey:@"_cancelButtonText"];
     
     searchBar.placeholder = @"Tìm kiếm";
     UITextField *searchTextField = [searchBar valueForKey:@"searchField"];
     searchTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    [searchBar setValue:@"Huỷ" forKey:@"_cancelButtonText"];
+    UILabel *placeholderLabel = [searchTextField valueForKey:@"placeholderLabel"];
+    placeholderLabel.textColor = [UIColor colorWithRed:131/255.f green:131/255.f blue:136/255.f alpha:1];
+    return searchBar;
 }
 
 - (void)setupTableView {
@@ -116,11 +110,35 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     [self.view addSubview:self.tableView];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.tableView.tableHeaderView = self.headerView;
     self.tableView.tableFooterView = [UIView new];
     self.tableView.rowHeight = 72;
     self.tableView.separatorColor = [UIColor colorWithRed:223/255.f green:226/255.f blue:227/255.f alpha:1];
     [self.tableView setLayoutMargins:UIEdgeInsetsZero];
     [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 66, 0, 0)];
+    self.tableView.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = [UIColor whiteColor];
+}
+
+- (void)setupSearchResultViewController {
+    DXConversationSearchResultViewController *controller = [[DXConversationSearchResultViewController alloc] init];
+    controller.delegate = self;
+    self.searchResultViewController = controller;
+}
+
+- (void)displaySearchResultViewController:(BOOL)isShow {
+    if (isShow) {
+        [self addChildViewController:self.searchResultViewController];
+        [self.searchResultViewController didMoveToParentViewController:self];
+        self.searchResultViewController.view.frame = self.view.bounds;
+        self.searchResultViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [self.view addSubview:self.searchResultViewController.view];
+        
+    } else {
+        [self.searchResultViewController removeFromParentViewController];
+        [self.searchResultViewController didMoveToParentViewController:nil];
+        [self.searchResultViewController.view removeFromSuperview];
+    }
 }
 
 #pragma mark - Private
@@ -149,7 +167,13 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
 - (void)searchWithKeyWord:(NSString *)keyword {
     if (keyword.length == 0) {
+        [self displaySearchResultViewController:NO];
         return;
+    }
+    
+    if (!self.searchResultViewController.view.window) {
+        // If SearchResultViewController is not displayed, display it
+        [self displaySearchResultViewController:YES];
     }
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"displayName CONTAINS[c] %@", keyword.lowercaseString];
@@ -159,8 +183,8 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 }
 
 - (void)hideKeyBoardScreen {
-    if ([self.searchController.searchBar isFirstResponder]) {
-        [self.searchController.searchBar resignFirstResponder];
+    if ([self.searchBar isFirstResponder]) {
+        [self.searchBar resignFirstResponder];
     }
 }
 
@@ -270,18 +294,10 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     return self.sectionTitleView;
 }
 
-#pragma mark - UISearchController Delegates
+#pragma mark - UISearchBar Delegates
 
-- (void)willPresentSearchController:(UISearchController *)searchController {
-    self.navigationController.navigationBar.translucent = YES;
-}
-
-- (void)willDismissSearchController:(UISearchController *)searchController {
-    self.navigationController.navigationBar.translucent = NO;
-}
-
-- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
-    NSString *keyword = searchController.searchBar.text;
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+    NSString *keyword = searchBar.text;
     [self searchWithKeyWord:keyword];
 }
 

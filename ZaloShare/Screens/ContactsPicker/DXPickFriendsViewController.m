@@ -71,7 +71,7 @@
 }
 
 - (void)setupTitleView {
-    UIColor *titleColor = [UIColor whiteColor];
+    UIColor *titleColor = [UIColor blackColor];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 414, 44)];
     UILabel *mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, 414, 18)];
     mainLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
@@ -80,7 +80,7 @@
     mainLabel.textColor = titleColor;
     mainLabel.text = @"Chọn bạn";
     
-    NSString *subTitle = @"0/5";
+    NSString *subTitle = @"0/100";
     UIImage *subImage = [sImageManager titleImageFromString:subTitle color:titleColor];
     CGFloat width = subImage.size.width * 0.6;
     CGFloat height = subImage.size.height * 0.6;
@@ -96,8 +96,8 @@
 }
 
 - (void)updateTitleForController {
-    UIColor *titleColor = [UIColor whiteColor];
-    NSString *subTitle = [NSString stringWithFormat:@"%zd/5", self.showPickedViewController.pickedModels.count];
+    UIColor *titleColor = [UIColor blackColor];
+    NSString *subTitle = [NSString stringWithFormat:@"%zd/100", self.showPickedViewController.pickedModels.count];
     UIImage *subTitleImage =  [sImageManager titleImageFromString:subTitle color:titleColor];
     CGRect rect = self.navigationItem.titleView.bounds;
     CGFloat width = subTitleImage.size.width * 0.6;
@@ -122,7 +122,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
     self.headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.headerView.backgroundColor = [UIColor colorWithRed:194/255.f green:194/255.f blue:196/255.f alpha:1.0];
+    self.headerView.backgroundColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1.0];
     [self.view addSubview:self.headerView];
     
     [self setUpSearchBar];
@@ -331,6 +331,10 @@
 }
 
 - (BOOL)pickContactsViewController:(UIViewController *)controller didSelectModel:(id)model {
+    if (self.showPickedViewController.pickedModels.count >= 100) {
+        return NO;
+    }
+    
     [self selectModel:model];
     if (controller == self.pickContactsViewController) {
         [self.searchResultViewController didSelectModel:model];
