@@ -27,13 +27,13 @@
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleDefault;
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)setupViews {
-    UIColor *barBackgroundColor = [UIColor colorWithRed:242/255.f green:242/255.f blue:242/255.f alpha:1];
-    UIColor *tintColor = [UIColor colorWithRed:54/255.f green:59/255.f blue:66/255.f alpha:1];
-    UIColor *titleColor = [UIColor blackColor];
+    UIColor *barBackgroundColor = [UIColor colorWithRed:32/255.f green:148/255.f blue:241/255.f alpha:1];
+    UIColor *tintColor = [UIColor whiteColor];
+    UIColor *titleColor = [UIColor whiteColor];
     UIImage *barBackgroundImage = [self imageWithColor:barBackgroundColor];
     [self.navigationBar setBackgroundImage:barBackgroundImage forBarMetrics:UIBarMetricsDefault];
     [self.navigationBar setShadowImage:[UIImage new]];

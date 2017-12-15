@@ -37,7 +37,7 @@
  @param string : string for drawing
  @return : nullable image
  */
-- (UIImage *)titleImageFromString:(NSString *)string;
+- (UIImage *)titleImageFromString:(NSString *)string color:(UIColor *)color;
 - (UIImage *)avatarImageFromOriginalImage:(UIImage *)image;
 
 @end

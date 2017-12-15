@@ -71,15 +71,17 @@
 }
 
 - (void)setupTitleView {
+    UIColor *titleColor = [UIColor whiteColor];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 414, 44)];
     UILabel *mainLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 8, 414, 18)];
     mainLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     mainLabel.font = [UIFont systemFontOfSize:17];
     mainLabel.textAlignment = NSTextAlignmentCenter;
+    mainLabel.textColor = titleColor;
     mainLabel.text = @"Chọn bạn";
     
     NSString *subTitle = @"0/5";
-    UIImage *subImage = [sImageManager titleImageFromString:subTitle];
+    UIImage *subImage = [sImageManager titleImageFromString:subTitle color:titleColor];
     CGFloat width = subImage.size.width * 0.6;
     CGFloat height = subImage.size.height * 0.6;
     UIImageView *subTitleView = [[UIImageView alloc] initWithImage:subImage];
@@ -94,8 +96,9 @@
 }
 
 - (void)updateTitleForController {
+    UIColor *titleColor = [UIColor whiteColor];
     NSString *subTitle = [NSString stringWithFormat:@"%zd/5", self.showPickedViewController.pickedModels.count];
-    UIImage *subTitleImage =  [sImageManager titleImageFromString:subTitle];
+    UIImage *subTitleImage =  [sImageManager titleImageFromString:subTitle color:titleColor];
     CGRect rect = self.navigationItem.titleView.bounds;
     CGFloat width = subTitleImage.size.width * 0.6;
     CGFloat height = subTitleImage.size.height * 0.6;

@@ -126,9 +126,9 @@ typedef NS_ENUM(NSUInteger, DXAvatarImageSize) {
     });
 }
 
-- (UIImage *)titleImageFromString:(NSString *)string {
+- (UIImage *)titleImageFromString:(NSString *)string color:(UIColor *)color {
     
-    NSDictionary *textAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:17]};
+    NSDictionary *textAttributes = @{NSFontAttributeName:[UIFont systemFontOfSize:17], NSForegroundColorAttributeName:color};
     CGSize size = [string sizeWithAttributes:textAttributes];
     UIGraphicsBeginImageContextWithOptions(size,NO,0.0);
     [string drawAtPoint:CGPointMake(0, 0) withAttributes:textAttributes];
