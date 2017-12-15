@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5C2678C71FE2A10A005DFB1E /* DXInviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180CC1FE29595007DA903 /* DXInviteFriendsViewController.m */; };
+		5C2678C81FE2A11A005DFB1E /* DXInviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180CC1FE29595007DA903 /* DXInviteFriendsViewController.m */; };
+		5C2678C91FE2A11A005DFB1E /* DXResultSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180D91FE29595007DA903 /* DXResultSearchViewController.m */; };
+		5C2678CA1FE2A11A005DFB1E /* DXPickContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180CF1FE29595007DA903 /* DXPickContactsViewController.m */; };
+		5C2678CB1FE2A11A005DFB1E /* DXShowPickedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180D11FE29595007DA903 /* DXShowPickedViewController.m */; };
+		5C2678CC1FE2A11A005DFB1E /* DXPickContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180D51FE29595007DA903 /* DXPickContactTableViewCell.m */; };
+		5C2678CD1FE2A11A005DFB1E /* DXShowPickedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180D71FE29595007DA903 /* DXShowPickedCollectionViewCell.m */; };
+		5C2678CE1FE2A11A005DFB1E /* DXShowPickedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C8180D61FE29595007DA903 /* DXShowPickedCollectionViewCell.xib */; };
+		5C8180DC1FE29595007DA903 /* DXPickContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180CF1FE29595007DA903 /* DXPickContactsViewController.m */; };
+		5C8180DD1FE29595007DA903 /* DXShowPickedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180D11FE29595007DA903 /* DXShowPickedViewController.m */; };
+		5C8180DE1FE29595007DA903 /* DXPickContactTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180D51FE29595007DA903 /* DXPickContactTableViewCell.m */; };
+		5C8180DF1FE29595007DA903 /* DXShowPickedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C8180D61FE29595007DA903 /* DXShowPickedCollectionViewCell.xib */; };
+		5C8180E01FE29595007DA903 /* DXShowPickedCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180D71FE29595007DA903 /* DXShowPickedCollectionViewCell.m */; };
+		5C8180E11FE29595007DA903 /* DXResultSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180D91FE29595007DA903 /* DXResultSearchViewController.m */; };
 		5C8A70D31FE276100064BB0E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A70D21FE276100064BB0E /* AppDelegate.m */; };
 		5C8A70DB1FE276100064BB0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C8A70DA1FE276100064BB0E /* Assets.xcassets */; };
 		5C8A70DE1FE276100064BB0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8A70DC1FE276100064BB0E /* LaunchScreen.storyboard */; };
@@ -95,6 +109,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5C8180CC1FE29595007DA903 /* DXInviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXInviteFriendsViewController.m; sourceTree = "<group>"; };
+		5C8180CD1FE29595007DA903 /* DXInviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXInviteFriendsViewController.h; sourceTree = "<group>"; };
+		5C8180CF1FE29595007DA903 /* DXPickContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXPickContactsViewController.m; sourceTree = "<group>"; };
+		5C8180D01FE29595007DA903 /* DXResultSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXResultSearchViewController.h; sourceTree = "<group>"; };
+		5C8180D11FE29595007DA903 /* DXShowPickedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXShowPickedViewController.m; sourceTree = "<group>"; };
+		5C8180D31FE29595007DA903 /* DXPickContactTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXPickContactTableViewCell.h; sourceTree = "<group>"; };
+		5C8180D41FE29595007DA903 /* DXShowPickedCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXShowPickedCollectionViewCell.h; sourceTree = "<group>"; };
+		5C8180D51FE29595007DA903 /* DXPickContactTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXPickContactTableViewCell.m; sourceTree = "<group>"; };
+		5C8180D61FE29595007DA903 /* DXShowPickedCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DXShowPickedCollectionViewCell.xib; sourceTree = "<group>"; };
+		5C8180D71FE29595007DA903 /* DXShowPickedCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXShowPickedCollectionViewCell.m; sourceTree = "<group>"; };
+		5C8180D81FE29595007DA903 /* DXPickContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXPickContactsViewController.h; sourceTree = "<group>"; };
+		5C8180D91FE29595007DA903 /* DXResultSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXResultSearchViewController.m; sourceTree = "<group>"; };
+		5C8180DA1FE29595007DA903 /* DXShowPickedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXShowPickedViewController.h; sourceTree = "<group>"; };
 		5C8A70CE1FE276100064BB0E /* ZaloShare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZaloShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C8A70D11FE276100064BB0E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5C8A70D21FE276100064BB0E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -184,6 +211,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5C8180CB1FE29595007DA903 /* ContactsPicker */ = {
+			isa = PBXGroup;
+			children = (
+				5C8180CD1FE29595007DA903 /* DXInviteFriendsViewController.h */,
+				5C8180CC1FE29595007DA903 /* DXInviteFriendsViewController.m */,
+				5C8180CE1FE29595007DA903 /* Controllers */,
+			);
+			path = ContactsPicker;
+			sourceTree = "<group>";
+		};
+		5C8180CE1FE29595007DA903 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				5C8180D01FE29595007DA903 /* DXResultSearchViewController.h */,
+				5C8180D91FE29595007DA903 /* DXResultSearchViewController.m */,
+				5C8180D81FE29595007DA903 /* DXPickContactsViewController.h */,
+				5C8180CF1FE29595007DA903 /* DXPickContactsViewController.m */,
+				5C8180DA1FE29595007DA903 /* DXShowPickedViewController.h */,
+				5C8180D11FE29595007DA903 /* DXShowPickedViewController.m */,
+				5C8180D21FE29595007DA903 /* View */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		5C8180D21FE29595007DA903 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5C8180D31FE29595007DA903 /* DXPickContactTableViewCell.h */,
+				5C8180D51FE29595007DA903 /* DXPickContactTableViewCell.m */,
+				5C8180D41FE29595007DA903 /* DXShowPickedCollectionViewCell.h */,
+				5C8180D71FE29595007DA903 /* DXShowPickedCollectionViewCell.m */,
+				5C8180D61FE29595007DA903 /* DXShowPickedCollectionViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5C8A70C51FE276100064BB0E = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +391,7 @@
 				5C8A71761FE2767A0064BB0E /* DXShareViewController.m */,
 				5C8A71701FE2767A0064BB0E /* DXShareSearchResultViewController.h */,
 				5C8A71751FE2767A0064BB0E /* DXShareSearchResultViewController.m */,
+				5C8180CB1FE29595007DA903 /* ContactsPicker */,
 				5C8A71711FE2767A0064BB0E /* NavigationController */,
 				5C8A71771FE2767A0064BB0E /* Views */,
 			);
@@ -481,6 +545,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5C8A718A1FE2767A0064BB0E /* icon_friend@3x.png in Resources */,
+				5C8180DF1FE29595007DA903 /* DXShowPickedCollectionViewCell.xib in Resources */,
 				5C8A70DE1FE276100064BB0E /* LaunchScreen.storyboard in Resources */,
 				5C8A718B1FE2767A0064BB0E /* icon_friend.png in Resources */,
 				5C8A70DB1FE276100064BB0E /* Assets.xcassets in Resources */,
@@ -502,6 +567,7 @@
 				5C8A71AD1FE279C30064BB0E /* icon_friend@3x.png in Resources */,
 				5C8A71AB1FE279C30064BB0E /* icon_friend.png in Resources */,
 				5C8A719C1FE279630064BB0E /* MainInterface.storyboard in Resources */,
+				5C2678CE1FE2A11A005DFB1E /* DXShowPickedCollectionViewCell.xib in Resources */,
 				5C8A71AC1FE279C30064BB0E /* icon_friend@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,18 +581,24 @@
 			files = (
 				5C8A71891FE2767A0064BB0E /* DXContactModel.m in Sources */,
 				5C8A717F1FE2767A0064BB0E /* HMPriorityQueue.m in Sources */,
+				5C8180DC1FE29595007DA903 /* DXPickContactsViewController.m in Sources */,
 				5C8A71821FE2767A0064BB0E /* HMURLUploadCompletionEntity.m in Sources */,
 				5C8A718F1FE2767A0064BB0E /* DXShareViewController.m in Sources */,
+				5C8180E11FE29595007DA903 /* DXResultSearchViewController.m in Sources */,
 				5C8A71881FE2767A0064BB0E /* DXConversationModel.m in Sources */,
 				5C8A71801FE2767A0064BB0E /* HMURLUploadCallbackEntry.m in Sources */,
+				5C8180DE1FE29595007DA903 /* DXPickContactTableViewCell.m in Sources */,
 				5C8A71811FE2767A0064BB0E /* HMURLUploadTask.m in Sources */,
 				5C8A717A1FE2767A0064BB0E /* ZLCompressUtils.m in Sources */,
 				5C8A71871FE2767A0064BB0E /* DXImageManager.m in Sources */,
 				5C8A718D1FE2767A0064BB0E /* DXShareNavigationController.m in Sources */,
 				5C8A718E1FE2767A0064BB0E /* DXShareSearchResultViewController.m in Sources */,
+				5C8180DD1FE29595007DA903 /* DXShowPickedViewController.m in Sources */,
 				5C8A71841FE2767A0064BB0E /* ZLSharePackage.m in Sources */,
 				5C8A71831FE2767A0064BB0E /* HMURLSessionManger.m in Sources */,
 				5C8A70E11FE276100064BB0E /* main.m in Sources */,
+				5C8180E01FE29595007DA903 /* DXShowPickedCollectionViewCell.m in Sources */,
+				5C2678C71FE2A10A005DFB1E /* DXInviteFriendsViewController.m in Sources */,
 				5C8A71901FE2767A0064BB0E /* DXConversationTableViewCell.m in Sources */,
 				5C8A717C1FE2767A0064BB0E /* HMUploadAdapter.m in Sources */,
 				5C8A71851FE2767A0064BB0E /* ZLShareExtensionManager.m in Sources */,
@@ -552,21 +624,27 @@
 			files = (
 				5C8A71AE1FE279C60064BB0E /* DXShareViewController.m in Sources */,
 				5C8A71A91FE279BF0064BB0E /* DXConversationModel.m in Sources */,
+				5C2678CA1FE2A11A005DFB1E /* DXPickContactsViewController.m in Sources */,
 				5C8A71AA1FE279BF0064BB0E /* DXContactModel.m in Sources */,
 				5C8A71B11FE279CC0064BB0E /* DXConversationTableViewCell.m in Sources */,
 				5C8A71B01FE279C90064BB0E /* DXShareNavigationController.m in Sources */,
 				5C8A71991FE279630064BB0E /* ShareRootViewController.m in Sources */,
+				5C2678CC1FE2A11A005DFB1E /* DXPickContactTableViewCell.m in Sources */,
 				5C8A71A81FE279B90064BB0E /* DXConversationManager.m in Sources */,
 				5C8A71B81FE279EA0064BB0E /* HMNetworkManager.m in Sources */,
 				5C8A71B51FE279D30064BB0E /* ZLShareExtensionManager.m in Sources */,
 				5C8A71AF1FE279C60064BB0E /* DXShareSearchResultViewController.m in Sources */,
 				5C8A71BD1FE27A010064BB0E /* HMURLUploadCompletionEntity.m in Sources */,
+				5C2678CB1FE2A11A005DFB1E /* DXShowPickedViewController.m in Sources */,
 				5C8A71A71FE279B90064BB0E /* DXImageManager.m in Sources */,
 				5C8A71B31FE279D30064BB0E /* ZLSharePackage.m in Sources */,
 				5C8A71BC1FE27A010064BB0E /* HMURLUploadTask.m in Sources */,
+				5C2678CD1FE2A11A005DFB1E /* DXShowPickedCollectionViewCell.m in Sources */,
 				5C8A71B71FE279E10064BB0E /* HMURLSessionManger.m in Sources */,
 				5C8A71B21FE279D30064BB0E /* ZLCompressUtils.m in Sources */,
 				5C8A71BB1FE27A010064BB0E /* HMURLUploadCallbackEntry.m in Sources */,
+				5C2678C91FE2A11A005DFB1E /* DXResultSearchViewController.m in Sources */,
+				5C2678C81FE2A11A005DFB1E /* DXInviteFriendsViewController.m in Sources */,
 				5C8A71B41FE279D30064BB0E /* ZLSharePackageEntry.m in Sources */,
 				5C8A71BA1FE279EA0064BB0E /* HMTaskTimer.m in Sources */,
 				5C8A71B61FE279D90064BB0E /* HMUploadAdapter.m in Sources */,
@@ -657,7 +735,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -706,7 +784,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -718,6 +796,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ZaloShare/ZaloShare.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QZQXR3HEM8;
 				INFOPLIST_FILE = ZaloShare/Info.plist;
@@ -725,6 +804,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nhuduydoan.ZaloShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -734,6 +814,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ZaloShare/ZaloShare.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QZQXR3HEM8;
 				INFOPLIST_FILE = ZaloShare/Info.plist;
@@ -741,6 +822,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.nhuduydoan.ZaloShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

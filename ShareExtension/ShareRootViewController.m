@@ -35,14 +35,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    self.view.backgroundColor = [UIColor grayColor];
-//    __weak typeof(self) selfWeak = self;
-//    DXShareViewController *controller = [[DXShareViewController alloc] initWithCompletionHandler:^{
-//        [selfWeak didSelectPost];
-//    }];
-//    DXShareNavigationController *navController = [[DXShareNavigationController alloc] initWithRootViewController:controller];
-//    [self presentViewController:navController animated:YES completion:nil];
+    [self setNeedsStatusBarAppearanceUpdate];
+    __weak typeof(self) selfWeak = self;
+    DXShareViewController *controller = [[DXShareViewController alloc] initWithCompletionHandler:^{
+        [selfWeak didSelectPost];
+    }];
+    DXShareNavigationController *navController = [[DXShareNavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:navController animated:YES completion:nil];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
