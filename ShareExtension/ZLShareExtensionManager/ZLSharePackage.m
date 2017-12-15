@@ -12,18 +12,10 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        _packageId = [[NSUUID UUID] UUIDString];
+        _packageId = [[[NSUUID UUID] UUIDString] hash];
         _shareType = ZLShareTypeUnknown;
         _shareData = nil;
-    }
-    
-    return self;
-}
-
-- (instancetype)initWithShareObject:(NSData *)shareData shareType:(ZLShareType)shareType {
-    if (self = [super init]) {
-        _shareData = shareData;
-        _shareType = shareType;
+        _shareName = @"";
     }
     
     return self;

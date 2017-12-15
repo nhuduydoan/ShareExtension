@@ -1,5 +1,5 @@
 //
-//  DXShareSearchResultViewController.h
+//  DXConversationSearchResultViewController.h
 //  DemoXcode
 //
 //  Created by Nhữ Duy Đoàn on 12/13/17.
@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-@class DXShareSearchResultViewController, DXConversationModel;
+@class DXConversationSearchResultViewController, DXConversationModel;
 
-@protocol DXShareSearchResultViewControllerDelegate <NSObject>
+@protocol DXConversationSearchResultViewControllerDelegate <NSObject>
 
 @optional
 - (void)shareSearchResultViewController:(UIViewController *)viewController didSelectModel:(id)model;
@@ -17,9 +17,9 @@
 
 @end
 
-@interface DXShareSearchResultViewController : UITableViewController
+@interface DXConversationSearchResultViewController : UITableViewController
 
-@property (weak, nonatomic) id<DXShareSearchResultViewControllerDelegate> delegate;
+@property (weak, nonatomic) id<DXConversationSearchResultViewControllerDelegate> delegate;
 
 - (void)reloadWithData:(NSArray<DXConversationModel *> *)data;
 

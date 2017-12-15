@@ -10,6 +10,8 @@
 
 @interface DXPickFriendsViewController : UIViewController
 
+@property (nonatomic, copy) void (^completionHandler)(UIViewController *viewController, NSArray<NSString *> *shareURLs);
+
 - (id)initWithContactsArray:(NSArray *)contactsArray;
 
 @end

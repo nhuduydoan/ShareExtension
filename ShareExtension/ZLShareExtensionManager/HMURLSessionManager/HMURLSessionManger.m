@@ -420,8 +420,6 @@
         return;
     }
     
-    NSLog(@"[HM] HMURLSessionManager - Complete task %tu - Error: %@", task.taskIdentifier, error);
-    
     [_taskTimer update];
     
     __weak __typeof__(self) weakSelf = self;
@@ -444,13 +442,12 @@
             if (!cbEntries) {
                 return;
             }
-            
-            __weak __typeof__(uploadTask) weakUploadTask = uploadTask;
+
             //Call all complete calbacks of this task
             [cbEntries enumerateObjectsUsingBlock:^(HMURLUploadCallbackEntry * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
                 if (obj.completionCallback) {
                     dispatch_async(obj.queue, ^{
-                        obj.completionCallback(weakUploadTask.taskIdentifier, error);
+                        obj.completionCallback(uploadTask.taskIdentifier, error);
                     });
                 }
             }];

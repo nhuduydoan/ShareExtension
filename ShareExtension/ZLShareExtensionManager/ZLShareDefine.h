@@ -11,7 +11,7 @@
 typedef NS_ENUM(NSInteger, ZLShareType) {
     ZLShareTypeUnknown = 0,
     ZLShareTypeImage,
-    ZLShareTypeMovie,
+    ZLShareTypeVideo,
     ZLShareTypeFile,
     ZLShareTypeWebURL,
     ZLShareTypeWebPage,
@@ -37,12 +37,12 @@ typedef NS_ENUM(NSInteger, ZLImagePackageCompressType) {
 
 typedef NS_ENUM(NSInteger, ZLShareError) {
     ZLShareNilExtensionContextError = 100,
-    ZLShareNilExtensionItemError
-};
-
-typedef NS_ENUM(NSInteger, ZLCompressError) {
-    ZLCompressImageError = 100,
-    ZLCompressVideoError
+    ZLShareNilExtensionItemError,
+    ZLDataNilError,
+    ZLCompressImageError,
+    ZLCompressVideoError,
+    ZLFileNotExistError,
+    ZLCompressTypeUnknowError
 };
 
 
@@ -57,3 +57,10 @@ typedef NS_ENUM(NSInteger, ZLCompressError) {
 #define mainQueue dispatch_get_main_queue()
 
 #define GetValidQueue(queue)                queue ? queue : mainQueue
+
+
+
+//Dictionary Key
+#define kZLUploadSharePackageError                  @"kZLUploadSharePackageError"
+#define kZLUploadSharePackageFailedCount            @"kZLUploadSharePackageFailedCount"
+#define kZLUploadSharePackageCompletedCount         @"kZLUploadSharePackageCompletedCount"

@@ -20,7 +20,7 @@
 @property (strong, nonatomic) UILabel *noResultLabel;
 
 @property (strong, nonatomic) UIBarButtonItem *closeBarButtonItem;
-@property (strong, nonatomic) UIBarButtonItem *inviteBarButtonItem;
+@property (strong, nonatomic) UIBarButtonItem *shareBarButtonItem;
 @property (strong, nonatomic) UIImageView *subTitleView;
 
 @property (strong, nonatomic) UISearchBar *searchBar;
@@ -65,9 +65,9 @@
     self.closeBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Huỷ" style:UIBarButtonItemStylePlain target:self action:@selector(touchUpCloseBarButtonItem)];
     self.navigationItem.leftBarButtonItem = self.closeBarButtonItem;
     
-    self.inviteBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Gửi" style:UIBarButtonItemStyleDone target:self action:@selector(touchUpInviteButton)];
-    self.navigationItem.rightBarButtonItem = self.inviteBarButtonItem;
-    [self.inviteBarButtonItem setEnabled:NO];
+    self.shareBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Gửi" style:UIBarButtonItemStyleDone target:self action:@selector(touchUpShareButton)];
+    self.navigationItem.rightBarButtonItem = self.shareBarButtonItem;
+    [self.shareBarButtonItem setEnabled:NO];
 }
 
 - (void)setupTitleView {
@@ -273,7 +273,7 @@
     [self.showPickedViewController addPickedModel:model];
     if (self.showPickedViewController.pickedModels.count == 1) {
         [self displayShowPickedViewController:YES];
-        [self.inviteBarButtonItem setEnabled:YES];
+        [self.shareBarButtonItem setEnabled:YES];
     }
     [self updateTitleForController];
 }
@@ -282,7 +282,7 @@
     [self.showPickedViewController removePickedModel:model];
     if (self.showPickedViewController.pickedModels.count == 0) {
         [self displayShowPickedViewController:NO];
-        [self.inviteBarButtonItem setEnabled:NO];
+        [self.shareBarButtonItem setEnabled:NO];
     }
     [self updateTitleForController];
 }
@@ -300,20 +300,22 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)touchUpInviteButton {
+- (void)touchUpShareButton {
     [self hideKeyBoard];
     
     NSArray *selectedFriends = [self.showPickedViewController pickedModels];
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Your selected friends" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
-
-    for (DXContactModel *contact in selectedFriends) {
-        UIAlertAction *action = [UIAlertAction actionWithTitle:contact.fullName style:UIAlertActionStyleDefault handler:nil];
-        [alertController addAction:action];
+    if (selectedFriends.count == 0) {
+        self.shareBarButtonItem.enabled = NO;
+        return;
     }
-
-    UIAlertAction *closeAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDestructive handler:nil];
-    [alertController addAction:closeAction];
-    [self presentViewController:alertController animated:YES completion:nil];
+    
+    NSLog(@"====Start Sharing====");
+    NSMutableArray *shareArr = [NSMutableArray new];
+    for (DXContactModel *contact in selectedFriends) {
+        [shareArr addObject:contact.identifier];
+        NSLog(@"Share to: %@", contact.identifier);
+    }
+    self.completionHandler(self.navigationController, shareArr);
 }
 
 #pragma mark - UISearchBar Delegate

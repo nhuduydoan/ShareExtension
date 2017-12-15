@@ -16,6 +16,7 @@
 @property(strong, nonatomic) NSMutableDictionary *uploadTaskCreationPending;
 @property(strong, nonatomic) NSURLSessionConfiguration *configuration;
 
+@property(strong, nonatomic) NSMutableArray<void(^)(void)> *uploadCompletionHandlers;
 @property(strong, nonatomic) HMURLSessionManger *sessionManager;
 @property(strong, nonatomic) dispatch_queue_t serialQueue;
 
@@ -94,6 +95,14 @@
         
         return array;
     }
+}
+
+- (void)addUploadCompletionHandler:(void(^)(void))completionHandler {
+    if (!completionHandler) {
+        return;
+    }
+    
+    [_uploadCompletionHandlers addObject:completionHandler];
 }
 
 - (void)uploadTaskWithHost:(NSString *)hostString
@@ -201,11 +210,13 @@
                                           completionCB:^(NSUInteger taskIdentifier, NSError * _Nullable error) {
                                               __typeof__(self) strongSelf = weakSelf;
                                               strongSelf.uploadTaskMapping[@(taskIdentifier)] = nil;
+                                              [strongSelf checkUploadCompletion];
                                               
                                           } changeStateCB:^(NSUInteger taskIdentifier, HMURLUploadState newState) {
                                               __typeof__(self) strongSelf = weakSelf;
                                               if (newState == HMURLUploadStateCancel) {
                                                   strongSelf.uploadTaskMapping[@(taskIdentifier)] = nil;
+                                                  [strongSelf checkUploadCompletion];
                                               }
                                           } inQueue:_serialQueue];
                 
@@ -218,6 +229,40 @@
             }
         });
     }
+}
+
+- (void)uploadTaskWithHost:(NSString *)hostString
+                  fileName:(NSString *)fileName
+                      data:(NSData *)data
+                    header:(NSDictionary *)header
+         completionHandler:(HMURLUploadCreationHandler)handler
+                  priority:(HMURLUploadTaskPriority)priority
+                   inQueue:(dispatch_queue_t)queue {
+    
+    if (!handler) {
+        return;
+    }
+    
+    dispatch_async(globalDefaultQueue, ^{
+        HMURLUploadTaskPriority correctPriority = priority;
+        if (priority < HMURLUploadTaskPriorityHigh || priority > HMURLUploadTaskPriorityLow) {
+            correctPriority = HMURLUploadTaskPriorityLow;
+        }
+        
+        NSError *error = nil;
+        NSURLRequest *request = [self makeRequestWithHost:hostString fileName:fileName data:data header:header];
+        
+        HMURLUploadTask *uploadTask = [_sessionManager uploadTaskWithStreamRequest:request priority:correctPriority error:&error];
+        if (uploadTask) {
+            uploadTask.priority = correctPriority;
+            uploadTask.host = hostString;
+            uploadTask.filePath = fileName;
+        }
+        
+        dispatch_async(GetValidQueue(queue), ^{
+            handler(uploadTask, error);
+        });
+    });
 }
 
 - (void)resumeAllTask {
@@ -252,20 +297,25 @@
     if (!hostString || !filePath) {
         return nil;
     }
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    return [self makeRequestWithHost:hostString fileName:filePath data:data header:header];
+}
+- (NSURLRequest *)makeRequestWithHost:(NSString *)hostString fileName:(NSString *)fileName data:(NSData *)data header:(NSDictionary *)header {
     
     NSDictionary *targetHeader = header ? header : [self getDefaultHeader];
     
-    NSArray *parameters = @[ @{ @"name": @"file", @"fileName": filePath } ];
+    NSArray *parameters = @[ @{ @"name": @"file", @"fileName": fileName } ];
     NSString *boundary = @"----WebKitFormBoundary7MA4YWxkTrZu0gW";
     
     NSError *error;
+    
     NSMutableString *body = [NSMutableString string];
     for (NSDictionary *param in parameters) {
         [body appendFormat:@"--%@\r\n", boundary];
         if (param[@"fileName"]) {
             [body appendFormat:@"Content-Disposition:form-data; name=\"%@\"; filename=\"%@\"\r\n", param[@"name"], param[@"fileName"]];
             [body appendFormat:@"Content-Type: %@\r\n\r\n", param[@"contentType"]];
-            [body appendFormat:@"%@", [NSString stringWithContentsOfFile:param[@"fileName"] encoding:NSASCIIStringEncoding error:&error]];
+            [body appendFormat:@"%@", [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]];
             if (error) {
                 NSLog(@"%@", error);
             }
@@ -328,6 +378,16 @@
     _uploadTaskCreationPending[@(taskId)] = nil;
     _uploadTaskCreationPending[pendingTasksString] = nil;
     _uploadTaskCreationPending[priorityTaskString] = nil;
+}
+
+- (void)checkUploadCompletion {
+    @synchronized(self) {
+        if ([_uploadTaskMapping allValues].count == 0) {
+            [_uploadCompletionHandlers enumerateObjectsUsingBlock:^(void (^ _Nonnull completionHandler)(void), NSUInteger idx, BOOL * _Nonnull stop) {
+                completionHandler();
+            }];
+        }
+    }
 }
 
 - (dispatch_queue_t)getValidQueueWithQueue:(dispatch_queue_t)queue {

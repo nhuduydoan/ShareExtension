@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "HMURLSessionManger.h"
 #import "HMURLUploadCompletionEntity.h"
+#import "Constaint.h"
 
 @class HMUploadAdapter;
 
@@ -75,8 +76,9 @@
  Create an upload task with host, file path, optional header and the priority.
  If header field = nil, adapter will use default header 'Content-type: multipart'.
  The task will be return asynchronously in queue user want.
+ The multiple request with same hostString and filePath will be push to a queue when the upload task is making. After the upload task maked, all the request in the queue will receive the upload task at the same time and the queue will be cleared
 
- @param hostString The uploaded host
+ @param hostString The uploaded destination host
  @param filePath The uploaded file path
  @param header Optional, adapter will use default header if this field is nil
  @param handler The completion block which will be return an upload task to handle
@@ -90,6 +92,27 @@
                   priority:(HMURLUploadTaskPriority)priority
                    inQueue:(dispatch_queue_t)queue;
 
+/**
+ Create an upload task similar to 'uploadTaskWithHost:filePath:header:completionHandler:priority:inQueue:' but using data instead of fileName
+ @Note: Different with 'uploadTaskWithHost:filePath:header:completionHandler:priority:inQueue:', the request won't add to a queue to support multiple request when making the same upload task. How many requests will create so many upload tasks
+
+ @param hostString The uploaded destination host
+ @param fileName The name for the file
+ @param data The data want to upload
+ @param header Optional, adapter will use default header if this field is nil
+ @param handler The completion block which will be return an upload task to handle
+ @param priority The priority of the upload task user want to return
+ @param queue The queue user want to return the upload task
+ */
+- (void)uploadTaskWithHost:(NSString *)hostString
+                  fileName:(NSString *)fileName
+                      data:(NSData *)data
+                    header:(NSDictionary *)header
+         completionHandler:(HMURLUploadCreationHandler)handler
+                  priority:(HMURLUploadTaskPriority)priority
+                   inQueue:(dispatch_queue_t)queue;
+
+- (void)addUploadCompletionHandler:(void(^)(void))completionHandler;
 
 /**
  Resume all running tasks handled by the adapter

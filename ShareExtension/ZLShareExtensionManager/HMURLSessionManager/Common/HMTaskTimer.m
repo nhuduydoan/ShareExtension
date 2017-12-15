@@ -54,13 +54,11 @@
     @synchronized(self) {
         NSLog(@"[HM] - HMTaskTimer - Checking timeout");
         _isTimeOut = NO;
-        [self update];
-        
         if ([self isMonitoring]) {
             return;
         }
-        
         _isMonitoring = YES;
+        [self update];
         dispatch_async(mainQueue, ^{
             _timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(checkTimeOut) userInfo:nil repeats:YES];
         });
@@ -80,7 +78,6 @@
             return;
         }
         
-        NSLog(@"[HM] - HMTaskTimer - Update timeout");
         _lastUpdate = [NSDate date];
     }
 }
@@ -101,7 +98,7 @@
 }
 
 - (BOOL)isMonitoring {
-    return [_timer isValid];
+    return _isMonitoring;
 }
 
 - (void)setTimeInterval:(NSTimeInterval)timeInterval {

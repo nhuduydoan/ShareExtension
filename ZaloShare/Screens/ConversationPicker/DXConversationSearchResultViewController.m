@@ -1,24 +1,24 @@
 //
-//  DXShareSearchResultViewController.m
+//  DXConversationSearchResultViewController.m
 //  DemoXcode
 //
 //  Created by Nhữ Duy Đoàn on 12/13/17.
 //  Copyright © 2017 Nhữ Duy Đoàn. All rights reserved.
 //
 
-#import "DXShareSearchResultViewController.h"
+#import "DXConversationSearchResultViewController.h"
 #import "DXConversationModel.h"
 #import "DXConversationTableViewCell.h"
 
 NSString* const kShareSearchResultViewCell = @"kShareSearchResultViewCell";
 
-@interface DXShareSearchResultViewController ()
+@interface DXConversationSearchResultViewController ()
 
 @property (strong, nonatomic) NSArray *data;
 
 @end
 
-@implementation DXShareSearchResultViewController
+@implementation DXConversationSearchResultViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

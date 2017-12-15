@@ -1,5 +1,5 @@
 //
-//  DXShareViewController.h
+//  ZLPickConversationViewController.h
 //  DemoXcode
 //
 //  Created by Nhữ Duy Đoàn on 12/13/17.
@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DXShareViewController : UIViewController
+@interface ZLPickConversationViewController : UIViewController
 
-@property (nonatomic, copy) void (^completionHandler)(void);
+@property (nonatomic, copy) void (^completionHandler)(UIViewController *viewController, NSArray<NSString *> *selectedURLs);
 
 /**
  Init with NON NULL completion handler block
@@ -18,7 +18,7 @@
  @param completionHandler : NON NULL block
  @return : null able instance of this class
  */
-- (instancetype)initWithCompletionHandler:(void (^)(void))completionHandler;
+- (instancetype)initWithCompletionHandler:(void (^)(UIViewController *viewController, NSArray<NSString *> *shareURLs))completionHandler;
 
 // Use function -initWithCompletionHandler: instead this function
 - (instancetype)init NS_UNAVAILABLE;

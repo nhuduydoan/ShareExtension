@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ZLShareDefine.h"
 #import <AVKit/AVKit.h>
 
 @interface ZLCompressUtils : NSObject
 
 + (void)compressVideoURL:(NSURL *)videoURL
-            compressType:(AVCaptureSessionPreset)compressType
+            compressType:(ZLVideoPackageCompressType)compressType
               completion:(void (^)(NSData *videoData, NSError *error))completionBlock;
 
 + (void)compressImageURL:(NSURL *)imageURL
-           withScaleSize:(CGSize)size
+           withScaleType:(ZLImagePackageCompressType)compressType
               completion:(void (^)(NSData *imageData, NSError *error))completionBlock;
 
 @end

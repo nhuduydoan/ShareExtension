@@ -11,10 +11,10 @@
 
 @interface ZLSharePackage : NSObject
 
-@property(strong, nonatomic) NSString *packageId;
+@property(nonatomic) NSUInteger packageId;
+@property(strong, nonatomic) NSString *shareName;
 @property(strong, nonatomic) NSData *shareData;
 @property(nonatomic) ZLShareType shareType;
 
-- (instancetype)initWithShareObject:(NSData *)shareData shareType:(ZLShareType)shareType;
 
 @end

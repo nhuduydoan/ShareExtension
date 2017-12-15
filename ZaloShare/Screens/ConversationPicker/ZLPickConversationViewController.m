@@ -1,16 +1,16 @@
 //
-//  DXShareViewController.m
+//  ZLPickConversationViewController.m
 //  DemoXcode
 //
 //  Created by Nhữ Duy Đoàn on 12/13/17.
 //  Copyright © 2017 Nhữ Duy Đoàn. All rights reserved.
 //
 
-#import "DXShareViewController.h"
+#import "ZLPickConversationViewController.h"
 #import "DXConversationModel.h"
 #import "DXConversationTableViewCell.h"
 #import "DXConversationManager.h"
-#import "DXShareSearchResultViewController.h"
+#import "DXConversationSearchResultViewController.h"
 #import "DXImageManager.h"
 #import "ZLShareExtensionManager.h"
 #import "DXPickFriendsViewController.h"
@@ -18,19 +18,19 @@
 
 NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
-@interface DXShareViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, DXShareSearchResultViewControllerDelegate>
+@interface ZLPickConversationViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating, DXConversationSearchResultViewControllerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIView *sectionTitleView;
 
 @property (strong, nonatomic) UISearchController *searchController;
-@property (strong, nonatomic) DXShareSearchResultViewController *searchResultViewController;
+@property (strong, nonatomic) DXConversationSearchResultViewController *searchResultViewController;
 
 @property (strong, nonatomic) NSArray *data;
 
 @end
 
-@implementation DXShareViewController
+@implementation ZLPickConversationViewController
 
 + (instancetype)new {
     [super doesNotRecognizeSelector:_cmd];
@@ -43,7 +43,7 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     return nil;
 }
 
-- (instancetype)initWithCompletionHandler:(void (^)(void))completionHandler {
+- (instancetype)initWithCompletionHandler:(void (^)(UIViewController *viewController, NSArray<NSString *> *shareURLs))completionHandler {
     self = [super init];
     if (self) {
         _completionHandler = completionHandler;
@@ -87,7 +87,7 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 }
 
 - (void)setupSearchController {
-    self.searchResultViewController = [[DXShareSearchResultViewController alloc] init];
+    self.searchResultViewController = [[DXConversationSearchResultViewController alloc] init];
     self.searchResultViewController.delegate = self;
     self.searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchResultViewController];
     self.searchController.searchResultsUpdater = self;
@@ -126,14 +126,15 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 #pragma mark - Private
 
 - (void)touchUpInsideCloseBarItem {
-    self.completionHandler();
+    self.completionHandler(self.navigationController, nil);
 }
 
 - (void)displaySelectMultiFriendsViewController {
-        NSArray *contacts = [[DXConversationManager shareInstance] getContactsArray];
-        DXPickFriendsViewController *controller = [[DXPickFriendsViewController alloc] initWithContactsArray:contacts];
-        DXShareNavigationController *navController = [[DXShareNavigationController alloc] initWithRootViewController:controller];
-        [self presentViewController:navController animated:YES completion:nil];
+    NSArray *contacts = [[DXConversationManager shareInstance] getContactsArray];
+    DXPickFriendsViewController *controller = [[DXPickFriendsViewController alloc] initWithContactsArray:contacts];
+    controller.completionHandler = self.completionHandler;
+    DXShareNavigationController *navController = [[DXShareNavigationController alloc] initWithRootViewController:controller];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 - (void)getAllData {
@@ -146,23 +147,6 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     }];
 }
 
-- (void)hideKeyBoardScreen {
-    if ([self.searchController.searchBar isFirstResponder]) {
-        [self.searchController.searchBar resignFirstResponder];
-    }
-}
-
-- (void)didSelectConversation:(DXConversationModel *)model {
-    NSString *message = model.displayName;
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Share to conversation" message:message preferredStyle:UIAlertControllerStyleAlert];
-    [alertController addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleCancel handler:nil]];
-    [self presentViewController:alertController animated:YES completion:nil];
-    
-//    NSURL *sharedURL = [NSURL URLWithString:@"https://google.com.vn"];
-//    [[ZLShareExtensionManager shareInstance] uploadAllShareDataToURL:sharedURL withConfiguration:nil completionHandler:^(NSError *error) {
-//    }];
-}
-
 - (void)searchWithKeyWord:(NSString *)keyword {
     if (keyword.length == 0) {
         return;
@@ -172,6 +156,18 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     NSPredicate *compoundPredicate = [NSCompoundPredicate orPredicateWithSubpredicates:@[predicate]];
     NSArray<DXConversationModel *> *resArr = [self.data filteredArrayUsingPredicate:compoundPredicate];
     [self.searchResultViewController reloadWithData:resArr];
+}
+
+- (void)hideKeyBoardScreen {
+    if ([self.searchController.searchBar isFirstResponder]) {
+        [self.searchController.searchBar resignFirstResponder];
+    }
+}
+
+- (void)didSelectConversation:(DXConversationModel *)model {
+    NSLog(@"====Start Sharing : %@====", model.conversationId);
+    NSString *shareId = model.conversationId.copy;
+    self.completionHandler(self.navigationController, @[shareId]);
 }
 
 #pragma mark - TableView Datasouce
@@ -293,7 +289,7 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     [searchBar resignFirstResponder];
 }
 
-#pragma mark - DXShareSearchResultViewController Delegate
+#pragma mark - DXConversationSearchResultViewController Delegate
 
 - (void)shareSearchResultViewController:(UIViewController *)viewController didSelectModel:(id)model {
     [self didSelectConversation:model];

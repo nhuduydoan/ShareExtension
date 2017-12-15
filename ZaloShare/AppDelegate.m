@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "DXShareViewController.h"
+#import "ZLPickConversationViewController.h"
 #import "DXShareNavigationController.h"
 
 @interface AppDelegate ()
@@ -20,7 +20,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    DXShareViewController *controller = [[DXShareViewController alloc] initWithCompletionHandler:^{}];
+    ZLPickConversationViewController *controller = [[ZLPickConversationViewController alloc] initWithCompletionHandler:^(UIViewController *viewController, NSArray<NSString *> *shareURLs) {
+    }];
     DXShareNavigationController *rootViewControlelr = [[DXShareNavigationController alloc] initWithRootViewController:controller];
     self.window.rootViewController = rootViewControlelr;
     [self.window makeKeyAndVisible];

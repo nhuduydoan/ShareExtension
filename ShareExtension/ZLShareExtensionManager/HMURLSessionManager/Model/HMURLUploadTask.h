@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, HMURLUploadTaskPriority) {
 @property(nonatomic) float sentBytes;
 @property(nonatomic, readonly) float uploadProgress;
 
-@property(weak, nonatomic) NSURLSessionDataTask * _Nullable task;
+@property(strong, nonatomic) NSURLSessionDataTask * _Nullable task;
 @property(weak, nonatomic) id<HMURLUploadDelegate> _Nullable delegate;
 
 @property(nonatomic) HMURLUploadState currentState;
