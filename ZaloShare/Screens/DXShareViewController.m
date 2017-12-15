@@ -14,6 +14,7 @@
 #import "DXImageManager.h"
 #import "ZLShareExtensionManager.h"
 #import "DXPickFriendsViewController.h"
+#import "DXShareNavigationController.h"
 
 NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
@@ -66,10 +67,6 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 }
 
 #pragma mark - Setup Views
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
 
 - (void)setupNavigationItems {
     self.title = @"Chia sẻ";
@@ -135,7 +132,7 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 - (void)displaySelectMultiFriendsViewController {
         NSArray *contacts = [[DXConversationManager shareInstance] getContactsArray];
         DXPickFriendsViewController *controller = [[DXPickFriendsViewController alloc] initWithContactsArray:contacts];
-        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
+        DXShareNavigationController *navController = [[DXShareNavigationController alloc] initWithRootViewController:controller];
         [self presentViewController:navController animated:YES completion:nil];
 }
 

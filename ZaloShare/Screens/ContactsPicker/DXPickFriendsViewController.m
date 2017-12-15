@@ -46,10 +46,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    if (self.originalData == nil) {
-        self.originalData = [NSArray new];
-    }
-    
     [self setupTitleView];
     [self setupNavigationBarItems];
     [self setupHeaderView];
@@ -63,16 +59,13 @@
 
 #pragma mark - SetUp View
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleDefault;
-}
 
 - (void)setupNavigationBarItems {
     self.navigationController.navigationBar.translucent = NO;
-    self.closeBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(touchUpCloseBarButtonItem)];
+    self.closeBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Huỷ" style:UIBarButtonItemStylePlain target:self action:@selector(touchUpCloseBarButtonItem)];
     self.navigationItem.leftBarButtonItem = self.closeBarButtonItem;
     
-    self.inviteBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Invite" style:UIBarButtonItemStyleDone target:self action:@selector(touchUpInviteButton)];
+    self.inviteBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Gửi" style:UIBarButtonItemStyleDone target:self action:@selector(touchUpInviteButton)];
     self.navigationItem.rightBarButtonItem = self.inviteBarButtonItem;
     [self.inviteBarButtonItem setEnabled:NO];
 }
@@ -124,7 +117,7 @@
 
 - (void)setupHeaderView {
     self.view.backgroundColor = [UIColor whiteColor];
-    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
+    self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
     self.headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     self.headerView.backgroundColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1.0];
     [self.view addSubview:self.headerView];
@@ -134,14 +127,14 @@
 }
 
 - (void)setUpSearchBar {
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, self.headerView.bounds.size.height - 40, self.view.bounds.size.width, 40)];
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, self.headerView.bounds.size.height - 44, self.view.bounds.size.width, 44)];
     searchBar.delegate = self;
     searchBar.backgroundImage = [UIImage new];
     searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleTopMargin;
     
     UITextField *searchField = [searchBar valueForKey:@"searchField"];
     searchField.clearButtonMode = UITextFieldViewModeWhileEditing;
-    searchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Search your friends"];
+    searchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Nhập tên bạn bè"];
     UILabel *placeholderLabel = [searchField valueForKey:@"placeholderLabel"];
     placeholderLabel.textColor = [UIColor colorWithWhite:0.75 alpha:1.0];
     
@@ -150,7 +143,7 @@
 }
 
 - (void)setUpContentView {
-    self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 40, self.view.bounds.size.width, self.view.bounds.size.height - 40)];
+    self.contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 44, self.view.bounds.size.width, self.view.bounds.size.height - 44)];
     self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.view addSubview:self.contentView];
     
@@ -221,7 +214,7 @@
     if (isShow) {
         headerFrame = CGRectMake(0, 0, self.view.bounds.size.width, 94);
     } else {
-        headerFrame = CGRectMake(0, 0, self.view.bounds.size.width, 40);
+        headerFrame = CGRectMake(0, 0, self.view.bounds.size.width, 44);
     }
     contentFrame = CGRectMake(0, headerFrame.size.height, self.view.bounds.size.width, self.view.bounds.size.height - headerFrame.size.height);
     
@@ -234,7 +227,7 @@
         if (isShow) {
             [self addChildViewController:self.showPickedViewController];
             [self.showPickedViewController didMoveToParentViewController:self];
-            self.showPickedViewController.view.frame = CGRectMake(0, 10, self.headerView.bounds.size.width, 44);
+            self.showPickedViewController.view.frame = CGRectMake(0, 8, self.headerView.bounds.size.width, 44);
             self.showPickedViewController.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
             [self.headerView insertSubview:self.showPickedViewController.view atIndex:0];
         } else {

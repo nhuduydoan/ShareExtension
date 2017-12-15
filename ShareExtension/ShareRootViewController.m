@@ -35,7 +35,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self setNeedsStatusBarAppearanceUpdate];
     __weak typeof(self) selfWeak = self;
     DXShareViewController *controller = [[DXShareViewController alloc] initWithCompletionHandler:^{
         [selfWeak didSelectPost];
@@ -45,8 +44,5 @@
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
-}
 
 @end
