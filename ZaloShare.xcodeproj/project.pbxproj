@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5C2678C71FE2A10A005DFB1E /* DXInviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180CC1FE29595007DA903 /* DXInviteFriendsViewController.m */; };
-		5C2678C81FE2A11A005DFB1E /* DXInviteFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180CC1FE29595007DA903 /* DXInviteFriendsViewController.m */; };
+		5C2678C71FE2A10A005DFB1E /* DXPickFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180CC1FE29595007DA903 /* DXPickFriendsViewController.m */; };
+		5C2678C81FE2A11A005DFB1E /* DXPickFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180CC1FE29595007DA903 /* DXPickFriendsViewController.m */; };
 		5C2678C91FE2A11A005DFB1E /* DXResultSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180D91FE29595007DA903 /* DXResultSearchViewController.m */; };
 		5C2678CA1FE2A11A005DFB1E /* DXPickContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180CF1FE29595007DA903 /* DXPickContactsViewController.m */; };
 		5C2678CB1FE2A11A005DFB1E /* DXShowPickedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8180D11FE29595007DA903 /* DXShowPickedViewController.m */; };
@@ -109,8 +109,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5C8180CC1FE29595007DA903 /* DXInviteFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXInviteFriendsViewController.m; sourceTree = "<group>"; };
-		5C8180CD1FE29595007DA903 /* DXInviteFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXInviteFriendsViewController.h; sourceTree = "<group>"; };
+		5C8180CC1FE29595007DA903 /* DXPickFriendsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXPickFriendsViewController.m; sourceTree = "<group>"; };
+		5C8180CD1FE29595007DA903 /* DXPickFriendsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXPickFriendsViewController.h; sourceTree = "<group>"; };
 		5C8180CF1FE29595007DA903 /* DXPickContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXPickContactsViewController.m; sourceTree = "<group>"; };
 		5C8180D01FE29595007DA903 /* DXResultSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DXResultSearchViewController.h; sourceTree = "<group>"; };
 		5C8180D11FE29595007DA903 /* DXShowPickedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DXShowPickedViewController.m; sourceTree = "<group>"; };
@@ -214,8 +214,8 @@
 		5C8180CB1FE29595007DA903 /* ContactsPicker */ = {
 			isa = PBXGroup;
 			children = (
-				5C8180CD1FE29595007DA903 /* DXInviteFriendsViewController.h */,
-				5C8180CC1FE29595007DA903 /* DXInviteFriendsViewController.m */,
+				5C8180CD1FE29595007DA903 /* DXPickFriendsViewController.h */,
+				5C8180CC1FE29595007DA903 /* DXPickFriendsViewController.m */,
 				5C8180CE1FE29595007DA903 /* Controllers */,
 			);
 			path = ContactsPicker;
@@ -598,7 +598,7 @@
 				5C8A71831FE2767A0064BB0E /* HMURLSessionManger.m in Sources */,
 				5C8A70E11FE276100064BB0E /* main.m in Sources */,
 				5C8180E01FE29595007DA903 /* DXShowPickedCollectionViewCell.m in Sources */,
-				5C2678C71FE2A10A005DFB1E /* DXInviteFriendsViewController.m in Sources */,
+				5C2678C71FE2A10A005DFB1E /* DXPickFriendsViewController.m in Sources */,
 				5C8A71901FE2767A0064BB0E /* DXConversationTableViewCell.m in Sources */,
 				5C8A717C1FE2767A0064BB0E /* HMUploadAdapter.m in Sources */,
 				5C8A71851FE2767A0064BB0E /* ZLShareExtensionManager.m in Sources */,
@@ -644,7 +644,7 @@
 				5C8A71B21FE279D30064BB0E /* ZLCompressUtils.m in Sources */,
 				5C8A71BB1FE27A010064BB0E /* HMURLUploadCallbackEntry.m in Sources */,
 				5C2678C91FE2A11A005DFB1E /* DXResultSearchViewController.m in Sources */,
-				5C2678C81FE2A11A005DFB1E /* DXInviteFriendsViewController.m in Sources */,
+				5C2678C81FE2A11A005DFB1E /* DXPickFriendsViewController.m in Sources */,
 				5C8A71B41FE279D30064BB0E /* ZLSharePackageEntry.m in Sources */,
 				5C8A71BA1FE279EA0064BB0E /* HMTaskTimer.m in Sources */,
 				5C8A71B61FE279D90064BB0E /* HMUploadAdapter.m in Sources */,

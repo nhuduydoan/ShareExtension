@@ -14,18 +14,14 @@
 
 @interface DXResultSearchViewController ()
 
-@property (strong, nonatomic) NSArray *data;
+@property (strong, nonatomic) NSArray<DXContactModel *> *data;
 
 @end
 
 @implementation DXResultSearchViewController
 
 - (instancetype)init {
-    self = [super initWithStyle:UITableViewStylePlain];
-    if (self) {
-        _data = [NSArray new];
-    }
-    return self;
+    return [super initWithStyle:UITableViewStylePlain];
 }
 
 - (void)viewDidLoad {
@@ -46,21 +42,26 @@
     self.tableView.allowsMultipleSelectionDuringEditing = YES;
     self.tableView.editing = YES;
     self.tableView.rowHeight = 64;
-    self.tableView.tableFooterView = [UIView new];
     
     self.tableView.separatorColor = [UIColor colorWithRed:223/255.f green:226/255.f blue:227/255.f alpha:1];
     [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 100, 0, 0)];
     [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+    
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 1/[UIScreen mainScreen].scale)];
+    lineView.backgroundColor = self.tableView.separatorColor;
+    self.tableView.tableHeaderView = [UIView new];
+    self.tableView.tableFooterView = lineView;
 }
 
 #pragma mark - Public
 
-- (void)reloadWithData:(NSArray *)data {
+- (void)reloadWithData:(NSArray<DXContactModel *> *)data {
     self.data = data.copy;
     [self.tableView reloadData];
+    [self checkSelectedFriends];
 }
 
-- (void)checkSelectedWithData:(NSArray *)data {
+- (void)checkSelectedFriends {
     if ([self.delegate respondsToSelector:@selector(pickContactsViewController:isSelectedModel:)]) {
         for (NSInteger i = 0; i < self.data.count; i++) {
             id model = self.data[i];
@@ -96,7 +97,7 @@
     }
 }
 
-#pragma mark - NITableViewModelDelegate
+#pragma mark - UITableView Datasouce
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.data.count;

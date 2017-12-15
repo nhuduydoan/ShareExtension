@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) id<DXPickContactsViewControllerDelegate> delegate;
 
-- (void)reloadWithData:(NSArray *)data;
+- (void)reloadWithData:(NSArray<DXContactModel *> *)data;
 
 - (void)didSelectModel:(id)model;
 

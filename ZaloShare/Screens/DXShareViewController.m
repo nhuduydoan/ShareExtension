@@ -13,7 +13,7 @@
 #import "DXShareSearchResultViewController.h"
 #import "DXImageManager.h"
 #import "ZLShareExtensionManager.h"
-#import "DXInviteFriendsViewController.h"
+#import "DXPickFriendsViewController.h"
 
 NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
@@ -134,7 +134,7 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
 - (void)displaySelectMultiFriendsViewController {
         NSArray *contacts = [[DXConversationManager shareInstance] getContactsArray];
-        DXInviteFriendsViewController *controller = [[DXInviteFriendsViewController alloc] initWithContactsArray:contacts];
+        DXPickFriendsViewController *controller = [[DXPickFriendsViewController alloc] initWithContactsArray:contacts];
         UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
         [self presentViewController:navController animated:YES completion:nil];
 }
@@ -230,8 +230,14 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     }
 }
 
+#pragma mark - TableView Header + Footer
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return CGFLOAT_MIN;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -239,10 +245,6 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
         return 22;
     }
     return 1/[UIScreen mainScreen].scale;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return nil;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {

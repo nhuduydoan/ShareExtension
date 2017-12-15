@@ -1,5 +1,5 @@
 //
-//  DXInviteFriendsViewController.h
+//  DXPickFriendsViewController.h
 //  DemoXcode
 //
 //  Created by Nhữ Duy Đoàn on 11/23/17.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DXInviteFriendsViewController : UIViewController
+@interface DXPickFriendsViewController : UIViewController
 
 - (id)initWithContactsArray:(NSArray *)contactsArray;
 

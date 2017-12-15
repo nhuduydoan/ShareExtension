@@ -1,19 +1,19 @@
 //
-//  DXInviteFriendsViewController.m
+//  DXPickFriendsViewController.m
 //  DemoXcode
 //
 //  Created by Nhữ Duy Đoàn on 11/23/17.
 //  Copyright © 2017 Nhữ Duy Đoàn. All rights reserved.
 //
 
-#import "DXInviteFriendsViewController.h"
+#import "DXPickFriendsViewController.h"
 #import "DXContactModel.h"
 #import "DXShowPickedViewController.h"
 #import "DXPickContactsViewController.h"
 #import "DXResultSearchViewController.h"
 #import "DXImageManager.h"
 
-@interface DXInviteFriendsViewController () <UISearchBarDelegate, DXPickContactsViewControllerDelegate, DXShowPickedViewControllerDelegate>
+@interface DXPickFriendsViewController () <UISearchBarDelegate, DXPickContactsViewControllerDelegate, DXShowPickedViewControllerDelegate>
 
 @property (strong, nonatomic) UIView *headerView;
 @property (strong, nonatomic) UIView *contentView;
@@ -32,7 +32,7 @@
 
 @end
 
-@implementation DXInviteFriendsViewController
+@implementation DXPickFriendsViewController
 
 - (id)initWithContactsArray:(NSArray *)contactsArray {
     self = [super init];

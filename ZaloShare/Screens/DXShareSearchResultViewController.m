@@ -33,12 +33,15 @@ NSString* const kShareSearchResultViewCell = @"kShareSearchResultViewCell";
 }
 
 - (void)setupViews {
-    self.tableView.tableHeaderView = [UIView new];
-    self.tableView.tableFooterView = [UIView new];
     self.tableView.rowHeight = 72;
     self.tableView.separatorColor = [UIColor colorWithRed:223/255.f green:226/255.f blue:227/255.f alpha:1];
     [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 66, 0, 0)];
     [self.tableView setLayoutMargins:UIEdgeInsetsZero];
+    
+    UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, 1/[UIScreen mainScreen].scale)];
+    lineView.backgroundColor = self.tableView.separatorColor;
+    self.tableView.tableHeaderView = [UIView new];
+    self.tableView.tableFooterView = lineView;
 }
 
 #pragma mark - Public
