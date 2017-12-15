@@ -119,7 +119,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
     self.headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.headerView.backgroundColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1.0];
+    self.headerView.backgroundColor = [UIColor colorWithRed:194/255.f green:194/255.f blue:196/255.f alpha:1.0];
     [self.view addSubview:self.headerView];
     
     [self setUpSearchBar];
@@ -136,7 +136,7 @@
     searchField.clearButtonMode = UITextFieldViewModeWhileEditing;
     searchField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Nhập tên bạn bè"];
     UILabel *placeholderLabel = [searchField valueForKey:@"placeholderLabel"];
-    placeholderLabel.textColor = [UIColor colorWithWhite:0.75 alpha:1.0];
+    placeholderLabel.textColor = [UIColor colorWithRed:131/255.f green:131/255.f blue:136/255.f alpha:1];
     
     [self.headerView addSubview:searchBar];
     self.searchBar = searchBar;
@@ -326,13 +326,6 @@
 }
 
 - (BOOL)pickContactsViewController:(UIViewController *)controller didSelectModel:(id)model {
-    if (self.showPickedViewController.pickedModels.count >= 5) {
-        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Thông báo" message:@"Bạn không được chọn quá 5 người" preferredStyle:UIAlertControllerStyleAlert];
-        [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDestructive handler:nil]];
-        [self presentViewController:alertController animated:YES completion:nil];
-        return NO;
-    }
-    
     [self selectModel:model];
     if (controller == self.pickContactsViewController) {
         [self.searchResultViewController didSelectModel:model];
