@@ -27,8 +27,8 @@
 }
 
 - (void)setupViews {
-    UIColor *barBackgroundColor = [UIColor colorWithRed:242/255.f green:242/255.f blue:242/255.f alpha:1];
-    UIColor *tintColor = [UIColor blackColor];
+    UIColor *barBackgroundColor = [UIColor colorWithRed:0/255.f green:144/255.f blue:243/255.f alpha:1];
+    UIColor *tintColor = [UIColor whiteColor];
     UIImage *barBackgroundImage = [self imageWithColor:barBackgroundColor];
     [self.navigationBar setBackgroundImage:barBackgroundImage forBarMetrics:UIBarMetricsDefault];
     [self.navigationBar setShadowImage:[UIImage new]];

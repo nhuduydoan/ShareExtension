@@ -20,6 +20,8 @@
 
 - (UIImage *)imageWithColor:(UIColor *)color;
 
+- (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
+
 /**
  Get avatar image from cache for contact model
  If no image in cache, draw new image from original avatar or draw an image from contact's full name

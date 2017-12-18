@@ -80,7 +80,11 @@ typedef NS_ENUM(NSUInteger, DXAvatarImageSize) {
 #pragma mark - Public
 
 - (UIImage *)imageWithColor:(UIColor *)color {
-    CGRect rect = CGRectMake(0, 0, 1, 1);
+    return [self imageWithColor:color size:CGSizeMake(1, 1)];
+}
+
+- (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size {
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(context, [color CGColor]);
