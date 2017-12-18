@@ -19,7 +19,7 @@
 
 NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
-@interface ZLPickConversationViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DXConversationSearchResultViewControllerDelegate>
+@interface ZLPickConversationViewController () <UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate, DXConversationSearchResultViewControllerDelegate, EditPostViewControllerDelegate>
 
 @property (strong, nonatomic) UIView *headerView;
 @property (strong, nonatomic) UISearchBar *searchBar;
@@ -84,7 +84,7 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 - (void)setupNavigationItems {
     self.navigationController.navigationBar.translucent = NO;
     self.closeBarButtonItem = [[UIBarButtonItem alloc]
-                                     initWithTitle:@"Huỷ"
+                                     initWithTitle:@"Đóng"
                                      style:UIBarButtonItemStylePlain
                                      target:self action:@selector(touchUpInsideCloseBarItem)];
     self.searchBarButtonItem = [[UIBarButtonItem alloc]
@@ -92,7 +92,7 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
                                style:UIBarButtonItemStylePlain
                                target:self action:@selector(touchUpInsideSearchBarItem)];
     self.cancelSearchItem = [[UIBarButtonItem alloc]
-                             initWithImage:[UIImage imageNamed:@"icon_back"]
+                             initWithTitle:@"Huỷ"
                              style:UIBarButtonItemStylePlain
                              target:self action:@selector(touchUpInsideCancelSearchItem)];
     self.navigationItem.leftBarButtonItem = self.closeBarButtonItem;
@@ -129,12 +129,12 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     searchTextField.leftView = paddingView;
     searchTextField.leftViewMode = UITextFieldViewModeAlways;
     searchTextField.font = [UIFont systemFontOfSize:15 weight:UIFontWeightRegular];
-    searchTextField.textColor = [UIColor whiteColor];
+    searchTextField.textColor = [UIColor blackColor];
     
     UILabel *placeholderLabel = [searchTextField valueForKey:@"_placeholderLabel"];
-    placeholderLabel.textColor = [UIColor colorWithRed:184/255.5 green:214/255.f blue:240/255.f alpha:1.0];
+    placeholderLabel.textColor = [UIColor colorWithRed:194/255.5 green:194/255.f blue:194/255.f alpha:1.0];
     
-    UIColor *color = [UIColor colorWithRed:16/255.f green:116/255.f blue:204/255.f alpha:1];
+    UIColor *color = [UIColor colorWithRed:242/255.f green:242/255.f blue:242/255.f alpha:1];
     self.blueSearchBgImage = [sImageManager imageWithColor:color size:CGSizeMake(30, 30)];
     self.clearSearchBgImage = [sImageManager imageWithColor:[UIColor clearColor] size:CGSizeMake(30, 30)];
     
@@ -159,6 +159,7 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
 - (void)setupEditPostViewController {
     EditPostViewController *controller = [[EditPostViewController alloc] init];
+    controller.delegate = self;
     [self addChildViewController:controller];
     [controller didMoveToParentViewController:self];
     controller.view.frame = self.headerView.bounds;
@@ -204,18 +205,22 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
         NSString *comment = [selfWeak.editPostViewController postComment];
         selfWeak.completionHandler(viewController, shareURLs, comment);
     };
-    DXShareNavigationController *navController = [[DXShareNavigationController alloc] initWithRootViewController:controller];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     [self presentViewController:navController animated:YES completion:nil];
 }
 
-- (void)updateSeachBar {
+- (void)updateNavigationItems {
     if (self.isSearching) {
-        self.navigationItem.rightBarButtonItem = self.cancelSearchItem;
         [self.searchBar setSearchFieldBackgroundImage:self.blueSearchBgImage forState:UIControlStateNormal];
         
     } else {
-        self.navigationItem.rightBarButtonItem = self.searchBarButtonItem;
         [self.searchBar setSearchFieldBackgroundImage:self.clearSearchBgImage forState:UIControlStateNormal];
+    }
+    
+    if (self.isSearching || [self.editPostViewController isEditingText]) {
+        self.navigationItem.leftBarButtonItem = self.cancelSearchItem;
+    } else {
+        self.navigationItem.leftBarButtonItem = self.closeBarButtonItem;
     }
 }
 
@@ -223,6 +228,7 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     if ([self.searchBar isFirstResponder]) {
         [self.searchBar resignFirstResponder];
     }
+    [self.editPostViewController hideKeyBoard];
 }
 
 #pragma mark - Public
@@ -240,7 +246,9 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 }
 
 - (void)touchUpInsideSearchBarItem {
-    [self.searchBar becomeFirstResponder];
+    if (!self.searchBar.isFirstResponder) {
+        [self.searchBar becomeFirstResponder];
+    }
 }
 
 - (void)touchUpInsideCancelSearchItem {
@@ -250,7 +258,7 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     if ([self.searchBar isFirstResponder]) {
         [self.searchBar resignFirstResponder];
     } else {
-        [self updateSeachBar];
+        [self updateNavigationItems];
     }
 }
 
@@ -395,13 +403,13 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar {
     self.isSearching = YES;
-    [self updateSeachBar];
+    [self updateNavigationItems];
 }
 
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
     if (self.searchBar.text.length == 0) {
         self.isSearching = NO;
-        [self updateSeachBar];
+        [self updateNavigationItems];
     }
 }
 
@@ -413,6 +421,12 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
 - (void)shareSearchResultViewControllerWillBeginDragging:(UIViewController *)viewController {
     [self hideKeyBoardScreen];
+}
+
+#pragma EditPostViewController Delegate
+
+- (void)editPostViewController:(UIViewController *)viewController changeEditing:(BOOL)isEditing {
+    [self updateNavigationItems];
 }
 
 @end

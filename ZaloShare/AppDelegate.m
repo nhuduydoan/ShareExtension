@@ -22,7 +22,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     ZLPickConversationViewController *controller = [[ZLPickConversationViewController alloc] initWithCompletionHandler:^(UIViewController *viewController, NSArray<NSString *> *shareURLs, NSString *comment) {
     }];
-    DXShareNavigationController *rootViewControlelr = [[DXShareNavigationController alloc] initWithRootViewController:controller];
+    UINavigationController *rootViewControlelr = [[UINavigationController alloc] initWithRootViewController:controller];
     self.window.rootViewController = rootViewControlelr;
     [self.window makeKeyAndVisible];
     return YES;

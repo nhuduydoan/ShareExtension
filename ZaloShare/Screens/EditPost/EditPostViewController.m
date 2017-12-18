@@ -39,7 +39,7 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
     if(self) {
         [self setPlaceholder:@""];
         [self setPlaceholderColor:[UIColor lightGrayColor]];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:self];
     }
     return self;
 }
@@ -103,6 +103,11 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
 
 @implementation EditPostViewController
 
+- (void)dealloc {
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -150,6 +155,8 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
     textView.placeholder = @"Viết cái gì đó...";
     textView.placeholderColor = [UIColor colorWithRed:208/255.5 green:208/255.f blue:208/255.f alpha:1.0];
     self.textView = textView;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidBeginEditing:) name:UITextViewTextDidBeginEditingNotification object:textView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidEndEditing:) name:UITextViewTextDidEndEditingNotification object:textView];
 }
 
 - (void)updateThumbnailView {
@@ -158,6 +165,20 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
     UIImage *image = [sImageManager getThumbnailFromImages:self.thumbnailsArray sizeWidth:self.thumbnailView.bounds.size.width];
     imgView.image = image;
     [self.thumbnailView addSubview:imgView];
+}
+
+#pragma mark - Notification
+
+- (void)textDidBeginEditing:(NSNotification *)notification {
+    if ([self.delegate respondsToSelector:@selector(editPostViewController:changeEditing:)]) {
+        [self.delegate editPostViewController:self changeEditing:YES];
+    }
+}
+
+- (void)textDidEndEditing:(NSNotification *)notification {
+    if ([self.delegate respondsToSelector:@selector(editPostViewController:changeEditing:)]) {
+        [self.delegate editPostViewController:self changeEditing:NO];
+    }
 }
 
 #pragma mark - Public
@@ -169,8 +190,18 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
     }
 }
 
+- (void)hideKeyBoard {
+    if (self.textView.isFirstResponder) {
+        [self.textView resignFirstResponder];
+    }
+}
+
 - (NSString *)postComment {
     return self.textView.text;
+}
+
+- (BOOL)isEditingText {
+    return [self.textView isFirstResponder];
 }
 
 @end

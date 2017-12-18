@@ -41,7 +41,7 @@
         }
     }];
     
-    DXShareNavigationController *navController = [[DXShareNavigationController alloc] initWithRootViewController:controller];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     [self presentViewController:navController animated:YES completion:nil];
     self.conversationController = controller;
     [self getExtensionThumbnails];
