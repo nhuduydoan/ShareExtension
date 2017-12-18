@@ -131,7 +131,6 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
     self.view.backgroundColor = [UIColor clearColor];
     self.view.clipsToBounds = YES;
     UIView *thumbnailView = [[UIView alloc] initWithFrame:CGRectMake(16, 8, 80, 84)];
-    thumbnailView.backgroundColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1.0];
     [self.view addSubview:thumbnailView];
     self.thumbnailView = thumbnailView;
     

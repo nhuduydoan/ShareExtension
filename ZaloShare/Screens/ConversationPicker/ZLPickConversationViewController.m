@@ -84,13 +84,13 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 - (void)setupNavigationItems {
     self.navigationController.navigationBar.translucent = NO;
     self.closeBarButtonItem = [[UIBarButtonItem alloc]
-                                     initWithTitle:@"Đóng"
-                                     style:UIBarButtonItemStylePlain
-                                     target:self action:@selector(touchUpInsideCloseBarItem)];
+                               initWithImage:[UIImage imageNamed:@"icon_cancel"]
+                               style:UIBarButtonItemStylePlain
+                               target:self action:@selector(touchUpInsideCloseBarItem)];
     self.searchBarButtonItem = [[UIBarButtonItem alloc]
                                 initWithImage:[UIImage imageNamed:@"icon_search"]
-                               style:UIBarButtonItemStylePlain
-                               target:self action:@selector(touchUpInsideSearchBarItem)];
+                                style:UIBarButtonItemStylePlain
+                                target:self action:@selector(touchUpInsideSearchBarItem)];
     self.cancelSearchItem = [[UIBarButtonItem alloc]
                              initWithTitle:@"Huỷ"
                              style:UIBarButtonItemStylePlain
@@ -211,16 +211,12 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
 - (void)updateNavigationItems {
     if (self.isSearching) {
+        self.navigationItem.rightBarButtonItem = self.cancelSearchItem;
         [self.searchBar setSearchFieldBackgroundImage:self.blueSearchBgImage forState:UIControlStateNormal];
         
     } else {
+        self.navigationItem.rightBarButtonItem = self.searchBarButtonItem;
         [self.searchBar setSearchFieldBackgroundImage:self.clearSearchBgImage forState:UIControlStateNormal];
-    }
-    
-    if (self.isSearching || [self.editPostViewController isEditingText]) {
-        self.navigationItem.leftBarButtonItem = self.cancelSearchItem;
-    } else {
-        self.navigationItem.leftBarButtonItem = self.closeBarButtonItem;
     }
 }
 
