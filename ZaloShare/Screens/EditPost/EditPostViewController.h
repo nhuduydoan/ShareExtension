@@ -10,4 +10,7 @@
 
 @interface EditPostViewController : UIViewController
 
+- (void)updateExtensionThumbnails:(NSArray *)thumbnailArrs;
+- (NSString *)postComment;
+
 @end

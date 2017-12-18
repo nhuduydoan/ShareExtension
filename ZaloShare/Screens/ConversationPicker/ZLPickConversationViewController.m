@@ -32,6 +32,7 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 @property (strong, nonatomic) DXConversationSearchResultViewController *searchResultViewController;
 @property (strong, nonatomic) EditPostViewController *editPostViewController;
 
+@property (strong, nonatomic) NSArray *extensionThumbnails;
 @property (strong, nonatomic) NSArray *data;
 @property (nonatomic) BOOL isSearching;
 
@@ -53,7 +54,7 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     return nil;
 }
 
-- (instancetype)initWithCompletionHandler:(void (^)(UIViewController *viewController, NSArray<NSString *> *shareURLs))completionHandler {
+- (instancetype)initWithCompletionHandler:(void (^)(UIViewController *viewController, NSArray<NSString *> *shareURLs, NSString *comment))completionHandler {
     self = [super init];
     if (self) {
         _completionHandler = completionHandler;
@@ -106,7 +107,6 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     self.view.backgroundColor = [UIColor whiteColor];
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];
     headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    headerView.backgroundColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1.0];
     headerView.clipsToBounds = YES;
     self.headerView = headerView;
 }
@@ -165,6 +165,14 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     controller.view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.headerView addSubview:controller.view];
     self.editPostViewController = controller;
+    
+    CGRect bounds = self.headerView.bounds;
+    bounds.size.height = 1/[UIScreen mainScreen].scale;
+    bounds.origin.y = self.headerView.bounds.size.height - bounds.size.height;
+    UIView *lineView = [[UIView alloc] initWithFrame:bounds];
+    lineView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [self.headerView addSubview:lineView];
+    lineView.backgroundColor = [UIColor colorWithRed:223/255.f green:226/255.f blue:227/255.f alpha:1];
 }
 
 - (void)setupSearchResultViewController {
@@ -191,7 +199,11 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 - (void)displaySelectMultiFriendsViewController {
     NSArray *contacts = [[DXConversationManager shareInstance] getContactsArray];
     DXPickFriendsViewController *controller = [[DXPickFriendsViewController alloc] initWithContactsArray:contacts];
-    controller.completionHandler = self.completionHandler;
+    __weak typeof(self) selfWeak = self;
+    controller.completionHandler = ^(UIViewController *viewController, NSArray<NSString *> *shareURLs) {
+        NSString *comment = [selfWeak.editPostViewController postComment];
+        selfWeak.completionHandler(viewController, shareURLs, comment);
+    };
     DXShareNavigationController *navController = [[DXShareNavigationController alloc] initWithRootViewController:controller];
     [self presentViewController:navController animated:YES completion:nil];
 }
@@ -213,11 +225,18 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     }
 }
 
+#pragma mark - Public
+
+- (void)updateExtensionThumbnails:(NSArray *)thumbnailArrs {
+    self.extensionThumbnails = thumbnailArrs.copy;
+    [self.editPostViewController updateExtensionThumbnails:thumbnailArrs];
+}
+
 #pragma mark - Private
 
 - (void)touchUpInsideCloseBarItem {
     [self hideKeyBoardScreen];
-    self.completionHandler(self.navigationController, nil);
+    self.completionHandler(self.navigationController, nil, @"");
 }
 
 - (void)touchUpInsideSearchBarItem {
@@ -265,7 +284,8 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 - (void)didSelectConversation:(DXConversationModel *)model {
     NSLog(@"====Start Sharing : %@====", model.conversationId);
     NSString *shareId = model.conversationId.copy;
-    self.completionHandler(self.navigationController, @[shareId]);
+    NSString *comment = [self.editPostViewController postComment];
+    self.completionHandler(self.navigationController, @[shareId], comment);
 }
 
 #pragma mark - TableView Datasouce

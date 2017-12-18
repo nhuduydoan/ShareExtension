@@ -11,10 +11,12 @@
 #import "DXShareNavigationController.h"
 #import "ZLShareExtensionManager.h"
 #import "ZLUpLoadingViewController.h"
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface ShareRootViewController ()
 
 @property (strong, nonatomic) NSMutableArray *uploadInfoArray;
+@property (strong, nonatomic) ZLPickConversationViewController *conversationController;
 
 @end
 
@@ -29,7 +31,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     __weak typeof(self) selfWeak = self;
-    ZLPickConversationViewController *controller = [[ZLPickConversationViewController alloc] initWithCompletionHandler:^(UIViewController *viewController, NSArray<NSString *> *shareURLs) {
+    ZLPickConversationViewController *controller = [[ZLPickConversationViewController alloc] initWithCompletionHandler:^(UIViewController *viewController, NSArray<NSString *> *shareURLs, NSString *comment) {
         if (shareURLs.count > 0) {
             [selfWeak runOnMainThread:^{
                 [selfWeak shareToURLs:shareURLs onViewController:viewController];
@@ -38,10 +40,36 @@
             [sShareExtensionManager completeExtension];
         }
     }];
-    //NSArray<NSString *> *selectedURLs
+    
     DXShareNavigationController *navController = [[DXShareNavigationController alloc] initWithRootViewController:controller];
     [self presentViewController:navController animated:YES completion:nil];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.conversationController = controller;
+    [self getExtensionThumbnails];
+}
+
+- (void)getExtensionThumbnails {
+    
+    NSMutableArray *thumbnailsArr = [NSMutableArray new];
+    dispatch_group_t group = dispatch_group_create();
+    for (NSExtensionItem *item in self.extensionContext.inputItems) {
+        for (NSItemProvider *itemProvider in item.attachments) {
+            //kUTTypeVCard, kUTTypeURL, kUTTypeImage, kUTTypeQuickTimeMovie
+            NSString *typeIdentifier = (__bridge NSString *)kUTTypeImage;
+            if ([itemProvider hasItemConformingToTypeIdentifier:typeIdentifier]) {
+                dispatch_group_enter(group);
+                [itemProvider loadPreviewImageWithOptions:nil completionHandler:^(UIImage *image, NSError *error) {
+                    if (image) {
+                        [thumbnailsArr addObject:image];
+                    }
+                    dispatch_group_leave(group);
+                }];
+            }
+        }
+    }
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        [self.conversationController updateExtensionThumbnails:thumbnailsArr];
+    });
 }
 
 - (void)shareToURLs:(NSArray *)shareURLs onViewController:(UIViewController *)viewController {

@@ -168,6 +168,52 @@ typedef NS_ENUM(NSUInteger, DXAvatarImageSize) {
     return avartar;
 }
 
+- (UIImage *)getThumbnailFromImages:(NSArray *)images sizeWidth:(CGFloat)width {
+    if (images.count == 0) {
+        return nil;
+    }
+    
+    UIView *view;
+    if (images.count == 1) {
+        view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
+    }
+    
+    if (images.count == 2) {
+        view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, width + 3)];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, width - 4, width - 4)];
+        imgView.clipsToBounds = YES;
+        imgView.contentMode = UIViewContentModeScaleAspectFill;
+        imgView.image = [images objectAtIndex:1];
+        [view addSubview:imgView];
+    } else if (images.count >= 3) {
+        view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, width + 6)];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(4, 0, width - 8, width - 8)];
+        imgView.clipsToBounds = YES;
+        imgView.contentMode = UIViewContentModeScaleAspectFill;
+        imgView.image = [images objectAtIndex:2];
+        [view addSubview:imgView];
+        
+        UIImageView *imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(2, 3, width - 4, width - 4)];
+        imgView1.clipsToBounds = YES;
+        imgView1.contentMode = UIViewContentModeScaleAspectFill;
+        imgView1.image = [images objectAtIndex:1];
+        [view addSubview:imgView1];
+    }
+    
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, view.bounds.size.height - width, width, width)];
+    imgView.clipsToBounds = YES;
+    imgView.contentMode = UIViewContentModeScaleAspectFill;
+    imgView.image = [images firstObject];
+    [view addSubview:imgView];
+    
+    // Crop view to get thumbnail
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 1);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *thumbnail = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return thumbnail;
+}
+
 #pragma mark - Private
 
 - (UIImage *)avatarForContact:(DXContactModel *)contact {

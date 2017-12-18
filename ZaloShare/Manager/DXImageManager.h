@@ -42,4 +42,6 @@
 - (UIImage *)titleImageFromString:(NSString *)string color:(UIColor *)color;
 - (UIImage *)avatarImageFromOriginalImage:(UIImage *)image;
 
+- (UIImage *)getThumbnailFromImages:(NSArray *)images sizeWidth:(CGFloat)width;
+
 @end

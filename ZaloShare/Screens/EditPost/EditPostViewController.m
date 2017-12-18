@@ -7,6 +7,9 @@
 //
 
 #import "EditPostViewController.h"
+#import "DXImageManager.h"
+
+#pragma mark - UIPlaceHolderTextView ------------------------------------------------
 
 @interface UIPlaceHolderTextView : UITextView
 
@@ -88,9 +91,13 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
 
 @end
 
+#pragma mark - EditPostViewController ------------------------------------------------
+
 @interface EditPostViewController ()
 
-@property (strong, nonatomic) UIPlaceHolderTextView *textField;
+@property (strong, nonatomic) NSArray *thumbnailsArray;
+@property (strong, nonatomic) UIView *thumbnailView;
+@property (strong, nonatomic) UIPlaceHolderTextView *textView;
 
 @end
 
@@ -111,17 +118,24 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
 #pragma mark - Setup Views
 
 - (void)setupViews {
-    self.view.backgroundColor = [UIColor clearColor];
-    self.view.clipsToBounds = YES;
-    UIView *thumbnailView = [[UIView alloc] initWithFrame:CGRectMake(16, 10, 80, 80)];
-    thumbnailView.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.2];
-    [self.view addSubview:thumbnailView];
-    
-    [self setupTextField];
+    [self setupThumbnailView];
+    [self setupTextView];
 }
 
-- (void)setupTextField {
+- (void)setupThumbnailView {
+    self.view.backgroundColor = [UIColor clearColor];
+    self.view.clipsToBounds = YES;
+    UIView *thumbnailView = [[UIView alloc] initWithFrame:CGRectMake(16, 8, 80, 84)];
+    thumbnailView.backgroundColor = [UIColor colorWithRed:230/255.f green:230/255.f blue:230/255.f alpha:1.0];
+    [self.view addSubview:thumbnailView];
+    self.thumbnailView = thumbnailView;
     
+    if (self.thumbnailsArray) {
+        [self updateThumbnailView];
+    }
+}
+
+- (void)setupTextView {
     UIPlaceHolderTextView *textView = [[UIPlaceHolderTextView alloc] initWithFrame:CGRectMake(108, 10, self.view.bounds.size.width - 116, 80)];
     textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:textView];
@@ -135,6 +149,28 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
     
     textView.placeholder = @"Viết cái gì đó...";
     textView.placeholderColor = [UIColor colorWithRed:208/255.5 green:208/255.f blue:208/255.f alpha:1.0];
+    self.textView = textView;
+}
+
+- (void)updateThumbnailView {
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:self.thumbnailView.bounds];
+    imgView.contentMode = UIViewContentModeScaleAspectFit;
+    UIImage *image = [sImageManager getThumbnailFromImages:self.thumbnailsArray sizeWidth:self.thumbnailView.bounds.size.width];
+    imgView.image = image;
+    [self.thumbnailView addSubview:imgView];
+}
+
+#pragma mark - Public
+
+- (void)updateExtensionThumbnails:(NSArray *)thumbnailArrs {
+    self.thumbnailsArray = thumbnailArrs.copy;
+    if (self.thumbnailView) {
+        [self updateThumbnailView];
+    }
+}
+
+- (NSString *)postComment {
+    return self.textView.text;
 }
 
 @end

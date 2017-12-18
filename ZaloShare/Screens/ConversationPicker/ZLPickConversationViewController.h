@@ -10,7 +10,7 @@
 
 @interface ZLPickConversationViewController : UIViewController
 
-@property (nonatomic, copy) void (^completionHandler)(UIViewController *viewController, NSArray<NSString *> *selectedURLs);
+@property (nonatomic, copy) void (^completionHandler)(UIViewController *viewController, NSArray<NSString *> *selectedURLs, NSString *comment);
 
 /**
  Init with NON NULL completion handler block
@@ -18,12 +18,14 @@
  @param completionHandler : NON NULL block
  @return : null able instance of this class
  */
-- (instancetype)initWithCompletionHandler:(void (^)(UIViewController *viewController, NSArray<NSString *> *shareURLs))completionHandler;
+- (instancetype)initWithCompletionHandler:(void (^)(UIViewController *viewController, NSArray<NSString *> *shareURLs, NSString *comment))completionHandler;
 
 // Use function -initWithCompletionHandler: instead this function
 - (instancetype)init NS_UNAVAILABLE;
 
 // use function +alloc with -initWithCompletionHandler: instead this function
 + (instancetype)new NS_UNAVAILABLE;
+
+- (void)updateExtensionThumbnails:(NSArray *)thumbnailArrs;
 
 @end
