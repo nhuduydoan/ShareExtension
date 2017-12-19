@@ -31,7 +31,6 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 @property (strong, nonatomic) DXConversationSearchResultViewController *searchResultViewController;
 @property (strong, nonatomic) EditPostViewController *editPostViewController;
 
-@property (strong, nonatomic) NSArray *extensionThumbnails;
 @property (strong, nonatomic) NSArray *data;
 @property (nonatomic) BOOL isSearching;
 
@@ -223,9 +222,8 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
 #pragma mark - Public
 
-- (void)updateExtensionThumbnails:(NSArray *)thumbnailArrs {
-    self.extensionThumbnails = thumbnailArrs.copy;
-    [self.editPostViewController updateExtensionThumbnails:thumbnailArrs];
+- (void)updateExtensionThumbnail:(UIImage *)thumbnail {
+    [self.editPostViewController updateExtensionThumbnail:thumbnail];
 }
 
 #pragma mark - Private

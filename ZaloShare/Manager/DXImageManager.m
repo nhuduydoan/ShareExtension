@@ -168,32 +168,33 @@ typedef NS_ENUM(NSUInteger, DXAvatarImageSize) {
     return avartar;
 }
 
-- (UIImage *)getThumbnailFromImages:(NSArray *)images sizeWidth:(CGFloat)width {
+- (UIImage *)drawThumbnailFromImages:(NSArray *)images videoString:(NSString *)videoString {
     if (images.count == 0) {
         return nil;
     }
     
+    CGFloat width = 256;
     UIView *view;
     if (images.count == 1) {
         view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, width)];
     }
     
     if (images.count == 2) {
-        view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, width + 3)];
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, width - 4, width - 4)];
+        view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, width + 12)];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(8, 0, width - 16, width - 16)];
         imgView.clipsToBounds = YES;
         imgView.contentMode = UIViewContentModeScaleAspectFill;
         imgView.image = [images objectAtIndex:1];
         [view addSubview:imgView];
     } else if (images.count >= 3) {
-        view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, width + 6)];
-        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(4, 0, width - 8, width - 8)];
+        view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, width + 24)];
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(16, 0, width - 32, width - 32)];
         imgView.clipsToBounds = YES;
         imgView.contentMode = UIViewContentModeScaleAspectFill;
         imgView.image = [images objectAtIndex:2];
         [view addSubview:imgView];
         
-        UIImageView *imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(2, 3, width - 4, width - 4)];
+        UIImageView *imgView1 = [[UIImageView alloc] initWithFrame:CGRectMake(8, 12, width - 16, width - 16)];
         imgView1.clipsToBounds = YES;
         imgView1.contentMode = UIViewContentModeScaleAspectFill;
         imgView1.image = [images objectAtIndex:1];
@@ -205,6 +206,19 @@ typedef NS_ENUM(NSUInteger, DXAvatarImageSize) {
     imgView.contentMode = UIViewContentModeScaleAspectFill;
     imgView.image = [images firstObject];
     [view addSubview:imgView];
+    
+    if (videoString.length) {
+        UIFont *font = [UIFont systemFontOfSize:28 weight:UIFontWeightMedium];
+        CGSize labelSize = [videoString sizeWithAttributes:@{NSFontAttributeName:font}];
+        UILabel *videoLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.bounds.size.width - labelSize.width - 5, view.bounds.size.height - labelSize.height -  5, labelSize.width, labelSize.height)];
+        videoLabel.textColor = [UIColor whiteColor];
+        videoLabel.text = videoString;
+        videoLabel.textAlignment = NSTextAlignmentRight;
+        videoLabel.font = font;
+        videoLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.7];
+        videoLabel.shadowOffset = CGSizeMake(3, 3);
+        [view addSubview:videoLabel];
+    }
     
     // Crop view to get thumbnail
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 1);

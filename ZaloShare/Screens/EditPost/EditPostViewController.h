@@ -19,7 +19,7 @@
 
 @property (weak, nonatomic) id<EditPostViewControllerDelegate> delegate;
 
-- (void)updateExtensionThumbnails:(NSArray *)thumbnailArrs;
+- (void)updateExtensionThumbnail:(UIImage *)thumbnail;
 - (void)hideKeyBoard;
 - (NSString *)postComment;
 - (BOOL)isEditingText;

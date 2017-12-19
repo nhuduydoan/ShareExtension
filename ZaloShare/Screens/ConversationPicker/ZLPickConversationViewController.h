@@ -26,6 +26,6 @@
 // use function +alloc with -initWithCompletionHandler: instead this function
 + (instancetype)new NS_UNAVAILABLE;
 
-- (void)updateExtensionThumbnails:(NSArray *)thumbnailArrs;
+- (void)updateExtensionThumbnail:(UIImage *)thumbnail;
 
 @end

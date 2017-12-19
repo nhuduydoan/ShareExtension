@@ -95,9 +95,9 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.1;
 
 @interface EditPostViewController ()
 
-@property (strong, nonatomic) NSArray *thumbnailsArray;
-@property (strong, nonatomic) UIView *thumbnailView;
+@property (strong, nonatomic) UIImageView *thumbnailView;
 @property (strong, nonatomic) UIPlaceHolderTextView *textView;
+@property (strong, nonatomic) UIImage *thumbnail;
 
 @end
 
@@ -130,13 +130,12 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.1;
 - (void)setupThumbnailView {
     self.view.backgroundColor = [UIColor clearColor];
     self.view.clipsToBounds = YES;
-    UIView *thumbnailView = [[UIView alloc] initWithFrame:CGRectMake(16, 8, 80, 84)];
-    [self.view addSubview:thumbnailView];
-    self.thumbnailView = thumbnailView;
-    
-    if (self.thumbnailsArray) {
-        [self updateThumbnailView];
-    }
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(16, 5, 80, 90)];
+    imgView.contentMode = UIViewContentModeScaleAspectFit;
+    imgView.clipsToBounds = YES;
+    imgView.image = self.thumbnail;
+    [self.view addSubview:imgView];
+    self.thumbnailView = imgView;
 }
 
 - (void)setupTextView {
@@ -158,14 +157,6 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.1;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textDidEndEditing:) name:UITextViewTextDidEndEditingNotification object:textView];
 }
 
-- (void)updateThumbnailView {
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:self.thumbnailView.bounds];
-    imgView.contentMode = UIViewContentModeScaleAspectFit;
-    UIImage *image = [sImageManager getThumbnailFromImages:self.thumbnailsArray sizeWidth:self.thumbnailView.bounds.size.width];
-    imgView.image = image;
-    [self.thumbnailView addSubview:imgView];
-}
-
 #pragma mark - Notification
 
 - (void)textDidBeginEditing:(NSNotification *)notification {
@@ -182,10 +173,10 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.1;
 
 #pragma mark - Public
 
-- (void)updateExtensionThumbnails:(NSArray *)thumbnailArrs {
-    self.thumbnailsArray = thumbnailArrs.copy;
+- (void)updateExtensionThumbnail:(UIImage *)thumbnail {
+    self.thumbnail = thumbnail;
     if (self.thumbnailView) {
-        [self updateThumbnailView];
+        self.thumbnailView.image = thumbnail;
     }
 }
 
