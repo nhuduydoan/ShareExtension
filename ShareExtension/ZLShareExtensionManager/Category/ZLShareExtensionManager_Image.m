@@ -39,10 +39,14 @@
                     dispatch_group_leave(group);
                 }];
                 
-                if (videoString || ![identifier isEqualToString:(__bridge NSString *)kUTTypeMovie]) {
+                if (videoString) {
                     continue;
                 }
                 videoString = @"";
+                
+                if (![self isMovieFileIdentifier:identifier]) {
+                    continue;
+                }
                 dispatch_group_enter(group);
                 __weak typeof(self) selfWeak = self;
                 [itemProvider loadItemForTypeIdentifier:identifier options:nil completionHandler:^(NSURL *url, NSError *error) {
@@ -53,7 +57,6 @@
                     }
                     dispatch_group_leave(group);
                 }];
-                
                 continue;
             }
         }
@@ -65,6 +68,17 @@
             completedBlock(image);
         }
     });
+}
+
+- (BOOL)isMovieFileIdentifier:(NSString *)identifier {
+    return ([identifier isEqualToString:(__bridge NSString *)kUTTypeMovie] ||
+            [identifier isEqualToString:(__bridge NSString *)kUTTypeVideo] ||
+            [identifier isEqualToString:(__bridge NSString *)kUTTypeQuickTimeMovie] ||
+            [identifier isEqualToString:(__bridge NSString *)kUTTypeMPEG] ||
+            [identifier isEqualToString:(__bridge NSString *)kUTTypeMPEG2Video] ||
+            [identifier isEqualToString:(__bridge NSString *)kUTTypeMPEG2TransportStream] ||
+            [identifier isEqualToString:(__bridge NSString *)kUTTypeAppleProtectedMPEG4Video] ||
+            [identifier isEqualToString:(__bridge NSString *)kUTTypeAVIMovie]);
 }
 
 - (NSString *)transformedTime:(CMTime)tỉme {

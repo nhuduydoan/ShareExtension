@@ -202,25 +202,44 @@ typedef NS_ENUM(NSUInteger, DXAvatarImageSize) {
     }
     
     UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, view.bounds.size.height - width, width, width)];
+    imgView.backgroundColor = [UIColor whiteColor];
     imgView.clipsToBounds = YES;
     imgView.contentMode = UIViewContentModeScaleAspectFill;
     imgView.image = [images firstObject];
     [view addSubview:imgView];
     
     if (videoString.length) {
-        UIFont *font = [UIFont systemFontOfSize:28 weight:UIFontWeightMedium];
+        // Add gradient view at bottom
+        CAGradientLayer *gradient = [CAGradientLayer layer];
+        gradient.frame = CGRectMake(0,  view.bounds.size.height - 64, view.bounds.size.width, 64);
+        gradient.colors = @[(id)[UIColor clearColor].CGColor, (id)[UIColor blackColor].CGColor];
+        [view.layer addSublayer:gradient];
+        
+        UIFont *font = [UIFont systemFontOfSize:36 weight:UIFontWeightLight];
         CGSize labelSize = [videoString sizeWithAttributes:@{NSFontAttributeName:font}];
-        UILabel *videoLabel = [[UILabel alloc] initWithFrame:CGRectMake(view.bounds.size.width - labelSize.width - 5, view.bounds.size.height - labelSize.height -  5, labelSize.width, labelSize.height)];
+        if (labelSize.width > 144) {
+            labelSize.width = 144;
+        }
+        CGFloat xPos = view.bounds.size.width - labelSize.width - 5;
+        CGFloat yPos = view.bounds.size.height - labelSize.height - 5;
+        
+        // Add duration label at right bottom
+        UILabel *videoLabel = [[UILabel alloc] initWithFrame:CGRectMake(xPos, yPos, labelSize.width, labelSize.height)];
         videoLabel.textColor = [UIColor whiteColor];
         videoLabel.text = videoString;
         videoLabel.textAlignment = NSTextAlignmentRight;
         videoLabel.font = font;
-        videoLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.7];
-        videoLabel.shadowOffset = CGSizeMake(3, 3);
         [view addSubview:videoLabel];
+        
+        // Add camera icon at left bottom
+        UIImageView *careraImg = [[UIImageView alloc] initWithFrame:CGRectMake(12, yPos, labelSize.height, labelSize.height)];
+        careraImg.contentMode = UIViewContentModeScaleAspectFit;
+        careraImg.clipsToBounds = YES;
+        careraImg.image = [UIImage imageNamed:@"icon_camera"];
+        [view addSubview:careraImg];
     }
     
-    // Crop view to get thumbnail
+    // Crop view and get thumbnail
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, NO, 1);
     [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *thumbnail = UIGraphicsGetImageFromCurrentImageContext();
