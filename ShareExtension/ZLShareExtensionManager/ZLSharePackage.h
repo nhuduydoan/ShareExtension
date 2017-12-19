@@ -10,11 +10,7 @@
 #import "ZLShareDefine.h"
 
 @interface ZLSharePackage : NSObject
-
 @property(nonatomic) NSUInteger packageId;
-@property(strong, nonatomic) NSString *shareName;
-@property(strong, nonatomic) NSData *shareData;
 @property(nonatomic) ZLShareType shareType;
-
-
+@property(strong, nonatomic) NSString *shareContent;
 @end

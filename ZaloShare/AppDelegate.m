@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "ZLPickConversationViewController.h"
-#import "DXShareNavigationController.h"
 
 @interface AppDelegate ()
 

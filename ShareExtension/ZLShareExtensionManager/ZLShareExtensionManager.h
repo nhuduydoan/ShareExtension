@@ -12,12 +12,11 @@
 #import "ZLShareDefine.h"
 #import "ZLSharePackageEntry.h"
 
-#define sShareExtensionManager [ZLShareExtensionManager shareInstance]
+#define sShareExtensionManager          [ZLShareExtensionManager shareInstance]
 
 @interface ZLSharePackageConfiguration: NSObject
 @property(nonatomic) ZLVideoPackageCompressType videoCompress;
 @property(nonatomic) ZLImagePackageCompressType imageCompress;
-@property(nonatomic) NSStringEncoding textEncode;
 @end
 
 @interface ZLShareExtensionManager : NSObject
@@ -27,19 +26,26 @@
 
 - (instancetype)initWithExtentionContext:(NSExtensionContext *)context shareId:(NSString *)shareId;
 
-- (void)getShareDataWithConfiguration:(ZLSharePackageConfiguration *)configuration
-                    completionHandler:(ZLSharePackageCompletionHandler)completionHandler
-                              inQueue:(dispatch_queue_t)queue;
+- (void)getShareDataWithCompletionHandler:(ZLSharePackageCompletionHandler)completionHandler
+                                  inQueue:(dispatch_queue_t)queue;
 
-- (void)uploadAllSharePackageToURLString:(NSString *)urlString
-                    withConfiguration:(ZLSharePackageConfiguration *)configuration
-                      progressHandler:(ZLUploadProgressHandler)progressHandler
-                    completionHandler:(ZLUploadCompletionHandler)completionHandler
-                              inQueue:(dispatch_queue_t)queue;
+- (void)uploadAllSharePackagesToURLString:(NSString *)urlString
+                           configuration:(ZLSharePackageConfiguration *)configuration
+                         progressHandler:(ZLUploadProgressHandler)progressHandler
+                       completionHandler:(ZLUploadCompletionHandler)completionHandler
+                                 inQueue:(dispatch_queue_t)queue;
+
+- (void)uploadSharePackages:(NSArray<ZLSharePackage *> *)sharePackages
+                toURLString:(NSString *)urlString
+              configuration:(ZLSharePackageConfiguration *)configuration
+            progressHandler:(ZLUploadProgressHandler)progressHandler
+          completionHandler:(ZLUploadCompletionHandler)completionHandler
+                    inQueue:(dispatch_queue_t)queue;
 
 - (void)uploadSharePackage:(ZLSharePackage *)sharePackage
                toURLString:(NSString *)urlString
-           progressHandler:(ZLUploadProgressHandler)progressHandler
+             configuration:(ZLSharePackageConfiguration *)configuration
+           progressHandler:(ZLUploadPackageProgressHandler)progressHandler
          completionHandler:(ZLUploadCompletionHandler)completionHandler
                    inQueue:(dispatch_queue_t)queue;
 

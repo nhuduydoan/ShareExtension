@@ -8,15 +8,24 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSInteger, ZLShareType) {
-    ZLShareTypeUnknown = 0,
-    ZLShareTypeImage,
-    ZLShareTypeVideo,
-    ZLShareTypeFile,
-    ZLShareTypeWebURL,
-    ZLShareTypeWebPage,
-    ZLShareTypeText
-};
+typedef NSString* ZLShareType;
+static ZLShareType const ZLShareTypeUnknown        = @"ZLShareTypeUnknown";
+static ZLShareType const ZLShareTypeImage          = @"ZLShareTypeImage";
+static ZLShareType const ZLShareTypeVideo          = @"ZLShareTypeVideo";
+static ZLShareType const ZLShareTypeFile           = @"ZLShareTypeFile";
+static ZLShareType const ZLShareTypeWebURL         = @"ZLShareTypeWebURL";
+static ZLShareType const ZLShareTypeWebPage        = @"ZLShareTypeWebPage";
+static ZLShareType const ZLShareTypeText           = @"ZLShareTypeText";
+
+//typedef NS_ENUM(NSInteger, ZLShareType) {
+//    ZLShareTypeUnknown = 0,
+//    ZLShareTypeImage,
+//    ZLShareTypeVideo,
+//    ZLShareTypeFile,
+//    ZLShareTypeWebURL,
+//    ZLShareTypeWebPage,
+//    ZLShareTypeText
+//};
 
 typedef NS_ENUM(NSInteger, ZLVideoPackageCompressType) {
     ZLVideoPackageCompressTypeOrigin = 0,
@@ -38,11 +47,12 @@ typedef NS_ENUM(NSInteger, ZLImagePackageCompressType) {
 typedef NS_ENUM(NSInteger, ZLShareError) {
     ZLShareNilExtensionContextError = 100,
     ZLShareNilExtensionItemError,
-    ZLDataNilError,
+    ZLInvalidInputError,
     ZLCompressImageError,
     ZLCompressVideoError,
+    ZLCompressTypeUnknowError,
     ZLFileNotExistError,
-    ZLCompressTypeUnknowError
+    ZLInvalidTypeError
 };
 
 

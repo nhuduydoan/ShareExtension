@@ -9,6 +9,7 @@
 #import "HMUploadAdapter.h"
 
 #define AllowedMaxConcurrentTask                   1000
+#define Boundary                                   @"HMBoundary"
 
 @interface HMUploadAdapter() <HMURLSessionManagerDelegate>
 
@@ -250,7 +251,7 @@
         }
         
         NSError *error = nil;
-        NSURLRequest *request = [self makeRequestWithHost:hostString fileName:fileName data:data header:header];
+        NSURLRequest *request = [self makeRequestWithHost:hostString fileName:fileName data:data header:header parameters:nil];
         
         HMURLUploadTask *uploadTask = [_sessionManager uploadTaskWithStreamRequest:request priority:correctPriority error:&error];
         if (uploadTask) {
@@ -290,7 +291,7 @@
 #pragma mark - Private
 
 - (NSDictionary *)getDefaultHeader {
-    return @{@"content-type": @"multipart/form-data"};
+    return @{@"content-type": [NSString stringWithFormat:@"multipart/form-data; boundary=%@", Boundary]};
 }
 
 - (NSURLRequest *)makeRequestWithHost:(NSString *)hostString filePath:(NSString *)filePath header:(NSDictionary *)header {
@@ -298,40 +299,55 @@
         return nil;
     }
     NSData *data = [NSData dataWithContentsOfFile:filePath];
-    return [self makeRequestWithHost:hostString fileName:filePath data:data header:header];
+    return [self makeRequestWithHost:hostString fileName:filePath data:data header:header parameters:nil];
 }
-- (NSURLRequest *)makeRequestWithHost:(NSString *)hostString fileName:(NSString *)fileName data:(NSData *)data header:(NSDictionary *)header {
+- (NSURLRequest *)makeRequestWithHost:(NSString *)hostString fileName:(NSString *)fileName data:(NSData *)data header:(NSDictionary *)header parameters:(NSDictionary *)parameters{
+    if (!data) {
+        return nil;
+    }
     
     NSDictionary *targetHeader = header ? header : [self getDefaultHeader];
     
-    NSArray *parameters = @[ @{ @"name": @"file", @"fileName": fileName } ];
-    NSString *boundary = @"----WebKitFormBoundary7MA4YWxkTrZu0gW";
+    NSMutableData *bodyData = [NSMutableData new];
     
-    NSError *error;
+    [bodyData appendData:[self makeBodyFilePartDataWithFileName:fileName data:data]];
     
-    NSMutableString *body = [NSMutableString string];
-    for (NSDictionary *param in parameters) {
-        [body appendFormat:@"--%@\r\n", boundary];
-        if (param[@"fileName"]) {
-            [body appendFormat:@"Content-Disposition:form-data; name=\"%@\"; filename=\"%@\"\r\n", param[@"name"], param[@"fileName"]];
-            [body appendFormat:@"Content-Type: %@\r\n\r\n", param[@"contentType"]];
-            [body appendFormat:@"%@", [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]];
-            if (error) {
-                NSLog(@"%@", error);
-            }
-        } else {
-            [body appendFormat:@"Content-Disposition:form-data; name=\"%@\"\r\n\r\n", param[@"name"]];
-            [body appendFormat:@"%@", param[@"value"]];
+    NSMutableString *partString = [NSMutableString new];
+    
+    
+    if (parameters) {
+        for (NSString *keys in [parameters allKeys]) {
+            [partString appendFormat:@"--%@\r\n", Boundary];
+            [partString appendFormat:@"Content-Disposition: form-data; name=\"%@\"\r\n\r\n", parameters[keys]];
         }
     }
-    [body appendFormat:@"\r\n--%@--\r\n", boundary];
-    NSData *postData = [body dataUsingEncoding:NSUTF8StringEncoding];
+    
+    
+    //Make end multipart
+    [partString appendFormat:@"\r\n--%@--\r\n\r\n", Boundary];
+    NSData *parameterPartData = [partString dataUsingEncoding:NSUTF8StringEncoding];
+    [bodyData appendData:parameterPartData];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:hostString]];
     [request setHTTPMethod:@"POST"];
     [request setAllHTTPHeaderFields:targetHeader];
-    [request setHTTPBody:postData];
+    [request setHTTPBody:bodyData];
     return request;
+}
+
+- (NSData *)makeBodyFilePartDataWithFileName:(NSString *)fileName data:(NSData *)fileData {
+    NSMutableData *filePartData = [NSMutableData new];
+    
+    //Make above string
+    NSMutableString *aboveString = [NSMutableString new];
+    [aboveString appendFormat:@"--%@\r\n", Boundary];
+    [aboveString appendFormat:@"Content-Disposition: form-data; name=\"file\"; fileName=\"%@\"\r\n\r\n", fileName];
+    NSData *aboveData = [aboveString dataUsingEncoding:NSUTF8StringEncoding];
+    
+    [filePartData appendData:aboveData];
+    [filePartData appendData:fileData];
+    
+    return filePartData;
 }
 
 - (NSUInteger)hashRequestWithHostString:(NSString *)hostString filePath:(NSString *)filePath {

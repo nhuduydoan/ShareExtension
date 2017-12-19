@@ -15,7 +15,7 @@
 
 + (void)compressVideoURL:(NSURL *)videoURL
             compressType:(ZLVideoPackageCompressType)compressType
-              completion:(void (^)(NSData *videoData, NSError *))completionBlock {
+              completion:(void (^)(NSURL *, NSError *))completionBlock {
     
     if (!completionBlock) {
         return;
@@ -29,44 +29,57 @@
         return;
     }
     
-    NSString *fileName = [videoURL lastPathComponent];
-    NSURL *tempCompressURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:fileName]];
-    NSString *exportPreset = [self getPresetNameWithCompressType:compressType];
-    
-    AVURLAsset *asset = [AVURLAsset assetWithURL:videoURL];
-    if (asset) {
-        AVAssetExportSession *session = [AVAssetExportSession exportSessionWithAsset:asset presetName:exportPreset];
-        session.outputFileType = AVFileTypeQuickTimeMovie;
-        session.outputURL = tempCompressURL;
-        session.shouldOptimizeForNetworkUse = YES;
-        [session exportAsynchronouslyWithCompletionHandler:^{
-            NSData *compressData;
-            switch (session.status) {
-                case AVAssetExportSessionStatusCompleted: {
-                    if ([[NSFileManager defaultManager] fileExistsAtPath:[tempCompressURL path]]) {
-                        compressData = [NSData dataWithContentsOfURL:tempCompressURL];
-                        [[NSFileManager defaultManager] removeItemAtURL:tempCompressURL error:nil];
-                    }
-                }
-                case AVAssetExportSessionStatusFailed:
-                case AVAssetExportSessionStatusCancelled:
-                    if (completionBlock) {
-                        completionBlock(compressData, session.error);
-                    }
-                    break;
-                    
-                default:
-                    break;
-            }
-            
-        }];
-    } else {
-        NSError *error = [NSError errorWithDomain:ZLCompressUtilsDomain code:ZLCompressVideoError userInfo:@{@"message": @"Can't get asset of video url"}];
-        completionBlock(nil, error);
+    if (compressType == ZLVideoPackageCompressTypeOrigin) {
+        completionBlock(videoURL, nil);
+        return;
     }
+    
+    dispatch_async(globalDefaultQueue, ^{
+        NSURL *tempCompressURL = [self getCompressFileURLWithInputFileURL:videoURL];
+        
+        if (!tempCompressURL) {
+            error = [NSError errorWithDomain:ZLCompressUtilsDomain code:ZLCompressVideoError userInfo:@{@"message": @"The compress url is unknown"}];
+            completionBlock(nil, error);
+        }
+        
+        NSString *exportPreset = [self getPresetNameWithCompressType:compressType];
+        
+        AVURLAsset *asset = [AVURLAsset assetWithURL:videoURL];
+        if (asset) {
+            AVAssetExportSession *session = [AVAssetExportSession exportSessionWithAsset:asset presetName:exportPreset];
+            if (!session) {
+                NSError *error = [NSError errorWithDomain:ZLCompressUtilsDomain code:ZLCompressVideoError userInfo:@{@"message": @"Can't create export session of video"}];
+                completionBlock(nil, error);
+                return;
+            }
+            session.outputURL = tempCompressURL;
+            session.outputFileType = AVFileTypeQuickTimeMovie;
+            [session exportAsynchronouslyWithCompletionHandler:^{
+                switch (session.status) {
+                    case AVAssetExportSessionStatusCompleted: {
+                        completionBlock(tempCompressURL, nil);
+                        break;
+                    }
+                    case AVAssetExportSessionStatusFailed:
+                    case AVAssetExportSessionStatusCancelled:
+                        if (completionBlock) {
+                            completionBlock(nil, session.error);
+                        }
+                        break;
+                        
+                    default:
+                        break;
+                }
+                
+            }];
+        } else {
+            NSError *error = [NSError errorWithDomain:ZLCompressUtilsDomain code:ZLCompressVideoError userInfo:@{@"message": @"Can't get asset of video url"}];
+            completionBlock(nil, error);
+        }
+    });
 }
 
-+ (void)compressImageURL:(NSURL *)imageURL withScaleType:(ZLImagePackageCompressType)compressType completion:(void (^)(NSData *imageData, NSError *error))completionBlock {
++ (void)compressImageURL:(NSURL *)imageURL withScaleType:(ZLImagePackageCompressType)compressType completion:(void (^)(NSURL *, NSError *))completionBlock {
     if (!completionBlock) {
         return;
     }
@@ -79,38 +92,58 @@
         return;
     }
     
+    if (compressType == ZLImagePackageCompressTypeOrigin) {
+        completionBlock(imageURL, nil);
+        return;
+    }
+    
     dispatch_async(globalDefaultQueue, ^{
-        
-        
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
         if (!imageData) {
-            error = [NSError errorWithDomain:@"com.hungmai.ZLCompressUtils" code:ZLDataNilError userInfo:@{@"message": @"Data of image is nil"}];
+            error = [NSError errorWithDomain:@"com.hungmai.ZLCompressUtils" code:ZLInvalidInputError userInfo:@{@"message": @"Data of image is nil"}];
+            completionBlock(nil, error);
+            return;
+        }
+
+        UIImage *image = [UIImage imageWithData:imageData];
+        if (!image) {
+            error = [NSError errorWithDomain:@"com.hungmai.ZLCompressUtils" code:ZLCompressImageError userInfo:@{@"message": @"The url is not an image"}];
             completionBlock(nil, error);
             return;
         }
         
-        if (compressType == ZLImagePackageCompressTypeOrigin) {
-            completionBlock(imageData, nil);
+        CGSize size = [self getImageSizeForImageCompressType:compressType];
+        
+        CGFloat scale = 1;
+        
+        if (image.size.width > image.size.height) {
+            scale = size.width / image.size.width;
+        } else {
+            scale = size.width / image.size.height;
+        }
+        
+        float newHeight = image.size.height * scale;
+        float newWidth = image.size.width * scale;
+        
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight));
+        [image drawInRect:CGRectMake(0, 0, newWidth, newHeight)];
+        UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        NSData *imageCompressData = UIImageJPEGRepresentation(scaledImage, 1);
+        if (!imageCompressData) {
+            error = [NSError errorWithDomain:@"com.hungmai.ZLCompressUtils" code:ZLCompressImageError userInfo:@{@"message": @"The scaled image can't be convert to data"}];
+            completionBlock(nil, error);
             return;
         }
         
-        CGSize size = [self getImageSizeForImageCompressType:compressType];
-        CGImageSourceRef src = CGImageSourceCreateWithData((__bridge CFDataRef)imageData, NULL);
-        CFDictionaryRef options = (__bridge CFDictionaryRef) @{
-                                                               (id) kCGImageSourceCreateThumbnailWithTransform : @YES,
-                                                               (id) kCGImageSourceCreateThumbnailFromImageAlways : @YES,
-                                                               (id) kCGImageSourceThumbnailMaxPixelSize : @(size)
-                                                               };
-        
-        CGImageRef scaledImageRef = CGImageSourceCreateThumbnailAtIndex(src, 0, options);
-        UIImage *scaled = [UIImage imageWithCGImage:scaledImageRef];
-        CGImageRelease(scaledImageRef);
-        NSData *compressData = UIImageJPEGRepresentation(scaled, 1);
-        if (!compressData) {
-            error = [NSError errorWithDomain:@"com.hungmai.ZLCompressUtils" code:ZLCompressImageError userInfo:@{@"message": [NSString stringWithFormat:@"Can't compress image with size (%f, %f)", size.width, size.height]}];
+        NSURL *tempCompressURL = [self getCompressFileURLWithInputFileURL:imageURL];
+        if (!tempCompressURL) {
+            error = [NSError errorWithDomain:ZLCompressUtilsDomain code:ZLCompressVideoError userInfo:@{@"message": @"The compress url is unknown"}];
+            completionBlock(nil, error);
         }
         
-        completionBlock(compressData, error);
+        [imageCompressData writeToURL:tempCompressURL atomically:NO];
+        completionBlock(tempCompressURL, nil);
     });
 }
 
@@ -120,17 +153,17 @@
 + (NSString *)getPresetNameWithCompressType:(ZLVideoPackageCompressType)compressType {
     switch (compressType) {
         case ZLVideoPackageCompressTypeLow:
-            return AVCaptureSessionPresetLow;
+            return AVAssetExportPresetLowQuality;
         case ZLVideoPackageCompressTypeMedium:
-            return AVCaptureSessionPresetMedium;
+            return AVAssetExportPresetMediumQuality;
         case ZLVideoPackageCompressTypeHigh:
-            return AVCaptureSessionPresetHigh;
+            return AVAssetExportPresetHighestQuality;
         case ZLVideoPackageCompressType640x480:
-            return AVCaptureSessionPreset640x480;
+            return AVAssetExportPreset640x480;
         case ZLVideoPackageCompressType1280x720:
-            return AVCaptureSessionPreset1280x720;
+            return AVAssetExportPreset1280x720;
         case ZLVideoPackageCompressType1920x1080:
-            return AVCaptureSessionPreset1920x1080;
+            return AVAssetExportPreset1920x1080;
         default:
             break;
     }
@@ -149,6 +182,23 @@
         default:
             return CGSizeZero;
     }
+}
+
++ (NSURL *)getCompressFileURLWithInputFileURL:(NSURL *)inputFileURL {
+    NSString *fileName = [inputFileURL lastPathComponent];
+    NSArray<NSString *> *fileNameComponent = [fileName componentsSeparatedByString:@"."];
+    NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
+    NSString *tempFileName = nil;
+    if (fileNameComponent.count >= 2) {
+        for (int i = 0; i < fileNameComponent.count - 1; i++) {
+            tempFileName = [NSString stringWithFormat:@"%@.%@", tempFileName, fileNameComponent[i]];
+        }
+        
+        tempFileName = [NSString stringWithFormat:@"%@_compress_%i.%@", tempFileName, (int)timestamp, fileNameComponent[fileNameComponent.count - 1]];
+    }
+    
+    NSURL *tempCompressURL = [NSURL fileURLWithPath:[NSTemporaryDirectory() stringByAppendingPathComponent:tempFileName]];
+    return tempCompressURL;
 }
 
 @end

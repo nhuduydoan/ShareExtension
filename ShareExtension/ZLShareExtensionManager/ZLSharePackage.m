@@ -14,11 +14,20 @@
     if (self = [super init]) {
         _packageId = [[[NSUUID UUID] UUIDString] hash];
         _shareType = ZLShareTypeUnknown;
-        _shareData = nil;
-        _shareName = @"";
+        _shareContent = nil;
     }
     
     return self;
 }
 
+- (NSString *)description {
+    NSMutableString *descriptString = [NSMutableString new];
+    [descriptString appendFormat:@"packageId:%tu\t", _packageId];
+    [descriptString appendFormat:@"shareType:%@\t", _shareType];
+    [descriptString appendFormat:@"shareContent:%@\t", _shareContent];
+    return descriptString;
+}
+
 @end
+
+

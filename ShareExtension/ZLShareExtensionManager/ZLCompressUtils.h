@@ -14,10 +14,10 @@
 
 + (void)compressVideoURL:(NSURL *)videoURL
             compressType:(ZLVideoPackageCompressType)compressType
-              completion:(void (^)(NSData *videoData, NSError *error))completionBlock;
+              completion:(void (^)(NSURL *compressURL, NSError *error))completionBlock;
 
 + (void)compressImageURL:(NSURL *)imageURL
            withScaleType:(ZLImagePackageCompressType)compressType
-              completion:(void (^)(NSData *imageData, NSError *error))completionBlock;
+              completion:(void (^)(NSURL *compressURL, NSError *error))completionBlock;
 
 @end

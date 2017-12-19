@@ -14,7 +14,7 @@
 
 #define MaxConnection           100
 
-@interface HMURLSessionManger() <NSURLSessionTaskDelegate, HMURLUploadDelegate>
+@interface HMURLSessionManger() <NSURLSessionDataDelegate, HMURLUploadDelegate>
 
 @property(nonatomic) NSUInteger maxConcurrentUploadTask;
 
@@ -392,9 +392,6 @@
         HMURLUploadTask *uploadTask = strongSelf.uploadTaskMapping[@(task.taskIdentifier)];
         if (uploadTask && [strongSelf.runningUploadTask containsObject:uploadTask]) {
             uploadTask.totalBytes = totalBytesExpectedToSend;
-//            if (uploadTask.sentBytes >= totalBytesSent) {
-//                return;
-//            }
             uploadTask.sentBytes = totalBytesSent;
             
             NSArray<HMURLUploadCallbackEntry *> *cbEntries = [uploadTask getAllCallbackEntries];
@@ -413,6 +410,14 @@
             }];
         }
     });
+}
+
+- (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
+    //Handle receiving data from server
+    if (data) {
+        NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"[HM] HMURLSessionManager Receive data: %@", dataString);
+    }
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {

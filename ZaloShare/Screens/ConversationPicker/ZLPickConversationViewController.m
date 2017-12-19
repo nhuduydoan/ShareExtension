@@ -14,7 +14,6 @@
 #import "DXImageManager.h"
 #import "ZLShareExtensionManager.h"
 #import "DXPickFriendsViewController.h"
-#import "DXShareNavigationController.h"
 #import "EditPostViewController.h"
 
 NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
@@ -35,9 +34,6 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 @property (strong, nonatomic) NSArray *extensionThumbnails;
 @property (strong, nonatomic) NSArray *data;
 @property (nonatomic) BOOL isSearching;
-
-@property (strong, nonatomic) UIImage *clearSearchBgImage;
-@property (strong, nonatomic) UIImage *blueSearchBgImage;
 
 @end
 
@@ -104,10 +100,10 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 }
 
 - (void)setupHeaderView {
-    self.view.backgroundColor = [UIColor whiteColor];
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 100)];
     headerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     headerView.clipsToBounds = YES;
+    headerView.backgroundColor = [UIColor colorWithRed:242/255.f green:242/255.f blue:242/255.f alpha:0.5];
     self.headerView = headerView;
 }
 
@@ -135,8 +131,8 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     placeholderLabel.textColor = [UIColor colorWithRed:194/255.5 green:194/255.f blue:194/255.f alpha:1.0];
     
     UIColor *color = [UIColor colorWithRed:242/255.f green:242/255.f blue:242/255.f alpha:1];
-    self.blueSearchBgImage = [sImageManager imageWithColor:color size:CGSizeMake(30, 30)];
-    self.clearSearchBgImage = [sImageManager imageWithColor:[UIColor clearColor] size:CGSizeMake(30, 30)];
+    UIImage *searchBarBGImage = [sImageManager imageWithColor:color size:CGSizeMake(30, 30)];
+    [searchBar setSearchFieldBackgroundImage:searchBarBGImage forState:UIControlStateNormal];
     
      self.searchBar = searchBar;
 }
@@ -212,11 +208,9 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 - (void)updateNavigationItems {
     if (self.isSearching) {
         self.navigationItem.rightBarButtonItem = self.cancelSearchItem;
-        [self.searchBar setSearchFieldBackgroundImage:self.blueSearchBgImage forState:UIControlStateNormal];
         
     } else {
         self.navigationItem.rightBarButtonItem = self.searchBarButtonItem;
-        [self.searchBar setSearchFieldBackgroundImage:self.clearSearchBgImage forState:UIControlStateNormal];
     }
 }
 

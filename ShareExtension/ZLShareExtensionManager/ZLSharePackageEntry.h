@@ -12,6 +12,7 @@
 typedef void(^ZLSharePackageCompletionHandler) (NSArray<ZLSharePackage *> *packages, NSError *error);
 typedef void(^ZLUploadCompletionHandler) (NSDictionary *uploadInfo);
 typedef void(^ZLUploadProgressHandler) (float progress);
+typedef void(^ZLUploadPackageProgressHandler) (NSUInteger packageId, float progress);
 
 @interface ZLSharePackageEntry: NSObject
 
@@ -22,6 +23,14 @@ typedef void(^ZLUploadProgressHandler) (float progress);
 
 
 @interface ZLUploadPackageEntry: NSObject
+
+@property(strong, nonatomic) ZLUploadCompletionHandler completionHandler;
+@property(strong, nonatomic) ZLUploadPackageProgressHandler progressHandler;
+@property(strong, nonatomic) dispatch_queue_t queue;
+
+@end
+
+@interface ZLUploadAllPackageEntry: NSObject
 
 @property(strong, nonatomic) ZLUploadCompletionHandler completionHandler;
 @property(strong, nonatomic) ZLUploadProgressHandler progressHandler;

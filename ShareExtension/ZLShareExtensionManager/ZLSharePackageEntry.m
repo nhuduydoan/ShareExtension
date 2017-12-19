@@ -27,6 +27,21 @@
 - (instancetype)init {
     if (self = [super init]) {
         _completionHandler = nil;
+        _progressHandler = nil;
+        _queue = nil;
+    }
+    
+    return self;
+}
+
+@end
+
+@implementation ZLUploadAllPackageEntry
+
+- (instancetype)init {
+    if (self = [super init]) {
+        _completionHandler = nil;
+        _progressHandler = nil;
         _queue = nil;
     }
     

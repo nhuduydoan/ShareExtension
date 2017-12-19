@@ -8,7 +8,6 @@
 
 #import "ShareRootViewController.h"
 #import "ZLPickConversationViewController.h"
-#import "DXShareNavigationController.h"
 #import "ZLShareExtensionManager.h"
 #import "ZLUpLoadingViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
@@ -54,15 +53,18 @@
     for (NSExtensionItem *item in self.extensionContext.inputItems) {
         for (NSItemProvider *itemProvider in item.attachments) {
             //kUTTypeVCard, kUTTypeURL, kUTTypeImage, kUTTypeQuickTimeMovie
-            NSString *typeIdentifier = (__bridge NSString *)kUTTypeImage;
-            if ([itemProvider hasItemConformingToTypeIdentifier:typeIdentifier]) {
-                dispatch_group_enter(group);
-                [itemProvider loadPreviewImageWithOptions:nil completionHandler:^(UIImage *image, NSError *error) {
-                    if (image) {
-                        [thumbnailsArr addObject:image];
-                    }
-                    dispatch_group_leave(group);
-                }];
+            NSArray *identifiers = [itemProvider registeredTypeIdentifiers];
+            for (NSString *identifier in identifiers) {
+                if ([itemProvider hasItemConformingToTypeIdentifier:identifier]) {
+                    dispatch_group_enter(group);
+                    [itemProvider loadPreviewImageWithOptions:nil completionHandler:^(UIImage *image, NSError *error) {
+                        if (image) {
+                            [thumbnailsArr addObject:image];
+                        }
+                        dispatch_group_leave(group);
+                    }];
+                    continue;
+                }
             }
         }
     }
@@ -85,14 +87,14 @@
     shareURLs = @[uploadURL];
     for (NSString *url in shareURLs) {
         dispatch_group_enter(completionGroup);
-        [sShareExtensionManager uploadAllSharePackageToURLString:url withConfiguration:nil progressHandler:^(float progress) {
+        [sShareExtensionManager uploadAllSharePackagesToURLString:url configuration:nil progressHandler:^(float progress) {
             CGFloat allPropress = progress/shareURLs.count;
             [weakLoadingVC updateProgress:allPropress];
             NSLog(@"Loading: %f : %f", progress, allPropress);
         } completionHandler:^(NSDictionary *uploadInfo) {
             [selfWeak addUploadInfo:uploadInfo];
             dispatch_group_leave(completionGroup);
-        } inQueue:dispatch_get_main_queue()];
+        } inQueue:nil];
     }
     
     dispatch_group_notify(completionGroup, dispatch_get_main_queue(), ^{
