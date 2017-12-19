@@ -26,6 +26,7 @@
     
     sShareExtensionManager.extensionContext = self.extensionContext;
     self.view.alpha = 0;
+    self.textView.editable = NO;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
