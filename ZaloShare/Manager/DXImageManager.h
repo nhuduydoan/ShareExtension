@@ -41,7 +41,5 @@
  */
 - (UIImage *)titleImageFromString:(NSString *)string color:(UIColor *)color;
 - (UIImage *)avatarImageFromOriginalImage:(UIImage *)image;
-
 - (UIImage *)drawThumbnailFromImages:(NSArray *)images videoString:(NSString *)videoString;
-
 @end

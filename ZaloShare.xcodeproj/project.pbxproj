@@ -97,6 +97,7 @@
 		5CD008AB1FE8A6A200A653C2 /* ZLSharePackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008921FE8A6A200A653C2 /* ZLSharePackage.m */; };
 		5CD008AC1FE8A6A200A653C2 /* ZLShareExtensionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008951FE8A6A200A653C2 /* ZLShareExtensionManager.m */; };
 		5CD008AD1FE8A6A200A653C2 /* ZLShareExtensionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008951FE8A6A200A653C2 /* ZLShareExtensionManager.m */; };
+		5CD008B11FE90C6600A653C2 /* ZLShareExtensionManager_Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008B01FE90C6600A653C2 /* ZLShareExtensionManager_Image.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -219,6 +220,8 @@
 		5CD008931FE8A6A200A653C2 /* ZLSharePackageEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSharePackageEntry.h; sourceTree = "<group>"; };
 		5CD008941FE8A6A200A653C2 /* ZLCompressUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCompressUtils.h; sourceTree = "<group>"; };
 		5CD008951FE8A6A200A653C2 /* ZLShareExtensionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLShareExtensionManager.m; sourceTree = "<group>"; };
+		5CD008AF1FE90C6600A653C2 /* ZLShareExtensionManager_Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShareExtensionManager_Image.h; sourceTree = "<group>"; };
+		5CD008B01FE90C6600A653C2 /* ZLShareExtensionManager_Image.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShareExtensionManager_Image.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -450,16 +453,17 @@
 		5CD008781FE8A6A200A653C2 /* ZLShareExtensionManager */ = {
 			isa = PBXGroup;
 			children = (
+				5CD008911FE8A6A200A653C2 /* ZLShareDefine.h */,
 				5CD008791FE8A6A200A653C2 /* ZLSharePackage.h */,
+				5CD008921FE8A6A200A653C2 /* ZLSharePackage.m */,
 				5CD0087A1FE8A6A200A653C2 /* ZLCompressUtils.m */,
 				5CD0087B1FE8A6A200A653C2 /* ZLSharePackageEntry.m */,
 				5CD0087C1FE8A6A200A653C2 /* HMURLSessionManager */,
 				5CD008901FE8A6A200A653C2 /* ZLShareExtensionManager.h */,
-				5CD008911FE8A6A200A653C2 /* ZLShareDefine.h */,
-				5CD008921FE8A6A200A653C2 /* ZLSharePackage.m */,
+				5CD008951FE8A6A200A653C2 /* ZLShareExtensionManager.m */,
 				5CD008931FE8A6A200A653C2 /* ZLSharePackageEntry.h */,
 				5CD008941FE8A6A200A653C2 /* ZLCompressUtils.h */,
-				5CD008951FE8A6A200A653C2 /* ZLShareExtensionManager.m */,
+				5CD008AE1FE90C4100A653C2 /* Category */,
 			);
 			path = ZLShareExtensionManager;
 			sourceTree = "<group>";
@@ -502,6 +506,15 @@
 				5CD0088E1FE8A6A200A653C2 /* HMURLUploadCallbackEntry.h */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		5CD008AE1FE90C4100A653C2 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				5CD008AF1FE90C6600A653C2 /* ZLShareExtensionManager_Image.h */,
+				5CD008B01FE90C6600A653C2 /* ZLShareExtensionManager_Image.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -747,6 +760,7 @@
 				5C4B479D1FE3B51A0066776C /* DXShowPickedCollectionViewCell.m in Sources */,
 				5C4B47931FE3B51A0066776C /* DXPickFriendsViewController.m in Sources */,
 				5C85E64F1FE79EB2001AFDA9 /* EditPostViewController.m in Sources */,
+				5CD008B11FE90C6600A653C2 /* ZLShareExtensionManager_Image.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
