@@ -18,7 +18,7 @@
  @param completionHandler : NON NULL block
  @return : null able instance of this class
  */
-- (instancetype)initWithCompletionHandler:(void (^)(UIViewController *viewController, NSArray<NSString *> *shareURLs, NSString *comment))completionHandler;
+- (instancetype)initWithCompletionHandler:(void (^)(UIViewController *viewController, NSArray<NSString *> *shareURLs, NSString *comment))completionHandler shareText:(NSString *)shareText;
 
 // Use function -initWithCompletionHandler: instead this function
 - (instancetype)init NS_UNAVAILABLE;

@@ -17,6 +17,7 @@
 
 @interface EditPostViewController : UIViewController
 
+@property (strong, nonatomic) NSString *shareText;
 @property (weak, nonatomic) id<EditPostViewControllerDelegate> delegate;
 
 - (void)updateExtensionThumbnail:(UIImage *)thumbnail;

@@ -33,6 +33,7 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
 @property (strong, nonatomic) NSArray *data;
 @property (nonatomic) BOOL isSearching;
+@property (strong, nonatomic) NSString *shareText;
 
 @end
 
@@ -49,10 +50,11 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     return nil;
 }
 
-- (instancetype)initWithCompletionHandler:(void (^)(UIViewController *viewController, NSArray<NSString *> *shareURLs, NSString *comment))completionHandler {
+- (instancetype)initWithCompletionHandler:(void (^)(UIViewController *viewController, NSArray<NSString *> *shareURLs, NSString *comment))completionHandler shareText:(NSString *)shareText {
     self = [super init];
     if (self) {
         _completionHandler = completionHandler;
+        _shareText = shareText;
     }
     return self;
 }
@@ -155,6 +157,7 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 - (void)setupEditPostViewController {
     EditPostViewController *controller = [[EditPostViewController alloc] init];
     controller.delegate = self;
+    controller.shareText = self.shareText;
     [self addChildViewController:controller];
     [controller didMoveToParentViewController:self];
     controller.view.frame = self.headerView.bounds;
@@ -197,8 +200,8 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
     DXPickFriendsViewController *controller = [[DXPickFriendsViewController alloc] initWithContactsArray:contacts];
     __weak typeof(self) selfWeak = self;
     controller.completionHandler = ^(UIViewController *viewController, NSArray<NSString *> *shareURLs) {
-        NSString *comment = [selfWeak.editPostViewController postComment];
-        selfWeak.completionHandler(viewController, shareURLs, comment);
+        NSString *shareText = [selfWeak.editPostViewController postComment];
+        selfWeak.completionHandler(viewController, shareURLs, shareText);
     };
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     [self presentViewController:navController animated:YES completion:nil];

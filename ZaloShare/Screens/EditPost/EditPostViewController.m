@@ -113,6 +113,9 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.1;
     // Do any additional setup after loading the view.
     
     [self setupViews];
+    if (self.shareText.length) {
+        self.textView.text = self.shareText;
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -139,7 +142,11 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.1;
 }
 
 - (void)setupTextView {
-    UIPlaceHolderTextView *textView = [[UIPlaceHolderTextView alloc] initWithFrame:CGRectMake(108, 10, self.view.bounds.size.width - 116, 80)];
+    CGRect rect = CGRectMake(108, 10, self.view.bounds.size.width - 116, 80);
+    if (self.thumbnail == nil) {
+        rect = CGRectMake(8, 10, self.view.bounds.size.width - 16, 80);
+    }
+    UIPlaceHolderTextView *textView = [[UIPlaceHolderTextView alloc] initWithFrame:rect];
     textView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [self.view addSubview:textView];
     
@@ -149,7 +156,6 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.1;
     textView.showsHorizontalScrollIndicator = NO;
     textView.textColor = [UIColor blackColor];
     textView.font = [UIFont systemFontOfSize:15 weight:UIFontWeightRegular];
-    
     textView.placeholder = @"Viết cái gì đó...";
     textView.placeholderColor = [UIColor colorWithRed:194/255.5 green:194/255.f blue:194/255.f alpha:1.0];
     self.textView = textView;
@@ -175,8 +181,20 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.1;
 
 - (void)updateExtensionThumbnail:(UIImage *)thumbnail {
     self.thumbnail = thumbnail;
+    if (thumbnail == nil) {
+        [self.thumbnailView removeFromSuperview];
+        self.thumbnailView = nil;
+        return;
+    }
+    
     if (self.thumbnailView) {
         self.thumbnailView.image = thumbnail;
+        CGRect rect = CGRectMake(108, 10, self.view.bounds.size.width - 116, 80);
+        [UIView animateWithDuration:0.2 animations:^{
+            self.textView.frame = rect;
+        } completion:^(BOOL finished) {
+            self.textView.frame = rect;
+        }];
     }
 }
 
@@ -192,6 +210,11 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.1;
 
 - (BOOL)isEditingText {
     return [self.textView isFirstResponder];
+}
+
+- (void)setShareText:(NSString *)shareText {
+    _shareText = shareText;
+    self.textView.text = shareText;
 }
 
 @end

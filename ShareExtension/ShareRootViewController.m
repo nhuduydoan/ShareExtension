@@ -25,24 +25,24 @@
     [super viewDidLoad];
     
     sShareExtensionManager.extensionContext = self.extensionContext;
-    NSLog(@"%@", self.contentText);
     self.view.alpha = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     __weak typeof(self) selfWeak = self;
-    ZLPickConversationViewController *controller = [[ZLPickConversationViewController alloc] initWithCompletionHandler:^(UIViewController *viewController, NSArray<NSString *> *shareURLs, NSString *comment) {
+    void(^completionhandler)(UIViewController *viewController, NSArray<NSString *> *shareURLs, NSString *shareText) = ^(UIViewController *viewController, NSArray<NSString *> *shareURLs, NSString *shareText) {
         if (shareURLs.count > 0) {
             [selfWeak runOnMainThread:^{
-                selfWeak.textView.text = comment;
-                NSLog(@"COmment: %@", self.contentText);
                 [selfWeak shareToURLs:shareURLs onViewController:viewController];
             }];
         } else {
             [sShareExtensionManager completeExtension];
         }
-    }];
+    };
+    
+    NSString *shareText = self.contentText.copy;
+    ZLPickConversationViewController *controller = [[ZLPickConversationViewController alloc] initWithCompletionHandler:completionhandler shareText:shareText];
     
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     [self presentViewController:navController animated:YES completion:nil];

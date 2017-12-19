@@ -19,8 +19,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    ZLPickConversationViewController *controller = [[ZLPickConversationViewController alloc] initWithCompletionHandler:^(UIViewController *viewController, NSArray<NSString *> *shareURLs, NSString *comment) {
-    }];
+    void(^block)(UIViewController *viewController, NSArray<NSString *> *shareURLs, NSString *comment) = ^(UIViewController *viewController, NSArray<NSString *> *shareURLs, NSString *comment) {
+    };
+    ZLPickConversationViewController *controller = [[ZLPickConversationViewController alloc] initWithCompletionHandler:block shareText:nil];
     UINavigationController *rootViewControlelr = [[UINavigationController alloc] initWithRootViewController:controller];
     self.window.rootViewController = rootViewControlelr;
     [self.window makeKeyAndVisible];
