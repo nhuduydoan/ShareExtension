@@ -13,18 +13,6 @@
 #define ShareDomain                                 @"com.hungmai.ShareExtension.ZLShareExtensionManager"
 #define ShareContainerBackgroundConfiguration       @"group.com.zalo.shareextension"
 
-@implementation ZLSharePackageConfiguration
-- (instancetype)init {
-    if (self = [super init]) {
-        _videoCompress = ZLVideoPackageCompressTypeLow;
-        _imageCompress = ZLImagePackageCompressType640x480;
-    }
-    
-    return self;
-}
-@end
-
-
 @interface ZLShareExtensionManager()
 @property(strong, nonatomic) ZLCompressConfiguration *defaultConfiguration;
 @property(strong, nonatomic) HMUploadAdapter *uploadAdapter;

@@ -15,11 +15,6 @@
 
 #define sShareExtensionManager              [ZLShareExtensionManager shareInstance]
 
-@interface ZLSharePackageConfiguration: NSObject
-@property(nonatomic) ZLVideoPackageCompressType videoCompress;
-@property(nonatomic) ZLImagePackageCompressType imageCompress;
-@end
-
 @interface ZLShareExtensionManager : NSObject
 @property(strong, nonatomic) NSExtensionContext *extensionContext;
 
