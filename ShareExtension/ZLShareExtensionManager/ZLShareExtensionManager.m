@@ -77,6 +77,9 @@
             }
         }
         
+        //
+        //Support multiple callback
+        //
         ZLSharePackageEntry *packageEntry = [[ZLSharePackageEntry alloc] init];
         packageEntry.completionHandler = completionHandler;
         packageEntry.queue = queue;
@@ -104,6 +107,9 @@
                                              (NSString *)kUTTypeURL,
                                              (NSString *)kUTTypePlainText];
             
+            //
+            //Get all items and pack them to be packages
+            //
             for (NSItemProvider *provider in item.attachments) {
                 dispatch_group_enter(group);
                 for (NSString *typeIdentify in validTypeIdentifies) {
@@ -137,12 +143,15 @@
     }
 }
 
-- (void)uploadAllSharePackagesToURLString:(NSString *)urlString
+- (void)uploadAllShareItemsToURLString:(NSString *)urlString
                             configuration:(ZLCompressConfiguration *)configuration
                           progressHandler:(ZLUploadProgressHandler)progressHandler
                         completionHandler:(ZLUploadCompletionHandler)completionHandler
                                   inQueue:(dispatch_queue_t)queue {
     @synchronized(self) {
+        //
+        //Support multiple callback
+        //
         ZLUploadAllPackageEntry *uploadEntry = [[ZLUploadAllPackageEntry alloc] init];
         uploadEntry.progressHandler = progressHandler;
         uploadEntry.completionHandler = completionHandler;
@@ -156,6 +165,7 @@
         _isUploadingData = YES;
         
         __weak __typeof__(self)weakSelf = self;
+        
         [self getShareDataWithCompletionHandler:^(NSArray<ZLSharePackage *> *packages, NSError *error) {
             if (error) {
                 [weakSelf releaseUploadAllEntriesWithError:@{kZLUploadSharePackageError: error}];
@@ -181,6 +191,9 @@
                     inQueue:(dispatch_queue_t)queue {
     
     @synchronized(self) {
+        //
+        //Support multiple callback
+        //
         ZLUploadAllPackageEntry *uploadEntry = [[ZLUploadAllPackageEntry alloc] init];
         uploadEntry.progressHandler = progressHandler;
         uploadEntry.completionHandler = completionHandler;
@@ -224,6 +237,9 @@
     }
     
     @synchronized(self) {
+        //
+        //Support multiple callback
+        //
         BOOL allowRunUpload = NO;
         NSMutableArray *uploadPackageEntries = _uploadSharePackageMapping[@(sharePackage.packageId)];
         if (!uploadPackageEntries) {
@@ -241,8 +257,11 @@
         if (!allowRunUpload) {
             return;
         }
+        //----------------
         
         __weak __typeof__(self) weakSelf = self;
+        
+        //Compress before upload
         [self compressPackage:sharePackage withConfiguration:configuration completionHandler:^(NSURL *compressURL, NSError *error) {
             if (error) {
                 [weakSelf releaseUploadEntriesOfPackage:sharePackage.packageId error:error];
@@ -305,6 +324,10 @@
     NSMutableArray *allProgressDict = [NSMutableArray new];
     
     dispatch_group_t group = dispatch_group_create();
+    
+    //
+    //Filter packages can upload and upload one by one
+    //
     [sharePackages enumerateObjectsUsingBlock:^(ZLSharePackage * _Nonnull package, NSUInteger idx, BOOL * _Nonnull stop) {
         dispatch_group_enter(group);
         if (![package.shareType isEqualToString:ZLShareTypeImage] &&
@@ -328,6 +351,7 @@
                 allProgressValue += [((NSNumber *)progressDict[@"progress"]) floatValue] / allProgressDict.count;
             }];
             
+            //Call all progress callbacks listening before
             [weakSelf notifyUploadProgressForUploadAllEntries:weakSelf.uploadAllPackageEntries progress:allProgressValue];
         }
                completionHandler:^(NSDictionary *uploadInfo) {
@@ -351,61 +375,57 @@
     });
 }
 
-- (void)compressPackage:(ZLSharePackage *)package withConfiguration:(ZLCompressConfiguration *)configuration completionHandler:(void(^)(NSURL *, NSError *))completionHandler {
+- (void)compressPackage:(ZLSharePackage *)package
+      withConfiguration:(ZLCompressConfiguration *)configuration
+      completionHandler:(void(^)(NSURL *, NSError *))completionHandler {
     if (!completionHandler) {
         return;
     }
     
+    if (!package.shareContent || ![[NSFileManager defaultManager] fileExistsAtPath:package.shareContent]) {
+        NSError *error = [NSError errorWithDomain:ShareDomain code:ZLInvalidInputError userInfo:@{@"message": @"The image url want to compress is invalid (nil or file is not existed)"}];
+        completionHandler(nil, error);
+        return;
+    }
+    
     ZLCompressConfiguration *targetConfiguration = configuration ? configuration : _defaultConfiguration;
+    
+    //
+    //Compress asynchronously images & videos and return the file temp url. File don't need to compress so will return the origin url
+    //
     if (package.shareType == ZLShareTypeImage) {
-        if (package.shareContent && [[NSFileManager defaultManager] fileExistsAtPath:package.shareContent]) {
-            [sCompressManager compressImageURL:[NSURL fileURLWithPath:package.shareContent] withScaleType:targetConfiguration.imageCompress completion:^(NSURL *compressURL, NSError *error) {
-                completionHandler(compressURL, error);
-            }];
-        } else {
-            NSError *error = [NSError errorWithDomain:ShareDomain code:ZLInvalidInputError userInfo:@{@"message": @"The image url want to compress is invalid (nil or file is not existed)"}];
-            completionHandler(nil, error);
-        }
-        
+        [sCompressManager compressImageURL:[NSURL fileURLWithPath:package.shareContent] withScaleType:targetConfiguration.imageCompress completion:^(NSURL *compressURL, NSError *error) {
+            completionHandler(compressURL, error);
+        }];
         return;
     }
     
     if (package.shareType == ZLShareTypeVideo) {
-        if (package.shareContent && [[NSFileManager defaultManager] fileExistsAtPath:package.shareContent]) {
-            [sCompressManager compressVideoURL:[NSURL fileURLWithPath:package.shareContent] compressSetting:targetConfiguration.videoSetting completion:^(NSURL *compressURL, NSError *error) {
-                completionHandler(compressURL, error);
-            }];
-        } else {
-            NSError *error = [NSError errorWithDomain:ShareDomain code:ZLInvalidInputError userInfo:@{@"message": @"The video url want to compress is invalid (nil or file is not existed)"}];
-            completionHandler(nil, error);
-        }
-        
+        [sCompressManager compressVideoURL:[NSURL fileURLWithPath:package.shareContent] compressSetting:targetConfiguration.videoSetting completion:^(NSURL *compressURL, NSError *error) {
+            completionHandler(compressURL, error);
+        }];
         return;
     }
     
     if (package.shareType == ZLShareTypeFile) {
-        if (package.shareContent && [[NSFileManager defaultManager] fileExistsAtPath:package.shareContent]) {
-            completionHandler([NSURL URLWithString:package.shareContent], nil);
-        } else {
-            NSError *error = [NSError errorWithDomain:ShareDomain code:ZLInvalidInputError userInfo:@{@"message": @"The file url is invalid (nil or file is not existed)"}];
-            completionHandler(nil, error);
-        }
-        
+        completionHandler([NSURL fileURLWithPath:package.shareContent], nil);
         return;
     }
     
-    NSError *error = [NSError errorWithDomain:ShareDomain code:ZLInvalidInputError userInfo:@{@"message": @"The input is not a file url"}];
+    NSError *error = [NSError errorWithDomain:ShareDomain code:ZLInvalidInputError userInfo:@{@"message": @"The package can't be upload"}];
     completionHandler(nil, error);
 }
 
 - (void)releaseAllPackageEntriesWithPackages:(NSArray *)packages error:(NSError *)error {
     @synchronized(self) {
         [_dataEntries enumerateObjectsUsingBlock:^(ZLSharePackageEntry * _Nonnull entry, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (entry.completionHandler) {
-                dispatch_async(GetValidQueue(entry.queue), ^{
-                    entry.completionHandler(packages, error);
-                });
+            if (!entry.completionHandler) {
+                return;
             }
+            
+            dispatch_async(GetValidQueue(entry.queue), ^{
+                entry.completionHandler(packages, error);
+            });
         }];
         
         [_dataEntries removeAllObjects];
@@ -415,11 +435,13 @@
 - (void)releaseUploadAllEntriesWithError:(NSDictionary *)uploadInfo {
     @synchronized(self) {
         [_uploadAllPackageEntries enumerateObjectsUsingBlock:^(ZLUploadAllPackageEntry * _Nonnull entry, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (entry.completionHandler) {
-                dispatch_async(GetValidQueue(entry.queue), ^{
-                    entry.completionHandler(uploadInfo);
-                });
+            if (!entry.completionHandler) {
+                return;
             }
+            
+            dispatch_async(GetValidQueue(entry.queue), ^{
+                entry.completionHandler(uploadInfo);
+            });
         }];
         
         [_uploadAllPackageEntries removeAllObjects];
@@ -435,15 +457,17 @@
         }
         
         [uploadPackageEntries enumerateObjectsUsingBlock:^(ZLUploadPackageEntry *  _Nonnull entry, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (entry.completionHandler) {
-                dispatch_async(GetValidQueue(entry.queue), ^{
-                    if (error) {
-                        entry.completionHandler(@{kZLUploadSharePackageError: error});
-                    } else {
-                        entry.completionHandler(@{});
-                    }
-                });
+            if (!entry.completionHandler) {
+                return;
             }
+            
+            dispatch_async(GetValidQueue(entry.queue), ^{
+                if (error) {
+                    entry.completionHandler(@{kZLUploadSharePackageError: error});
+                } else {
+                    entry.completionHandler(@{});
+                }
+            });
         }];
         
         [uploadPackageEntries removeAllObjects];
@@ -453,21 +477,25 @@
 
 - (void)notifyUploadProgressForUploadAllEntries:(NSArray<ZLUploadAllPackageEntry *> *)uploadEntries progress:(float)progress {
     [uploadEntries enumerateObjectsUsingBlock:^(ZLUploadAllPackageEntry * _Nonnull entry, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (entry.progressHandler) {
-            dispatch_async(GetValidQueue(entry.queue), ^{
-                entry.progressHandler(progress);
-            });
+        if (!entry.progressHandler) {
+            return;
         }
+        
+        dispatch_async(GetValidQueue(entry.queue), ^{
+            entry.progressHandler(progress);
+        });
     }];
 }
 
 - (void)notifyUploadProgressForUploadPackageEntries:(NSArray<ZLUploadPackageEntry *> *)uploadEntries packageId:(NSUInteger)packageId progress:(float)progress {
     [uploadEntries enumerateObjectsUsingBlock:^(ZLUploadPackageEntry * _Nonnull entry, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (entry.progressHandler) {
-            dispatch_async(GetValidQueue(entry.queue), ^{
-                entry.progressHandler(packageId, progress);
-            });
+        if (!entry.progressHandler) {
+            return;
         }
+        
+        dispatch_async(GetValidQueue(entry.queue), ^{
+            entry.progressHandler(packageId, progress);
+        });
     }];
 }
 
@@ -477,7 +505,9 @@
     }
     
     ZLSharePackage *package = [[ZLSharePackage alloc] init];
-    
+    //
+    //Image, video, file, webUrl have a same item type (NSURL) and only text has a defferent type (NSString). So group them to 2 groups
+    //
     if ([typeIdentity isEqualToString:(NSString *)kUTTypeImage] ||
         [typeIdentity isEqualToString:(NSString *)kUTTypeMovie] ||
         [typeIdentity isEqualToString:(NSString *)kUTTypeFileURL] ||
@@ -487,6 +517,7 @@
             return nil;
         }
         
+        //Only Image, video, file can check file existed, the webUrl can't check this.
         if ([typeIdentity isEqualToString:(NSString *)kUTTypeImage] ||
             [typeIdentity isEqualToString:(NSString *)kUTTypeMovie] ||
             [typeIdentity isEqualToString:(NSString *)kUTTypeFileURL]) {
@@ -515,6 +546,7 @@
         
         package.shareContent = text;
     }
+    //-----------------------
     
     
     

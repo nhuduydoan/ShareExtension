@@ -24,26 +24,26 @@
 @property(nonatomic) CMTimeRange timeRange;
 @property(nonatomic) BOOL shouldOptimizeForNetworkUse;
 @property(nonatomic, copy) NSArray *metadata;
-@property(nonatomic, strong, readonly) NSError *error;
+@property(strong, nonatomic, readonly) NSError *error;
 @property(nonatomic, readonly) float progress;
 @property(nonatomic, readonly) AVAssetExportSessionStatus status;
 
 
 /**
- <#Description#>
+ Initialize an instance with asset. The asset will be use for getting some components which are useful for compressing the video
 
- @param asset <#asset description#>
- @return <#return value description#>
+ @param asset Need to get some components which are useful for compressing the video
+ @return The instance of this class
  */
 - (id)initWithAsset:(AVAsset *)asset;
 
 
 /**
- <#Description#>
+ Export a compressed video asynchronously in a queue user want to get result
 
- @param progressCallback <#progressCallback description#>
- @param handler <#handler description#>
- @param queue <#queue description#>
+ @param progressCallback The callback for handling the progress of compression
+ @param handler The callback for handling the completion of compression
+ @param queue The queue user want to get result
  */
 - (void)exportAsynchronouslyWithProgressCallback:(void(^)(float progress))progressCallback
                                completionHandler:(void (^)(NSError *error))handler
@@ -51,7 +51,7 @@
 
 
 /**
- <#Description#>
+ Cancel the current export task
  */
 - (void)cancelExport;
 

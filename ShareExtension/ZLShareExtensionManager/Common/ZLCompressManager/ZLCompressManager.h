@@ -18,11 +18,11 @@
 
 
 /**
- <#Description#>
+ Compress a video with 'ZLVideoPackageCompressType'. The method will use some default compression of AVAsset to compress the video
 
- @param videoURL <#videoURL description#>
- @param compressType <#compressType description#>
- @param completionBlock <#completionBlock description#>
+ @param videoURL The url of video
+ @param compressType The type user want to compress (Low, Medium, High, 620x480,...)
+ @param completionBlock The callback for handling the completion of the compression
  */
 - (void)compressVideoURL:(NSURL *)videoURL
             compressType:(ZLVideoPackageCompressType)compressType
@@ -30,11 +30,11 @@
 
 
 /**
- <#Description#>
+ Compress a video with 'ZLVideoCompressSetting' object to set output of compressed video
 
- @param videoURL <#videoURL description#>
- @param videoSetting <#videoSetting description#>
- @param completionBlock <#completionBlock description#>
+ @param videoURL The url of video
+ @param videoSetting The setting user want to compress (resolution, framerate, bitrate,...)
+ @param completionBlock The callback for handling the completion of the compression
  */
 - (void)compressVideoURL:(NSURL *)videoURL
             compressSetting:(ZLVideoCompressSetting *)videoSetting
@@ -42,11 +42,11 @@
 
 
 /**
- <#Description#>
+ Compress an image with 'ZLImagePackageCompressType'.
 
- @param imageURL <#imageURL description#>
- @param compressType <#compressType description#>
- @param completionBlock <#completionBlock description#>
+ @param imageURL The url of image
+ @param compressType The type user want to compress image (680x420, 1280x720, 1920x1080,...)
+ @param completionBlock The callback for handling the completion of the compression
  */
 - (void)compressImageURL:(NSURL *)imageURL
            withScaleType:(ZLImagePackageCompressType)compressType

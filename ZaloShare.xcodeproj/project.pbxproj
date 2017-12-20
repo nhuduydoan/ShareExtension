@@ -532,11 +532,11 @@
 			isa = PBXGroup;
 			children = (
 				E55A68591FE9FB7E00187444 /* HMUploadAdapter.h */,
-				E55A685A1FE9FB7E00187444 /* HMURLSessionManger.h */,
 				E55A685B1FE9FB7E00187444 /* HMUploadAdapter.m */,
+				E55A685A1FE9FB7E00187444 /* HMURLSessionManger.h */,
+				E55A686B1FE9FB7E00187444 /* HMURLSessionManger.m */,
 				E55A685C1FE9FB7E00187444 /* Common */,
 				E55A68641FE9FB7E00187444 /* Model */,
-				E55A686B1FE9FB7E00187444 /* HMURLSessionManger.m */,
 			);
 			path = HMURLSessionManager;
 			sourceTree = "<group>";
@@ -544,13 +544,13 @@
 		E55A685C1FE9FB7E00187444 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				E55A685D1FE9FB7E00187444 /* HMTaskTimer.m */,
-				E55A685E1FE9FB7E00187444 /* Constaint.h */,
-				E55A685F1FE9FB7E00187444 /* HMNetworkManager.m */,
-				E55A68601FE9FB7E00187444 /* HMPriorityQueue.m */,
 				E55A68611FE9FB7E00187444 /* HMTaskTimer.h */,
+				E55A685D1FE9FB7E00187444 /* HMTaskTimer.m */,
 				E55A68621FE9FB7E00187444 /* HMNetworkManager.h */,
+				E55A685F1FE9FB7E00187444 /* HMNetworkManager.m */,
 				E55A68631FE9FB7E00187444 /* HMPriorityQueue.h */,
+				E55A68601FE9FB7E00187444 /* HMPriorityQueue.m */,
+				E55A685E1FE9FB7E00187444 /* Constaint.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -558,12 +558,12 @@
 		E55A68641FE9FB7E00187444 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E55A68651FE9FB7E00187444 /* HMURLUploadCallbackEntry.m */,
-				E55A68661FE9FB7E00187444 /* HMURLUploadCompletionEntity.h */,
 				E55A68671FE9FB7E00187444 /* HMURLUploadTask.h */,
 				E55A68681FE9FB7E00187444 /* HMURLUploadTask.m */,
-				E55A68691FE9FB7E00187444 /* HMURLUploadCompletionEntity.m */,
 				E55A686A1FE9FB7E00187444 /* HMURLUploadCallbackEntry.h */,
+				E55A68651FE9FB7E00187444 /* HMURLUploadCallbackEntry.m */,
+				E55A68661FE9FB7E00187444 /* HMURLUploadCompletionEntity.h */,
+				E55A68691FE9FB7E00187444 /* HMURLUploadCompletionEntity.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";

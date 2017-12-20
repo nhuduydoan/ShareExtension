@@ -40,12 +40,17 @@
             compressType:(ZLVideoPackageCompressType)compressType
               completion:(void (^)(NSURL *, NSError *))completionBlock {
     
+    NSCParameterAssert(videoURL);
+    
     if (!completionBlock) {
         return;
     }
     
     __block NSError *error;
     
+    //
+    //Check input
+    //
     if (compressType < ZLVideoPackageCompressTypeOrigin || compressType > ZLVideoPackageCompressType1920x1080) {
         error = [NSError errorWithDomain:ZLCompressManagerDomain code:ZLCompressTypeUnknowError userInfo:@{@"message": @"The video compress type unknown"}];
         completionBlock(nil, error);
@@ -56,9 +61,10 @@
         completionBlock(videoURL, nil);
         return;
     }
+    //------
     
     dispatch_async(globalDefaultQueue, ^{
-        NSURL *tempCompressURL = [self getCompressFileURLWithInputFileURL:videoURL];
+        NSURL *tempCompressURL = [self getCompressFileURLWithInputFileURL:videoURL]; //The url for output video
         
         if (!tempCompressURL) {
             error = [NSError errorWithDomain:ZLCompressManagerDomain code:ZLCompressVideoError userInfo:@{@"message": @"The compress url is unknown"}];
@@ -68,6 +74,9 @@
         
         NSString *exportPreset = [self getPresetNameWithCompressType:compressType];
         
+        //
+        //Compress video directly with AVURLAsset
+        //
         AVURLAsset *asset = [AVURLAsset assetWithURL:videoURL];
         if (asset) {
             AVAssetExportSession *session = [AVAssetExportSession exportSessionWithAsset:asset presetName:exportPreset];
@@ -107,6 +116,8 @@
 - (void)compressVideoURL:(NSURL *)videoURL
          compressSetting:(ZLVideoCompressSetting *)videoSetting
               completion:(void (^)(NSURL *, NSError *))completionBlock {
+    NSCParameterAssert(videoSetting);
+    NSCParameterAssert(videoURL);
     
     if (!completionBlock) {
         return;
@@ -166,12 +177,16 @@
            withScaleType:(ZLImagePackageCompressType)compressType
               completion:(void (^)(NSURL *, NSError *))completionBlock {
     
+    NSCParameterAssert(imageURL);
+    
     if (!completionBlock) {
         return;
     }
     
+    //
+    //Check input
+    //
     __block NSError *error;
-    
     if (compressType < ZLImagePackageCompressTypeOrigin || compressType > ZLImagePackageCompressType1920x1080) {
         error = [NSError errorWithDomain:ZLCompressManagerDomain code:ZLCompressTypeUnknowError userInfo:@{@"message": @"The image compress type unknown"}];
         completionBlock(nil, error);
@@ -186,14 +201,14 @@
     dispatch_async(globalDefaultQueue, ^{
         NSData *imageData = [NSData dataWithContentsOfURL:imageURL];
         if (!imageData) {
-            error = [NSError errorWithDomain:@"com.hungmai.ZLCompressUtils" code:ZLInvalidInputError userInfo:@{@"message": @"Data of image is nil"}];
+            error = [NSError errorWithDomain:ZLCompressManagerDomain code:ZLInvalidInputError userInfo:@{@"message": @"Data of image is nil"}];
             completionBlock(nil, error);
             return;
         }
 
         UIImage *image = [UIImage imageWithData:imageData];
         if (!image) {
-            error = [NSError errorWithDomain:@"com.hungmai.ZLCompressUtils" code:ZLCompressImageError userInfo:@{@"message": @"The url is not an image"}];
+            error = [NSError errorWithDomain:ZLCompressManagerDomain code:ZLCompressImageError userInfo:@{@"message": @"The url is not an image"}];
             completionBlock(nil, error);
             return;
         }
@@ -217,7 +232,7 @@
         UIGraphicsEndImageContext();
         NSData *imageCompressData = UIImageJPEGRepresentation(scaledImage, 1);
         if (!imageCompressData) {
-            error = [NSError errorWithDomain:@"com.hungmai.ZLCompressUtils" code:ZLCompressImageError userInfo:@{@"message": @"The scaled image can't be convert to data"}];
+            error = [NSError errorWithDomain:ZLCompressManagerDomain code:ZLCompressImageError userInfo:@{@"message": @"The scaled image can't be convert to data"}];
             completionBlock(nil, error);
             return;
         }
@@ -279,7 +294,7 @@
     NSString *tempFileName = @"";
     if (fileNameComponent.count >= 2) {
         for (int i = 0; i < fileNameComponent.count - 1; i++) {
-            tempFileName = [NSString stringWithFormat:@"%@.%@", tempFileName, fileNameComponent[i]];
+            tempFileName = [NSString stringWithFormat:@"%@%@%@", tempFileName, [tempFileName isEqualToString:@""] ? @"" : @".", fileNameComponent[i]];
         }
         
         tempFileName = [NSString stringWithFormat:@"%@_compress_%i.%@", tempFileName, (int)timestamp, fileNameComponent[fileNameComponent.count - 1]];

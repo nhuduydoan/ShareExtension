@@ -90,7 +90,7 @@
     shareURLs = @[uploadURL];
     for (NSString *url in shareURLs) {
         dispatch_group_enter(completionGroup);
-        [sShareExtensionManager uploadAllSharePackagesToURLString:url configuration:[ZLCompressConfiguration lowConfiguration] progressHandler:^(float progress) {
+        [sShareExtensionManager uploadAllShareItemsToURLString:url configuration:[ZLCompressConfiguration lowConfiguration] progressHandler:^(float progress) {
             CGFloat allPropress = progress/shareURLs.count;
             [weakLoadingVC updateProgress:allPropress];
             NSLog(@"Loading: %f : %f", progress, allPropress);
