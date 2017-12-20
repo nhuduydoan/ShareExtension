@@ -17,16 +17,6 @@ static ZLShareType const ZLShareTypeWebURL         = @"ZLShareTypeWebURL";
 static ZLShareType const ZLShareTypeWebPage        = @"ZLShareTypeWebPage";
 static ZLShareType const ZLShareTypeText           = @"ZLShareTypeText";
 
-//typedef NS_ENUM(NSInteger, ZLShareType) {
-//    ZLShareTypeUnknown = 0,
-//    ZLShareTypeImage,
-//    ZLShareTypeVideo,
-//    ZLShareTypeFile,
-//    ZLShareTypeWebURL,
-//    ZLShareTypeWebPage,
-//    ZLShareTypeText
-//};
-
 typedef NS_ENUM(NSInteger, ZLVideoPackageCompressType) {
     ZLVideoPackageCompressTypeOrigin = 0,
     ZLVideoPackageCompressTypeLow,
@@ -39,6 +29,7 @@ typedef NS_ENUM(NSInteger, ZLVideoPackageCompressType) {
 
 typedef NS_ENUM(NSInteger, ZLImagePackageCompressType) {
     ZLImagePackageCompressTypeOrigin = 0,
+    ZLImagePackageCompressType480x320,
     ZLImagePackageCompressType640x480,
     ZLImagePackageCompressType1280x720,
     ZLImagePackageCompressType1920x1080
@@ -70,7 +61,10 @@ typedef NS_ENUM(NSInteger, ZLShareError) {
 
 
 
-//Dictionary Key
+//Upload Completion Key
 #define kZLUploadSharePackageError                  @"kZLUploadSharePackageError"
 #define kZLUploadSharePackageFailedCount            @"kZLUploadSharePackageFailedCount"
 #define kZLUploadSharePackageCompletedCount         @"kZLUploadSharePackageCompletedCount"
+
+//Share Info Key
+#define kZLShareInfoVideoDuration                   @"kZLShareInfoVideoDuration"

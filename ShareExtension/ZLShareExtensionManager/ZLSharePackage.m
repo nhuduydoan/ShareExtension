@@ -15,6 +15,8 @@
         _packageId = [[[NSUUID UUID] UUIDString] hash];
         _shareType = ZLShareTypeUnknown;
         _shareContent = nil;
+        _shareThumbnail = nil;
+        _shareInfo = [NSMutableDictionary new];
     }
     
     return self;
@@ -25,6 +27,8 @@
     [descriptString appendFormat:@"packageId:%tu\t", _packageId];
     [descriptString appendFormat:@"shareType:%@\t", _shareType];
     [descriptString appendFormat:@"shareContent:%@\t", _shareContent];
+    [descriptString appendFormat:@"shareThumbnail:%@\t", _shareThumbnail];
+    [descriptString appendFormat:@"shareInfo:%@\t", _shareInfo];
     return descriptString;
 }
 

@@ -11,7 +11,7 @@
 #import "HMUploadAdapter.h"
 
 #define ShareDomain                                 @"com.hungmai.ShareExtension.ZLShareExtensionManager"
-#define ShareContainerBackgroundConfiguration       @"group.com.hungmai.zlshare"
+#define ShareContainerBackgroundConfiguration       @"group.com.zalo.shareextension"
 
 @implementation ZLSharePackageConfiguration
 - (instancetype)init {
@@ -26,7 +26,7 @@
 
 
 @interface ZLShareExtensionManager()
-@property(strong, nonatomic) ZLSharePackageConfiguration *pkConfiguration;
+@property(strong, nonatomic) ZLCompressConfiguration *defaultConfiguration;
 @property(strong, nonatomic) HMUploadAdapter *uploadAdapter;
 @property(strong, nonatomic) dispatch_queue_t serialQueue;
 
@@ -52,7 +52,7 @@
         _dataEntries = [NSMutableArray new];
         _uploadAllPackageEntries = [NSMutableArray new];
         _uploadSharePackageMapping = [NSMutableDictionary new];
-        _pkConfiguration = [[ZLSharePackageConfiguration alloc] init];
+        _defaultConfiguration = [ZLCompressConfiguration mediumConfiguration];
         _serialQueue = dispatch_queue_create("com.hungmai.ZLShareExtensionManager.SerialQueue", DISPATCH_QUEUE_SERIAL);
     }
     
@@ -109,111 +109,32 @@
             }
             
             dispatch_group_t group = dispatch_group_create();
+            
+            NSArray *validTypeIdentifies = @[(NSString *)kUTTypeImage,
+                                             (NSString *)kUTTypeMovie,
+                                             (NSString *)kUTTypeFileURL,
+                                             (NSString *)kUTTypeURL,
+                                             (NSString *)kUTTypePlainText];
+            
             for (NSItemProvider *provider in item.attachments) {
                 dispatch_group_enter(group);
-                if ([provider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeImage]) {
-                    [provider loadItemForTypeIdentifier:(NSString *)kUTTypeImage options:nil completionHandler:^(id<NSSecureCoding>  _Nullable item, NSError * _Null_unspecified error) {
-                        if (error) {
-                            dispatch_group_leave(group);
-                            return;
-                        }
-                        
-                        if ([(NSObject *)item isKindOfClass:[NSURL class]]) {
-                            NSURL *imageURL = (NSURL *)item;
-                            if (![[NSFileManager defaultManager] fileExistsAtPath:[imageURL path]]) {
+                for (NSString *typeIdentify in validTypeIdentifies) {
+                    if (![provider hasItemConformingToTypeIdentifier:typeIdentify]) {
+                        continue;
+                    }
+                    
+                    [provider loadItemForTypeIdentifier:typeIdentify options:nil completionHandler:^(id<NSSecureCoding>  _Nullable item, NSError * _Null_unspecified error) {
+                        ZLSharePackage *package = [self makePackageWithItem:item typeIdentify:typeIdentify error:error];
+                        if (package) {
+                            [provider loadPreviewImageWithOptions:nil completionHandler:^(UIImage *image, NSError *error) {
+                                if (image) {
+                                    package.shareThumbnail = image;
+                                }
                                 dispatch_group_leave(group);
-                                return;
-                            }
+                            }];
                             
-                            ZLSharePackage *package = [[ZLSharePackage alloc] init];
-                            package.shareContent = [imageURL path];
-                            package.shareType = ZLShareTypeImage;
                             [packages addObject:package];
                         }
-                        
-                        dispatch_group_leave(group);
-                    }];
-                } else if ([provider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeMovie]) {
-                    [provider loadItemForTypeIdentifier:(NSString *)kUTTypeMovie options:nil completionHandler:^(id<NSSecureCoding>  _Nullable item, NSError * _Null_unspecified error) {
-                        if (error) {
-                            dispatch_group_leave(group);
-                            return;
-                        }
-                        
-                        if ([(NSObject *)item isKindOfClass:[NSURL class]]) {
-                            NSURL *videoURL = (NSURL *)item;
-                            if (![[NSFileManager defaultManager] fileExistsAtPath:[videoURL path]]) {
-                                dispatch_group_leave(group);
-                                return;
-                            }
-                            
-                            ZLSharePackage *package = [[ZLSharePackage alloc] init];
-                            package.shareContent = [videoURL path];
-                            package.shareType = ZLShareTypeVideo;
-                            [packages addObject:package];
-                        }
-                        
-                        dispatch_group_leave(group);
-                    }];
-                } else if ([provider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeFileURL]) {
-                    [provider loadItemForTypeIdentifier:(NSString *)kUTTypeFileURL options:nil completionHandler:^(id<NSSecureCoding>  _Nullable item, NSError * _Null_unspecified error) {
-                        if (error) {
-                            dispatch_group_leave(group);
-                            return;
-                        }
-                        
-                        if ([(NSObject *)item isKindOfClass:[NSURL class]]) {
-                            NSURL *fileURL = (NSURL *)item;
-                            if (![[NSFileManager defaultManager] fileExistsAtPath:[fileURL path]]) {
-                                dispatch_group_leave(group);
-                                return;
-                            }
-                            
-                            ZLSharePackage *package = [[ZLSharePackage alloc] init];
-                            package.shareContent = [fileURL path];
-                            package.shareType = ZLShareTypeFile;
-                            [packages addObject:package];
-                        }
-                        
-                        dispatch_group_leave(group);
-                    }];
-                } else if ([provider hasItemConformingToTypeIdentifier:(NSString *)kUTTypeURL]) {
-                    [provider loadItemForTypeIdentifier:(NSString *)kUTTypeURL options:nil completionHandler:^(id<NSSecureCoding>  _Nullable item, NSError * _Null_unspecified error) {
-                        if (error) {
-                            dispatch_group_leave(group);
-                            return;
-                        }
-                        
-                        if ([(NSObject *)item isKindOfClass:[NSURL class]]) {
-                            NSURL *webURL = (NSURL *)item;
-                            if (webURL) {
-                                ZLSharePackage *package = [[ZLSharePackage alloc] init];
-                                package.shareContent = [webURL path];
-                                package.shareType = ZLShareTypeWebURL;
-                                [packages addObject:package];
-                            }
-                        }
-                        
-                        dispatch_group_leave(group);
-                    }];
-                }else if ([provider hasItemConformingToTypeIdentifier:(NSString *)kUTTypePlainText]) {
-                    [provider loadItemForTypeIdentifier:(NSString *)kUTTypePlainText options:nil completionHandler:^(id<NSSecureCoding>  _Nullable item, NSError * _Null_unspecified error) {
-                        if (error) {
-                            dispatch_group_leave(group);
-                            return;
-                        }
-                        
-                        if ([(NSObject *)item isKindOfClass:[NSString class]]) {
-                            NSString *text = (NSString *)item;
-                            if (text) {
-                                ZLSharePackage *package = [[ZLSharePackage alloc] init];
-                                package.shareContent = text;
-                                package.shareType = ZLShareTypeText;
-                                [packages addObject:package];
-                            }
-                        }
-                        
-                        dispatch_group_leave(group);
                     }];
                 }
             }
@@ -229,7 +150,7 @@
 }
 
 - (void)uploadAllSharePackagesToURLString:(NSString *)urlString
-                            configuration:(ZLSharePackageConfiguration *)configuration
+                            configuration:(ZLCompressConfiguration *)configuration
                           progressHandler:(ZLUploadProgressHandler)progressHandler
                         completionHandler:(ZLUploadCompletionHandler)completionHandler
                                   inQueue:(dispatch_queue_t)queue {
@@ -246,8 +167,6 @@
         
         _isUploadingData = YES;
         
-        ZLSharePackageConfiguration *targetConfiguration = configuration ? configuration : self.pkConfiguration;
-        
         __weak __typeof__(self)weakSelf = self;
         [self getShareDataWithCompletionHandler:^(NSArray<ZLSharePackage *> *packages, NSError *error) {
             if (error) {
@@ -257,7 +176,7 @@
             
             [weakSelf privateUploadSharePackages:packages
                                      toURLString:urlString
-                                   configuration:targetConfiguration
+                                   configuration:configuration
                                  progressHandler:progressHandler
                                completionHandler:completionHandler
                                          inQueue:queue];
@@ -268,7 +187,7 @@
 
 - (void)uploadSharePackages:(NSArray<ZLSharePackage *> *)sharePackages
                 toURLString:(NSString *)urlString
-              configuration:(ZLSharePackageConfiguration *)configuration
+              configuration:(ZLCompressConfiguration *)configuration
             progressHandler:(ZLUploadProgressHandler)progressHandler
           completionHandler:(ZLUploadCompletionHandler)completionHandler
                     inQueue:(dispatch_queue_t)queue {
@@ -285,10 +204,9 @@
         }
         
         _isUploadingData = YES;
-        ZLSharePackageConfiguration *targetConfiguration = configuration ? configuration : self.pkConfiguration;
         [self privateUploadSharePackages:sharePackages
                              toURLString:urlString
-                           configuration:targetConfiguration
+                           configuration:configuration
                          progressHandler:progressHandler
                        completionHandler:completionHandler
                                  inQueue:queue];
@@ -297,7 +215,7 @@
 
 - (void)uploadSharePackage:(ZLSharePackage *)sharePackage
                toURLString:(NSString *)urlString
-             configuration:(ZLSharePackageConfiguration *)configuration
+             configuration:(ZLCompressConfiguration *)configuration
            progressHandler:(ZLUploadPackageProgressHandler)progressHandler
          completionHandler:(ZLUploadCompletionHandler)completionHandler inQueue:(dispatch_queue_t)queue {
     
@@ -384,7 +302,7 @@
 
 - (void)privateUploadSharePackages:(NSArray<ZLSharePackage *> *)sharePackages
                        toURLString:(NSString *)urlString
-                     configuration:(ZLSharePackageConfiguration *)configuration
+                     configuration:(ZLCompressConfiguration *)configuration
                    progressHandler:(ZLUploadProgressHandler)progressHandler
                  completionHandler:(ZLUploadCompletionHandler)completionHandler
                            inQueue:(dispatch_queue_t)queue {
@@ -443,15 +361,15 @@
     });
 }
 
-- (void)compressPackage:(ZLSharePackage *)package withConfiguration:(ZLSharePackageConfiguration *)configuration completionHandler:(void(^)(NSURL *, NSError *))completionHandler {
+- (void)compressPackage:(ZLSharePackage *)package withConfiguration:(ZLCompressConfiguration *)configuration completionHandler:(void(^)(NSURL *, NSError *))completionHandler {
     if (!completionHandler) {
         return;
     }
     
-    ZLSharePackageConfiguration *targetConfiguration = configuration ? configuration : self.pkConfiguration;
+    ZLCompressConfiguration *targetConfiguration = configuration ? configuration : _defaultConfiguration;
     if (package.shareType == ZLShareTypeImage) {
         if (package.shareContent && [[NSFileManager defaultManager] fileExistsAtPath:package.shareContent]) {
-            [ZLCompressUtils compressImageURL:[NSURL fileURLWithPath:package.shareContent] withScaleType:targetConfiguration.imageCompress completion:^(NSURL *compressURL, NSError *error) {
+            [sCompressManager compressImageURL:[NSURL fileURLWithPath:package.shareContent] withScaleType:targetConfiguration.imageCompress completion:^(NSURL *compressURL, NSError *error) {
                 completionHandler(compressURL, error);
             }];
         } else {
@@ -464,7 +382,7 @@
     
     if (package.shareType == ZLShareTypeVideo) {
         if (package.shareContent && [[NSFileManager defaultManager] fileExistsAtPath:package.shareContent]) {
-            [ZLCompressUtils compressVideoURL:[NSURL fileURLWithPath:package.shareContent] compressType:targetConfiguration.videoCompress completion:^(NSURL *compressURL, NSError *error) {
+            [sCompressManager compressVideoURL:[NSURL fileURLWithPath:package.shareContent] compressSetting:targetConfiguration.videoSetting completion:^(NSURL *compressURL, NSError *error) {
                 completionHandler(compressURL, error);
             }];
         } else {
@@ -561,6 +479,92 @@
             });
         }
     }];
+}
+
+- (ZLSharePackage *)makePackageWithItem:(id)item typeIdentify:(NSString *)typeIdentity error:(NSError *)error {
+    if (error) {
+        return nil;
+    }
+    
+    ZLSharePackage *package = [[ZLSharePackage alloc] init];
+    
+    if ([typeIdentity isEqualToString:(NSString *)kUTTypeImage] ||
+        [typeIdentity isEqualToString:(NSString *)kUTTypeMovie] ||
+        [typeIdentity isEqualToString:(NSString *)kUTTypeFileURL] ||
+        [typeIdentity isEqualToString:(NSString *)kUTTypeURL]) {
+        NSURL *url = (NSURL *)item;
+        if (!url) {
+            return nil;
+        }
+        
+        if ([typeIdentity isEqualToString:(NSString *)kUTTypeImage] ||
+            [typeIdentity isEqualToString:(NSString *)kUTTypeMovie] ||
+            [typeIdentity isEqualToString:(NSString *)kUTTypeFileURL]) {
+            if (![[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
+                return nil;
+            }
+        }
+
+        package.shareContent = [url path];
+    
+        if ([typeIdentity isEqualToString:(NSString *)kUTTypeImage]) {
+            package.shareType = ZLShareTypeImage;
+        } else if ([typeIdentity isEqualToString:(NSString *)kUTTypeMovie]) {
+            package.shareType = ZLShareTypeVideo;
+            package.shareInfo[kZLShareInfoVideoDuration] = [self getDurationOfVideo:url];
+        } else if ([typeIdentity isEqualToString:(NSString *)kUTTypeFileURL]) {
+            package.shareType = ZLShareTypeFile;
+        } else if ([typeIdentity isEqualToString:(NSString *)kUTTypeURL]) {
+            package.shareType = ZLShareTypeWebURL;
+        }
+    } else if ([typeIdentity isEqualToString:(NSString *)kUTTypeText]) {
+        NSString *text = (NSString *)item;
+        if (!text) {
+            return nil;
+        }
+        
+        package.shareContent = text;
+    }
+    
+    
+    
+    return package;
+}
+
+- (NSString *)getDurationOfVideo:(NSURL *)videoURL {
+    AVURLAsset *sourceAsset = [AVURLAsset URLAssetWithURL:videoURL options:nil];
+    CMTime duration = sourceAsset.duration;
+    NSString *videoDuration = [self transformedTime:duration];
+    return videoDuration;
+}
+
+- (NSString *)transformedTime:(CMTime)tỉme {
+    float duration = (float)tỉme.value/(float)tỉme.timescale;
+    int seconds = floor(duration + 0.6);
+    NSString *hoursStr = @"";
+    NSString *munitesStr = @"00";
+    NSString *secondsStr = @"";
+    if (seconds >= 3600) {
+        int hours = seconds/3600;
+        seconds = seconds - hours*3600;
+        hoursStr = [NSString stringWithFormat:@"%d:", hours];
+    }
+    if (seconds > 60) {
+        int munites = seconds/60;
+        seconds = seconds - munites *60;
+        if (munites >= 10) {
+            munitesStr = [NSString stringWithFormat:@"%d:", munites];
+        } else {
+            munitesStr = [NSString stringWithFormat:@"0%d:", munites];
+        }
+    }
+    if (seconds >= 10) {
+        secondsStr = [NSString stringWithFormat:@"%d:", seconds];
+    } else {
+        secondsStr = [NSString stringWithFormat:@"0%d", seconds];
+    }
+    NSString *timeString = [NSString stringWithFormat:@"%@%@:%@", hoursStr, munitesStr, secondsStr];
+    return timeString;
 }
 
 @end

@@ -11,7 +11,8 @@
 #import "ZLShareExtensionManager.h"
 #import "ZLUpLoadingViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "ZLShareExtensionManager_Image.h"
+#import "ZLShareExtensionManager+Image.h"
+#import "DXImageManager.h"
 
 @interface ShareRootViewController ()
 
@@ -48,11 +49,40 @@
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:controller];
     [self presentViewController:navController animated:YES completion:nil];
     __weak typeof(controller) weakController = controller;
-    [sShareExtensionManager getShareThumbnailWithCompletionHandler:^(UIImage *image) {
+    
+    [sShareExtensionManager getShareDataWithCompletionHandler:^(NSArray<ZLSharePackage *> *packages, NSError *error) {
+        if (error) {
+            //Handle error
+            return;
+        }
+        
+        NSMutableArray *thumbnails = [NSMutableArray new];
+        __block NSString *videoString = @"";
+        [packages enumerateObjectsUsingBlock:^(ZLSharePackage * _Nonnull package, NSUInteger idx, BOOL * _Nonnull stop) {
+            UIImage *thumbnail = nil;
+            if (!package.shareThumbnail) {
+                thumbnail = [self defaultThumbnailOfPackage:package];
+            } else {
+                thumbnail = package.shareThumbnail;
+            }
+            
+            if (!thumbnail) {
+                //Handle no thumbnail
+                return;
+            }
+            
+            if ([package.shareType isEqualToString:ZLShareTypeVideo]) {
+                [thumbnails insertObject:thumbnail atIndex:0];
+                videoString = package.shareInfo[kZLShareInfoVideoDuration];
+            } else {
+                [thumbnails addObject:thumbnail];
+            }
+        }];
+        UIImage *image = [sImageManager drawThumbnailFromImages:thumbnails videoString:videoString];
         [selfWeak runOnMainThread:^{
             [weakController updateExtensionThumbnail:image];
         }];
-    }];
+    } inQueue:mainQueue];
 }
 
 - (void)shareToURLs:(NSArray *)shareURLs onViewController:(UIViewController *)viewController {
@@ -64,7 +94,7 @@
     __weak typeof(loadingVC) weakLoadingVC = loadingVC;
     __weak typeof(self) selfWeak = self;
     
-    NSString *uploadURL = @"https://api.cloudinary.com/v1_1/ngochung/image/upload?upload_preset=ngochung";
+    NSString *uploadURL = @"https://up.uploadfiles.io/upload";
     shareURLs = @[uploadURL];
     for (NSString *url in shareURLs) {
         dispatch_group_enter(completionGroup);
@@ -106,6 +136,11 @@
     @synchronized(self) {
         [self.uploadInfoArray addObject:uploadInfo];
     }
+}
+
+- (UIImage *)defaultThumbnailOfPackage:(ZLSharePackage *)package {
+    //Make default thumbnail
+    return nil;
 }
 
 @end
