@@ -414,10 +414,16 @@
 
 - (void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data {
     //Handle receiving data from server
-    if (data) {
-        NSString *dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"[HM] HMURLSessionManager Receive data: %@", dataString);
+    if (!data) {
+        return;
     }
+    
+    HMURLUploadTask *uploadTask = _uploadTaskMapping[@(dataTask.taskIdentifier)];
+    if (!uploadTask) {
+        return;
+    }
+    
+    [uploadTask.responseData appendData:data];
 }
 
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task didCompleteWithError:(NSError *)error {

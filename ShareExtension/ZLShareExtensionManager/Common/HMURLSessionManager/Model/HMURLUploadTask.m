@@ -10,11 +10,6 @@
 #import "Constaint.h"
 
 @interface HMURLUploadTask()
-
-@property(strong, nonatomic) NSMutableArray<HMURLUploadCallbackEntry *> *progressCallbacks;
-@property(strong, nonatomic) NSMutableArray<HMURLUploadCallbackEntry *> *completionCallbacks;
-@property(strong, nonatomic) NSMutableArray<HMURLUploadCallbackEntry *> *changeStateCallbacks;
-
 @property(strong, nonatomic) NSMutableArray<HMURLUploadCallbackEntry *> *cbEntries;
 
 @property(strong, nonatomic) dispatch_queue_t callbackQueue;
@@ -31,11 +26,8 @@
         _currentState = HMURLUploadStateNotRunning;
         _priority = HMURLUploadTaskPriorityMedium;
         
-        _progressCallbacks = [NSMutableArray new];
-        _completionCallbacks = [NSMutableArray new];
-        _changeStateCallbacks = [NSMutableArray new];
-        
         _cbEntries = [NSMutableArray new];
+        _responseData = [NSMutableData new];
     }
     return self;
 }

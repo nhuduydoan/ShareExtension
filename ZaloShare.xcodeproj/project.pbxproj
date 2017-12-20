@@ -307,7 +307,7 @@
 				5C4B47641FE3B51A0066776C /* icon_friend@3x.png */,
 			);
 			name = Resources;
-			path = ShareExtension/ZLShareExtensionManager/Resources;
+			path = ShareExtension/Resources;
 			sourceTree = SOURCE_ROOT;
 		};
 		5C4B47671FE3B51A0066776C /* Screens */ = {
@@ -457,6 +457,7 @@
 				5C4B47591FE3B5190066776C /* Manager */,
 				5C4B475E1FE3B51A0066776C /* Models */,
 				5C4B47671FE3B51A0066776C /* Screens */,
+				5C4B47631FE3B51A0066776C /* Resources */,
 				E55A684E1FE9FB7E00187444 /* ZLShareExtensionManager */,
 				5C8A71971FE279630064BB0E /* ShareRootViewController.h */,
 				5C8A71981FE279630064BB0E /* ShareRootViewController.m */,
@@ -469,7 +470,6 @@
 		E55A684E1FE9FB7E00187444 /* ZLShareExtensionManager */ = {
 			isa = PBXGroup;
 			children = (
-				5C4B47631FE3B51A0066776C /* Resources */,
 				E55A68551FE9FB7E00187444 /* ZLShareExtensionManager.h */,
 				E55A68741FE9FB7E00187444 /* ZLShareExtensionManager.m */,
 				E55A68501FE9FB7E00187444 /* ZLCompressConfiguration.h */,
@@ -497,11 +497,11 @@
 			isa = PBXGroup;
 			children = (
 				E55A68591FE9FB7E00187444 /* HMUploadAdapter.h */,
-				E55A685A1FE9FB7E00187444 /* HMURLSessionManger.h */,
 				E55A685B1FE9FB7E00187444 /* HMUploadAdapter.m */,
+				E55A685A1FE9FB7E00187444 /* HMURLSessionManger.h */,
+				E55A686B1FE9FB7E00187444 /* HMURLSessionManger.m */,
 				E55A685C1FE9FB7E00187444 /* Common */,
 				E55A68641FE9FB7E00187444 /* Model */,
-				E55A686B1FE9FB7E00187444 /* HMURLSessionManger.m */,
 			);
 			path = HMURLSessionManager;
 			sourceTree = "<group>";
@@ -523,12 +523,12 @@
 		E55A68641FE9FB7E00187444 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E55A68651FE9FB7E00187444 /* HMURLUploadCallbackEntry.m */,
-				E55A68661FE9FB7E00187444 /* HMURLUploadCompletionEntity.h */,
 				E55A68671FE9FB7E00187444 /* HMURLUploadTask.h */,
 				E55A68681FE9FB7E00187444 /* HMURLUploadTask.m */,
-				E55A68691FE9FB7E00187444 /* HMURLUploadCompletionEntity.m */,
 				E55A686A1FE9FB7E00187444 /* HMURLUploadCallbackEntry.h */,
+				E55A68651FE9FB7E00187444 /* HMURLUploadCallbackEntry.m */,
+				E55A68661FE9FB7E00187444 /* HMURLUploadCompletionEntity.h */,
+				E55A68691FE9FB7E00187444 /* HMURLUploadCompletionEntity.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";

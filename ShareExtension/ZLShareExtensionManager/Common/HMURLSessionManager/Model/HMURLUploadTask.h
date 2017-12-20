@@ -49,6 +49,7 @@ typedef NS_ENUM(NSInteger, HMURLUploadTaskPriority) {
 
 @property(strong, nonatomic) NSString * _Nonnull host;
 @property(strong, nonatomic) NSString * _Nonnull filePath;
+@property(strong, nonatomic) NSMutableData * _Nonnull responseData;
 
 
 /**

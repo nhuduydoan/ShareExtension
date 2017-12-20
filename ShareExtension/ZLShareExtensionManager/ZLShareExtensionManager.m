@@ -258,12 +258,14 @@
                                      return;
                                  }
                                  
+                                 __weak __typeof(uploadTask) weakTask = uploadTask;
                                  [uploadTask addCallbacksWithProgressCB:^(NSUInteger taskIdentifier, float progress) {
                                      [weakSelf notifyUploadProgressForUploadPackageEntries:uploadPackageEntries
                                                                                  packageId:sharePackage.packageId
                                                                                   progress:progress];
                                  } completionCB:^(NSUInteger taskIdentifier, NSError * _Nullable error) {
                                      [weakSelf releaseUploadEntriesOfPackage:sharePackage.packageId error:error];
+                                     NSLog(@"[HM] ZLShareExtensionManager - Upload Task response: %@", [[NSString alloc] initWithData:weakTask.responseData encoding:NSUTF8StringEncoding]);
                                  } changeStateCB:nil inQueue:globalDefaultQueue];
                                  
                                  [uploadTask resume];
