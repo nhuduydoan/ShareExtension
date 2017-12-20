@@ -58,7 +58,7 @@
         NSMutableArray *thumbnails = [NSMutableArray new];
         __block NSString *videoString = @"";
         [packages enumerateObjectsUsingBlock:^(ZLSharePackage * _Nonnull package, NSUInteger idx, BOOL * _Nonnull stop) {
-            UIImage *thumbnail;// = package.shareThumbnail;
+            UIImage *thumbnail = package.shareThumbnail;
             if (thumbnail == nil) {
                 thumbnail = [self defaultThumbnailOfPackage:package];
             }
