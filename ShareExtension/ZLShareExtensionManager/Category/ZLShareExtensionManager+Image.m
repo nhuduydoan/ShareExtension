@@ -25,6 +25,7 @@
     
     for (NSExtensionItem *item in self.extensionContext.inputItems) {
         for (NSItemProvider *itemProvider in item.attachments) {
+            __block UIImage *thumbnail = nil;
             for (NSString *identifier in [itemProvider registeredTypeIdentifiers]) {
                 //kUTTypeVCard, kUTTypeURL, kUTTypeImage, kUTTypeQuickTimeMovie
                 if (![itemProvider hasItemConformingToTypeIdentifier:identifier]) {
@@ -33,12 +34,14 @@
                 
                 dispatch_group_enter(group);
                 [itemProvider loadPreviewImageWithOptions:nil completionHandler:^(UIImage *image, NSError *error) {
-                    if (image) {
-                        [thumbnailsArr addObject:image];
+                    if (image && thumbnail == nil) {// Get only one thumbnail for one item
+                        thumbnail = image;
+                        [thumbnailsArr addObject:thumbnail];
                     }
                     dispatch_group_leave(group);
                 }];
                 
+                // Get video duration string of first item
                 if (videoString) {
                     continue;
                 }
@@ -85,7 +88,7 @@
     float duration = (float)tỉme.value/(float)tỉme.timescale;
     int seconds = floor(duration + 0.6);
     NSString *hoursStr = @"";
-    NSString *munitesStr = @"00";
+    NSString *munitesStr = @"00:";
     NSString *secondsStr = @"";
     if (seconds >= 3600) {
         int hours = seconds/3600;
@@ -95,20 +98,15 @@
     if (seconds > 60) {
         int munites = seconds/60;
         seconds = seconds - munites *60;
-        if (munites >= 10) {
-            munitesStr = [NSString stringWithFormat:@"%d:", munites];
-        } else {
-            munitesStr = [NSString stringWithFormat:@"0%d:", munites];
-        }
+        munitesStr = [NSString stringWithFormat:@"%d:", munites];
     }
     if (seconds >= 10) {
-        secondsStr = [NSString stringWithFormat:@"%d:", seconds];
+        secondsStr = [NSString stringWithFormat:@"%d", seconds];
     } else {
         secondsStr = [NSString stringWithFormat:@"0%d", seconds];
     }
-    NSString *timeString = [NSString stringWithFormat:@"%@%@:%@", hoursStr, munitesStr, secondsStr];
+    NSString *timeString = [NSString stringWithFormat:@"%@%@%@", hoursStr, munitesStr, secondsStr];
     return timeString;
 }
-
 
 @end
