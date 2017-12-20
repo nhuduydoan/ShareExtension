@@ -58,16 +58,9 @@
         NSMutableArray *thumbnails = [NSMutableArray new];
         __block NSString *videoString = @"";
         [packages enumerateObjectsUsingBlock:^(ZLSharePackage * _Nonnull package, NSUInteger idx, BOOL * _Nonnull stop) {
-            UIImage *thumbnail = nil;
-            if (!package.shareThumbnail) {
+            UIImage *thumbnail;// = package.shareThumbnail;
+            if (thumbnail == nil) {
                 thumbnail = [self defaultThumbnailOfPackage:package];
-            } else {
-                thumbnail = package.shareThumbnail;
-            }
-            
-            if (!thumbnail) {
-                //Handle no thumbnail
-                return;
             }
             
             if ([package.shareType isEqualToString:ZLShareTypeVideo]) {
@@ -138,8 +131,13 @@
 }
 
 - (UIImage *)defaultThumbnailOfPackage:(ZLSharePackage *)package {
-    //Make default thumbnail
-    return nil;
+    if ([package.shareType isEqualToString:ZLShareTypeVideo]) {
+        return [UIImage imageNamed:@"icon_video"];
+    }
+    if ([package.shareType isEqualToString:ZLShareTypeImage]) {
+        return [UIImage imageNamed:@"icon_photo"];
+    }
+    return [UIImage imageNamed:@"icon_file"];
 }
 
 @end
