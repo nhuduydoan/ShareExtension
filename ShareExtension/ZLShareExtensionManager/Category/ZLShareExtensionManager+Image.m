@@ -6,7 +6,7 @@
 //  Copyright © 2017 Nhữ Duy Đoàn. All rights reserved.
 //
 
-#import "ZLShareExtensionManager_Image.h"
+#import "ZLShareExtensionManager+Image.h"
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "DXImageManager.h"
 

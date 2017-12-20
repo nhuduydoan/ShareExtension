@@ -73,37 +73,42 @@
 		5C8A71991FE279630064BB0E /* ShareRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C8A71981FE279630064BB0E /* ShareRootViewController.m */; };
 		5C8A719C1FE279630064BB0E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C8A719A1FE279630064BB0E /* MainInterface.storyboard */; };
 		5C8A71A01FE279630064BB0E /* ShareExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5C8A71951FE279630064BB0E /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		5CD008961FE8A6A200A653C2 /* ZLCompressUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0087A1FE8A6A200A653C2 /* ZLCompressUtils.m */; };
-		5CD008971FE8A6A200A653C2 /* ZLCompressUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0087A1FE8A6A200A653C2 /* ZLCompressUtils.m */; };
-		5CD008981FE8A6A200A653C2 /* ZLSharePackageEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0087B1FE8A6A200A653C2 /* ZLSharePackageEntry.m */; };
-		5CD008991FE8A6A200A653C2 /* ZLSharePackageEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0087B1FE8A6A200A653C2 /* ZLSharePackageEntry.m */; };
-		5CD0089A1FE8A6A200A653C2 /* HMUploadAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0087F1FE8A6A200A653C2 /* HMUploadAdapter.m */; };
-		5CD0089B1FE8A6A200A653C2 /* HMUploadAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0087F1FE8A6A200A653C2 /* HMUploadAdapter.m */; };
-		5CD0089C1FE8A6A200A653C2 /* HMTaskTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008811FE8A6A200A653C2 /* HMTaskTimer.m */; };
-		5CD0089D1FE8A6A200A653C2 /* HMTaskTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008811FE8A6A200A653C2 /* HMTaskTimer.m */; };
-		5CD0089E1FE8A6A200A653C2 /* HMNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008831FE8A6A200A653C2 /* HMNetworkManager.m */; };
-		5CD0089F1FE8A6A200A653C2 /* HMNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008831FE8A6A200A653C2 /* HMNetworkManager.m */; };
-		5CD008A01FE8A6A200A653C2 /* HMPriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008841FE8A6A200A653C2 /* HMPriorityQueue.m */; };
-		5CD008A11FE8A6A200A653C2 /* HMPriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008841FE8A6A200A653C2 /* HMPriorityQueue.m */; };
-		5CD008A21FE8A6A200A653C2 /* HMURLUploadCallbackEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008891FE8A6A200A653C2 /* HMURLUploadCallbackEntry.m */; };
-		5CD008A31FE8A6A200A653C2 /* HMURLUploadCallbackEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008891FE8A6A200A653C2 /* HMURLUploadCallbackEntry.m */; };
-		5CD008A41FE8A6A200A653C2 /* HMURLUploadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0088C1FE8A6A200A653C2 /* HMURLUploadTask.m */; };
-		5CD008A51FE8A6A200A653C2 /* HMURLUploadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0088C1FE8A6A200A653C2 /* HMURLUploadTask.m */; };
-		5CD008A61FE8A6A200A653C2 /* HMURLUploadCompletionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0088D1FE8A6A200A653C2 /* HMURLUploadCompletionEntity.m */; };
-		5CD008A71FE8A6A200A653C2 /* HMURLUploadCompletionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0088D1FE8A6A200A653C2 /* HMURLUploadCompletionEntity.m */; };
-		5CD008A81FE8A6A200A653C2 /* HMURLSessionManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0088F1FE8A6A200A653C2 /* HMURLSessionManger.m */; };
-		5CD008A91FE8A6A200A653C2 /* HMURLSessionManger.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD0088F1FE8A6A200A653C2 /* HMURLSessionManger.m */; };
-		5CD008AA1FE8A6A200A653C2 /* ZLSharePackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008921FE8A6A200A653C2 /* ZLSharePackage.m */; };
-		5CD008AB1FE8A6A200A653C2 /* ZLSharePackage.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008921FE8A6A200A653C2 /* ZLSharePackage.m */; };
-		5CD008AC1FE8A6A200A653C2 /* ZLShareExtensionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008951FE8A6A200A653C2 /* ZLShareExtensionManager.m */; };
-		5CD008AD1FE8A6A200A653C2 /* ZLShareExtensionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008951FE8A6A200A653C2 /* ZLShareExtensionManager.m */; };
-		5CD008B11FE90C6600A653C2 /* ZLShareExtensionManager_Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CD008B01FE90C6600A653C2 /* ZLShareExtensionManager_Image.m */; };
 		5CD008B51FE91B6200A653C2 /* icon_camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD008B21FE91B6100A653C2 /* icon_camera@3x.png */; };
 		5CD008B61FE91B6200A653C2 /* icon_camera@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD008B21FE91B6100A653C2 /* icon_camera@3x.png */; };
 		5CD008B71FE91B6200A653C2 /* icon_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD008B31FE91B6200A653C2 /* icon_camera.png */; };
 		5CD008B81FE91B6200A653C2 /* icon_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD008B31FE91B6200A653C2 /* icon_camera.png */; };
 		5CD008B91FE91B6200A653C2 /* icon_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD008B41FE91B6200A653C2 /* icon_camera@2x.png */; };
 		5CD008BA1FE91B6200A653C2 /* icon_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CD008B41FE91B6200A653C2 /* icon_camera@2x.png */; };
+		E55A68751FE9FB7E00187444 /* ZLSharePackageEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68511FE9FB7E00187444 /* ZLSharePackageEntry.m */; };
+		E55A68761FE9FB7E00187444 /* ZLSharePackageEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68511FE9FB7E00187444 /* ZLSharePackageEntry.m */; };
+		E55A68771FE9FB7E00187444 /* ZLShareExtensionManager+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68541FE9FB7E00187444 /* ZLShareExtensionManager+Image.m */; };
+		E55A68781FE9FB7E00187444 /* ZLShareExtensionManager+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68541FE9FB7E00187444 /* ZLShareExtensionManager+Image.m */; };
+		E55A68791FE9FB7E00187444 /* ZLCompressConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68561FE9FB7E00187444 /* ZLCompressConfiguration.m */; };
+		E55A687A1FE9FB7E00187444 /* ZLCompressConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68561FE9FB7E00187444 /* ZLCompressConfiguration.m */; };
+		E55A687B1FE9FB7E00187444 /* HMUploadAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A685B1FE9FB7E00187444 /* HMUploadAdapter.m */; };
+		E55A687C1FE9FB7E00187444 /* HMUploadAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A685B1FE9FB7E00187444 /* HMUploadAdapter.m */; };
+		E55A687D1FE9FB7E00187444 /* HMTaskTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A685D1FE9FB7E00187444 /* HMTaskTimer.m */; };
+		E55A687E1FE9FB7E00187444 /* HMTaskTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A685D1FE9FB7E00187444 /* HMTaskTimer.m */; };
+		E55A687F1FE9FB7E00187444 /* HMNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A685F1FE9FB7E00187444 /* HMNetworkManager.m */; };
+		E55A68801FE9FB7E00187444 /* HMNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A685F1FE9FB7E00187444 /* HMNetworkManager.m */; };
+		E55A68811FE9FB7E00187444 /* HMPriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68601FE9FB7E00187444 /* HMPriorityQueue.m */; };
+		E55A68821FE9FB7E00187444 /* HMPriorityQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68601FE9FB7E00187444 /* HMPriorityQueue.m */; };
+		E55A68831FE9FB7E00187444 /* HMURLUploadCallbackEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68651FE9FB7E00187444 /* HMURLUploadCallbackEntry.m */; };
+		E55A68841FE9FB7E00187444 /* HMURLUploadCallbackEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68651FE9FB7E00187444 /* HMURLUploadCallbackEntry.m */; };
+		E55A68851FE9FB7E00187444 /* HMURLUploadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68681FE9FB7E00187444 /* HMURLUploadTask.m */; };
+		E55A68861FE9FB7E00187444 /* HMURLUploadTask.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68681FE9FB7E00187444 /* HMURLUploadTask.m */; };
+		E55A68871FE9FB7E00187444 /* HMURLUploadCompletionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68691FE9FB7E00187444 /* HMURLUploadCompletionEntity.m */; };
+		E55A68881FE9FB7E00187444 /* HMURLUploadCompletionEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68691FE9FB7E00187444 /* HMURLUploadCompletionEntity.m */; };
+		E55A68891FE9FB7E00187444 /* HMURLSessionManger.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A686B1FE9FB7E00187444 /* HMURLSessionManger.m */; };
+		E55A688A1FE9FB7E00187444 /* HMURLSessionManger.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A686B1FE9FB7E00187444 /* HMURLSessionManger.m */; };
+		E55A688B1FE9FB7E00187444 /* ZLAssetExportSession.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A686D1FE9FB7E00187444 /* ZLAssetExportSession.m */; };
+		E55A688C1FE9FB7E00187444 /* ZLAssetExportSession.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A686D1FE9FB7E00187444 /* ZLAssetExportSession.m */; };
+		E55A688D1FE9FB7E00187444 /* ZLCompressManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68701FE9FB7E00187444 /* ZLCompressManager.m */; };
+		E55A688E1FE9FB7E00187444 /* ZLCompressManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68701FE9FB7E00187444 /* ZLCompressManager.m */; };
+		E55A688F1FE9FB7E00187444 /* ZLSharePackage.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68721FE9FB7E00187444 /* ZLSharePackage.m */; };
+		E55A68901FE9FB7E00187444 /* ZLSharePackage.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68721FE9FB7E00187444 /* ZLSharePackage.m */; };
+		E55A68911FE9FB7E00187444 /* ZLShareExtensionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68741FE9FB7E00187444 /* ZLShareExtensionManager.m */; };
+		E55A68921FE9FB7E00187444 /* ZLShareExtensionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E55A68741FE9FB7E00187444 /* ZLShareExtensionManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,37 +205,41 @@
 		5C8A719D1FE279630064BB0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C8A71A51FE2799F0064BB0E /* ZaloShare.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ZaloShare.entitlements; sourceTree = "<group>"; };
 		5C8A71A61FE279A50064BB0E /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
-		5CD008791FE8A6A200A653C2 /* ZLSharePackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSharePackage.h; sourceTree = "<group>"; };
-		5CD0087A1FE8A6A200A653C2 /* ZLCompressUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCompressUtils.m; sourceTree = "<group>"; };
-		5CD0087B1FE8A6A200A653C2 /* ZLSharePackageEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSharePackageEntry.m; sourceTree = "<group>"; };
-		5CD0087D1FE8A6A200A653C2 /* HMUploadAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMUploadAdapter.h; sourceTree = "<group>"; };
-		5CD0087E1FE8A6A200A653C2 /* HMURLSessionManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMURLSessionManger.h; sourceTree = "<group>"; };
-		5CD0087F1FE8A6A200A653C2 /* HMUploadAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMUploadAdapter.m; sourceTree = "<group>"; };
-		5CD008811FE8A6A200A653C2 /* HMTaskTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMTaskTimer.m; sourceTree = "<group>"; };
-		5CD008821FE8A6A200A653C2 /* Constaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constaint.h; sourceTree = "<group>"; };
-		5CD008831FE8A6A200A653C2 /* HMNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMNetworkManager.m; sourceTree = "<group>"; };
-		5CD008841FE8A6A200A653C2 /* HMPriorityQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMPriorityQueue.m; sourceTree = "<group>"; };
-		5CD008851FE8A6A200A653C2 /* HMTaskTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTaskTimer.h; sourceTree = "<group>"; };
-		5CD008861FE8A6A200A653C2 /* HMNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMNetworkManager.h; sourceTree = "<group>"; };
-		5CD008871FE8A6A200A653C2 /* HMPriorityQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMPriorityQueue.h; sourceTree = "<group>"; };
-		5CD008891FE8A6A200A653C2 /* HMURLUploadCallbackEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMURLUploadCallbackEntry.m; sourceTree = "<group>"; };
-		5CD0088A1FE8A6A200A653C2 /* HMURLUploadCompletionEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMURLUploadCompletionEntity.h; sourceTree = "<group>"; };
-		5CD0088B1FE8A6A200A653C2 /* HMURLUploadTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMURLUploadTask.h; sourceTree = "<group>"; };
-		5CD0088C1FE8A6A200A653C2 /* HMURLUploadTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMURLUploadTask.m; sourceTree = "<group>"; };
-		5CD0088D1FE8A6A200A653C2 /* HMURLUploadCompletionEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMURLUploadCompletionEntity.m; sourceTree = "<group>"; };
-		5CD0088E1FE8A6A200A653C2 /* HMURLUploadCallbackEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMURLUploadCallbackEntry.h; sourceTree = "<group>"; };
-		5CD0088F1FE8A6A200A653C2 /* HMURLSessionManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMURLSessionManger.m; sourceTree = "<group>"; };
-		5CD008901FE8A6A200A653C2 /* ZLShareExtensionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLShareExtensionManager.h; sourceTree = "<group>"; };
-		5CD008911FE8A6A200A653C2 /* ZLShareDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLShareDefine.h; sourceTree = "<group>"; };
-		5CD008921FE8A6A200A653C2 /* ZLSharePackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSharePackage.m; sourceTree = "<group>"; };
-		5CD008931FE8A6A200A653C2 /* ZLSharePackageEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSharePackageEntry.h; sourceTree = "<group>"; };
-		5CD008941FE8A6A200A653C2 /* ZLCompressUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCompressUtils.h; sourceTree = "<group>"; };
-		5CD008951FE8A6A200A653C2 /* ZLShareExtensionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLShareExtensionManager.m; sourceTree = "<group>"; };
-		5CD008AF1FE90C6600A653C2 /* ZLShareExtensionManager_Image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLShareExtensionManager_Image.h; sourceTree = "<group>"; };
-		5CD008B01FE90C6600A653C2 /* ZLShareExtensionManager_Image.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLShareExtensionManager_Image.m; sourceTree = "<group>"; };
 		5CD008B21FE91B6100A653C2 /* icon_camera@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_camera@3x.png"; sourceTree = "<group>"; };
 		5CD008B31FE91B6200A653C2 /* icon_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_camera.png; sourceTree = "<group>"; };
 		5CD008B41FE91B6200A653C2 /* icon_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_camera@2x.png"; sourceTree = "<group>"; };
+		E55A684F1FE9FB7E00187444 /* ZLSharePackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSharePackage.h; sourceTree = "<group>"; };
+		E55A68501FE9FB7E00187444 /* ZLCompressConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCompressConfiguration.h; sourceTree = "<group>"; };
+		E55A68511FE9FB7E00187444 /* ZLSharePackageEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSharePackageEntry.m; sourceTree = "<group>"; };
+		E55A68531FE9FB7E00187444 /* ZLShareExtensionManager+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZLShareExtensionManager+Image.h"; sourceTree = "<group>"; };
+		E55A68541FE9FB7E00187444 /* ZLShareExtensionManager+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZLShareExtensionManager+Image.m"; sourceTree = "<group>"; };
+		E55A68551FE9FB7E00187444 /* ZLShareExtensionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLShareExtensionManager.h; sourceTree = "<group>"; };
+		E55A68561FE9FB7E00187444 /* ZLCompressConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCompressConfiguration.m; sourceTree = "<group>"; };
+		E55A68591FE9FB7E00187444 /* HMUploadAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMUploadAdapter.h; sourceTree = "<group>"; };
+		E55A685A1FE9FB7E00187444 /* HMURLSessionManger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMURLSessionManger.h; sourceTree = "<group>"; };
+		E55A685B1FE9FB7E00187444 /* HMUploadAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMUploadAdapter.m; sourceTree = "<group>"; };
+		E55A685D1FE9FB7E00187444 /* HMTaskTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMTaskTimer.m; sourceTree = "<group>"; };
+		E55A685E1FE9FB7E00187444 /* Constaint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constaint.h; sourceTree = "<group>"; };
+		E55A685F1FE9FB7E00187444 /* HMNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMNetworkManager.m; sourceTree = "<group>"; };
+		E55A68601FE9FB7E00187444 /* HMPriorityQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMPriorityQueue.m; sourceTree = "<group>"; };
+		E55A68611FE9FB7E00187444 /* HMTaskTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTaskTimer.h; sourceTree = "<group>"; };
+		E55A68621FE9FB7E00187444 /* HMNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMNetworkManager.h; sourceTree = "<group>"; };
+		E55A68631FE9FB7E00187444 /* HMPriorityQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMPriorityQueue.h; sourceTree = "<group>"; };
+		E55A68651FE9FB7E00187444 /* HMURLUploadCallbackEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMURLUploadCallbackEntry.m; sourceTree = "<group>"; };
+		E55A68661FE9FB7E00187444 /* HMURLUploadCompletionEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMURLUploadCompletionEntity.h; sourceTree = "<group>"; };
+		E55A68671FE9FB7E00187444 /* HMURLUploadTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMURLUploadTask.h; sourceTree = "<group>"; };
+		E55A68681FE9FB7E00187444 /* HMURLUploadTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMURLUploadTask.m; sourceTree = "<group>"; };
+		E55A68691FE9FB7E00187444 /* HMURLUploadCompletionEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMURLUploadCompletionEntity.m; sourceTree = "<group>"; };
+		E55A686A1FE9FB7E00187444 /* HMURLUploadCallbackEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMURLUploadCallbackEntry.h; sourceTree = "<group>"; };
+		E55A686B1FE9FB7E00187444 /* HMURLSessionManger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMURLSessionManger.m; sourceTree = "<group>"; };
+		E55A686D1FE9FB7E00187444 /* ZLAssetExportSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLAssetExportSession.m; sourceTree = "<group>"; };
+		E55A686E1FE9FB7E00187444 /* ZLCompressManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLCompressManager.h; sourceTree = "<group>"; };
+		E55A686F1FE9FB7E00187444 /* ZLAssetExportSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLAssetExportSession.h; sourceTree = "<group>"; };
+		E55A68701FE9FB7E00187444 /* ZLCompressManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLCompressManager.m; sourceTree = "<group>"; };
+		E55A68711FE9FB7E00187444 /* ZLShareDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLShareDefine.h; sourceTree = "<group>"; };
+		E55A68721FE9FB7E00187444 /* ZLSharePackage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLSharePackage.m; sourceTree = "<group>"; };
+		E55A68731FE9FB7E00187444 /* ZLSharePackageEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZLSharePackageEntry.h; sourceTree = "<group>"; };
+		E55A68741FE9FB7E00187444 /* ZLShareExtensionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZLShareExtensionManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,7 +462,7 @@
 				5C4B475E1FE3B51A0066776C /* Models */,
 				5C4B47631FE3B51A0066776C /* Resources */,
 				5C4B47671FE3B51A0066776C /* Screens */,
-				5CD008781FE8A6A200A653C2 /* ZLShareExtensionManager */,
+				E55A684E1FE9FB7E00187444 /* ZLShareExtensionManager */,
 				5C8A71971FE279630064BB0E /* ShareRootViewController.h */,
 				5C8A71981FE279630064BB0E /* ShareRootViewController.m */,
 				5C8A719A1FE279630064BB0E /* MainInterface.storyboard */,
@@ -462,71 +471,91 @@
 			path = ShareExtension;
 			sourceTree = "<group>";
 		};
-		5CD008781FE8A6A200A653C2 /* ZLShareExtensionManager */ = {
+		E55A684E1FE9FB7E00187444 /* ZLShareExtensionManager */ = {
 			isa = PBXGroup;
 			children = (
-				5CD008911FE8A6A200A653C2 /* ZLShareDefine.h */,
-				5CD008791FE8A6A200A653C2 /* ZLSharePackage.h */,
-				5CD008921FE8A6A200A653C2 /* ZLSharePackage.m */,
-				5CD0087A1FE8A6A200A653C2 /* ZLCompressUtils.m */,
-				5CD0087B1FE8A6A200A653C2 /* ZLSharePackageEntry.m */,
-				5CD0087C1FE8A6A200A653C2 /* HMURLSessionManager */,
-				5CD008901FE8A6A200A653C2 /* ZLShareExtensionManager.h */,
-				5CD008951FE8A6A200A653C2 /* ZLShareExtensionManager.m */,
-				5CD008931FE8A6A200A653C2 /* ZLSharePackageEntry.h */,
-				5CD008941FE8A6A200A653C2 /* ZLCompressUtils.h */,
-				5CD008AE1FE90C4100A653C2 /* Category */,
+				E55A68551FE9FB7E00187444 /* ZLShareExtensionManager.h */,
+				E55A68741FE9FB7E00187444 /* ZLShareExtensionManager.m */,
+				E55A68501FE9FB7E00187444 /* ZLCompressConfiguration.h */,
+				E55A68561FE9FB7E00187444 /* ZLCompressConfiguration.m */,
+				E55A68731FE9FB7E00187444 /* ZLSharePackageEntry.h */,
+				E55A68511FE9FB7E00187444 /* ZLSharePackageEntry.m */,
+				E55A684F1FE9FB7E00187444 /* ZLSharePackage.h */,
+				E55A68721FE9FB7E00187444 /* ZLSharePackage.m */,
+				E55A68711FE9FB7E00187444 /* ZLShareDefine.h */,
+				E55A68571FE9FB7E00187444 /* Common */,
+				E55A68521FE9FB7E00187444 /* Category */,
 			);
 			path = ZLShareExtensionManager;
 			sourceTree = "<group>";
 		};
-		5CD0087C1FE8A6A200A653C2 /* HMURLSessionManager */ = {
+		E55A68521FE9FB7E00187444 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				5CD0087D1FE8A6A200A653C2 /* HMUploadAdapter.h */,
-				5CD0087E1FE8A6A200A653C2 /* HMURLSessionManger.h */,
-				5CD0087F1FE8A6A200A653C2 /* HMUploadAdapter.m */,
-				5CD008801FE8A6A200A653C2 /* Common */,
-				5CD008881FE8A6A200A653C2 /* Model */,
-				5CD0088F1FE8A6A200A653C2 /* HMURLSessionManger.m */,
+				E55A68531FE9FB7E00187444 /* ZLShareExtensionManager+Image.h */,
+				E55A68541FE9FB7E00187444 /* ZLShareExtensionManager+Image.m */,
 			);
-			path = HMURLSessionManager;
+			path = Category;
 			sourceTree = "<group>";
 		};
-		5CD008801FE8A6A200A653C2 /* Common */ = {
+		E55A68571FE9FB7E00187444 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				5CD008811FE8A6A200A653C2 /* HMTaskTimer.m */,
-				5CD008821FE8A6A200A653C2 /* Constaint.h */,
-				5CD008831FE8A6A200A653C2 /* HMNetworkManager.m */,
-				5CD008841FE8A6A200A653C2 /* HMPriorityQueue.m */,
-				5CD008851FE8A6A200A653C2 /* HMTaskTimer.h */,
-				5CD008861FE8A6A200A653C2 /* HMNetworkManager.h */,
-				5CD008871FE8A6A200A653C2 /* HMPriorityQueue.h */,
+				E55A68581FE9FB7E00187444 /* HMURLSessionManager */,
+				E55A686C1FE9FB7E00187444 /* ZLCompressManager */,
 			);
 			path = Common;
 			sourceTree = "<group>";
 		};
-		5CD008881FE8A6A200A653C2 /* Model */ = {
+		E55A68581FE9FB7E00187444 /* HMURLSessionManager */ = {
 			isa = PBXGroup;
 			children = (
-				5CD008891FE8A6A200A653C2 /* HMURLUploadCallbackEntry.m */,
-				5CD0088A1FE8A6A200A653C2 /* HMURLUploadCompletionEntity.h */,
-				5CD0088B1FE8A6A200A653C2 /* HMURLUploadTask.h */,
-				5CD0088C1FE8A6A200A653C2 /* HMURLUploadTask.m */,
-				5CD0088D1FE8A6A200A653C2 /* HMURLUploadCompletionEntity.m */,
-				5CD0088E1FE8A6A200A653C2 /* HMURLUploadCallbackEntry.h */,
+				E55A68591FE9FB7E00187444 /* HMUploadAdapter.h */,
+				E55A685A1FE9FB7E00187444 /* HMURLSessionManger.h */,
+				E55A685B1FE9FB7E00187444 /* HMUploadAdapter.m */,
+				E55A685C1FE9FB7E00187444 /* Common */,
+				E55A68641FE9FB7E00187444 /* Model */,
+				E55A686B1FE9FB7E00187444 /* HMURLSessionManger.m */,
+			);
+			path = HMURLSessionManager;
+			sourceTree = "<group>";
+		};
+		E55A685C1FE9FB7E00187444 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E55A685D1FE9FB7E00187444 /* HMTaskTimer.m */,
+				E55A685E1FE9FB7E00187444 /* Constaint.h */,
+				E55A685F1FE9FB7E00187444 /* HMNetworkManager.m */,
+				E55A68601FE9FB7E00187444 /* HMPriorityQueue.m */,
+				E55A68611FE9FB7E00187444 /* HMTaskTimer.h */,
+				E55A68621FE9FB7E00187444 /* HMNetworkManager.h */,
+				E55A68631FE9FB7E00187444 /* HMPriorityQueue.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E55A68641FE9FB7E00187444 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E55A68651FE9FB7E00187444 /* HMURLUploadCallbackEntry.m */,
+				E55A68661FE9FB7E00187444 /* HMURLUploadCompletionEntity.h */,
+				E55A68671FE9FB7E00187444 /* HMURLUploadTask.h */,
+				E55A68681FE9FB7E00187444 /* HMURLUploadTask.m */,
+				E55A68691FE9FB7E00187444 /* HMURLUploadCompletionEntity.m */,
+				E55A686A1FE9FB7E00187444 /* HMURLUploadCallbackEntry.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		5CD008AE1FE90C4100A653C2 /* Category */ = {
+		E55A686C1FE9FB7E00187444 /* ZLCompressManager */ = {
 			isa = PBXGroup;
 			children = (
-				5CD008AF1FE90C6600A653C2 /* ZLShareExtensionManager_Image.h */,
-				5CD008B01FE90C6600A653C2 /* ZLShareExtensionManager_Image.m */,
+				E55A686F1FE9FB7E00187444 /* ZLAssetExportSession.h */,
+				E55A686D1FE9FB7E00187444 /* ZLAssetExportSession.m */,
+				E55A686E1FE9FB7E00187444 /* ZLCompressManager.h */,
+				E55A68701FE9FB7E00187444 /* ZLCompressManager.m */,
 			);
-			path = Category;
+			path = ZLCompressManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -704,36 +733,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CD008A01FE8A6A200A653C2 /* HMPriorityQueue.m in Sources */,
 				5C4B47881FE3B51A0066776C /* DXContactModel.m in Sources */,
 				5C4B47861FE3B51A0066776C /* DXConversationModel.m in Sources */,
-				5CD008AA1FE8A6A200A653C2 /* ZLSharePackage.m in Sources */,
 				5C4B47921FE3B51A0066776C /* DXPickFriendsViewController.m in Sources */,
+				E55A688B1FE9FB7E00187444 /* ZLAssetExportSession.m in Sources */,
+				E55A687D1FE9FB7E00187444 /* HMTaskTimer.m in Sources */,
 				5C85E64E1FE79EB2001AFDA9 /* EditPostViewController.m in Sources */,
 				5C4B47B21FE3BCBA0066776C /* DXConversationTableViewCell.m in Sources */,
+				E55A687B1FE9FB7E00187444 /* HMUploadAdapter.m in Sources */,
 				5C4B47841FE3B51A0066776C /* DXImageManager.m in Sources */,
-				5CD008A61FE8A6A200A653C2 /* HMURLUploadCompletionEntity.m in Sources */,
+				E55A68851FE9FB7E00187444 /* HMURLUploadTask.m in Sources */,
+				E55A68811FE9FB7E00187444 /* HMPriorityQueue.m in Sources */,
 				5C4B47901FE3B51A0066776C /* DXShareNavigationController.m in Sources */,
-				5CD0089C1FE8A6A200A653C2 /* HMTaskTimer.m in Sources */,
 				5C8A70E11FE276100064BB0E /* main.m in Sources */,
-				5CD0089E1FE8A6A200A653C2 /* HMNetworkManager.m in Sources */,
 				5C4B47B71FE3BDD70066776C /* ZLUpLoadingViewController.m in Sources */,
 				5C4B479C1FE3B51A0066776C /* DXShowPickedCollectionViewCell.m in Sources */,
-				5CD008A21FE8A6A200A653C2 /* HMURLUploadCallbackEntry.m in Sources */,
 				5C4B47981FE3B51A0066776C /* DXPickContactTableViewCell.m in Sources */,
-				5CD008981FE8A6A200A653C2 /* ZLSharePackageEntry.m in Sources */,
+				E55A688F1FE9FB7E00187444 /* ZLSharePackage.m in Sources */,
+				E55A68791FE9FB7E00187444 /* ZLCompressConfiguration.m in Sources */,
 				5C4B47B01FE3BCBA0066776C /* DXConversationSearchResultViewController.m in Sources */,
-				5CD0089A1FE8A6A200A653C2 /* HMUploadAdapter.m in Sources */,
+				E55A687F1FE9FB7E00187444 /* HMNetworkManager.m in Sources */,
 				5C4B47821FE3B51A0066776C /* DXConversationManager.m in Sources */,
+				E55A68771FE9FB7E00187444 /* ZLShareExtensionManager+Image.m in Sources */,
 				5C4B47961FE3B51A0066776C /* DXShowPickedViewController.m in Sources */,
-				5CD008A81FE8A6A200A653C2 /* HMURLSessionManger.m in Sources */,
-				5CD008961FE8A6A200A653C2 /* ZLCompressUtils.m in Sources */,
+				E55A68751FE9FB7E00187444 /* ZLSharePackageEntry.m in Sources */,
 				5C8A70D31FE276100064BB0E /* AppDelegate.m in Sources */,
 				5C4B47AE1FE3BCBA0066776C /* ZLPickConversationViewController.m in Sources */,
+				E55A688D1FE9FB7E00187444 /* ZLCompressManager.m in Sources */,
+				E55A68871FE9FB7E00187444 /* HMURLUploadCompletionEntity.m in Sources */,
+				E55A68891FE9FB7E00187444 /* HMURLSessionManger.m in Sources */,
+				E55A68911FE9FB7E00187444 /* ZLShareExtensionManager.m in Sources */,
 				5C4B479E1FE3B51A0066776C /* DXResultSearchViewController.m in Sources */,
-				5CD008A41FE8A6A200A653C2 /* HMURLUploadTask.m in Sources */,
 				5C4B47941FE3B51A0066776C /* DXPickContactsViewController.m in Sources */,
-				5CD008AC1FE8A6A200A653C2 /* ZLShareExtensionManager.m in Sources */,
+				E55A68831FE9FB7E00187444 /* HMURLUploadCallbackEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -749,36 +781,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CD008AB1FE8A6A200A653C2 /* ZLSharePackage.m in Sources */,
+				E55A68821FE9FB7E00187444 /* HMPriorityQueue.m in Sources */,
 				5C4B47B81FE3BDD70066776C /* ZLUpLoadingViewController.m in Sources */,
-				5CD008A31FE8A6A200A653C2 /* HMURLUploadCallbackEntry.m in Sources */,
 				5C4B47831FE3B51A0066776C /* DXConversationManager.m in Sources */,
 				5C4B47891FE3B51A0066776C /* DXContactModel.m in Sources */,
-				5CD0089D1FE8A6A200A653C2 /* HMTaskTimer.m in Sources */,
-				5CD008AD1FE8A6A200A653C2 /* ZLShareExtensionManager.m in Sources */,
-				5CD008A11FE8A6A200A653C2 /* HMPriorityQueue.m in Sources */,
-				5CD008971FE8A6A200A653C2 /* ZLCompressUtils.m in Sources */,
-				5CD008A51FE8A6A200A653C2 /* HMURLUploadTask.m in Sources */,
-				5CD008A91FE8A6A200A653C2 /* HMURLSessionManger.m in Sources */,
-				5CD0089F1FE8A6A200A653C2 /* HMNetworkManager.m in Sources */,
 				5C4B47911FE3B51A0066776C /* DXShareNavigationController.m in Sources */,
+				E55A68921FE9FB7E00187444 /* ZLShareExtensionManager.m in Sources */,
 				5C4B47951FE3B51A0066776C /* DXPickContactsViewController.m in Sources */,
 				5C4B47B11FE3BCBA0066776C /* DXConversationSearchResultViewController.m in Sources */,
-				5CD0089B1FE8A6A200A653C2 /* HMUploadAdapter.m in Sources */,
+				E55A68881FE9FB7E00187444 /* HMURLUploadCompletionEntity.m in Sources */,
 				5C4B47851FE3B51A0066776C /* DXImageManager.m in Sources */,
+				E55A688E1FE9FB7E00187444 /* ZLCompressManager.m in Sources */,
+				E55A688C1FE9FB7E00187444 /* ZLAssetExportSession.m in Sources */,
+				E55A687E1FE9FB7E00187444 /* HMTaskTimer.m in Sources */,
 				5C8A71991FE279630064BB0E /* ShareRootViewController.m in Sources */,
+				E55A68801FE9FB7E00187444 /* HMNetworkManager.m in Sources */,
 				5C4B47AF1FE3BCBA0066776C /* ZLPickConversationViewController.m in Sources */,
 				5C4B47871FE3B51A0066776C /* DXConversationModel.m in Sources */,
+				E55A68841FE9FB7E00187444 /* HMURLUploadCallbackEntry.m in Sources */,
+				E55A687A1FE9FB7E00187444 /* ZLCompressConfiguration.m in Sources */,
 				5C4B47991FE3B51A0066776C /* DXPickContactTableViewCell.m in Sources */,
 				5C4B47971FE3B51A0066776C /* DXShowPickedViewController.m in Sources */,
+				E55A687C1FE9FB7E00187444 /* HMUploadAdapter.m in Sources */,
 				5C4B479F1FE3B51A0066776C /* DXResultSearchViewController.m in Sources */,
-				5CD008991FE8A6A200A653C2 /* ZLSharePackageEntry.m in Sources */,
 				5C4B47B31FE3BCBA0066776C /* DXConversationTableViewCell.m in Sources */,
-				5CD008A71FE8A6A200A653C2 /* HMURLUploadCompletionEntity.m in Sources */,
+				E55A688A1FE9FB7E00187444 /* HMURLSessionManger.m in Sources */,
 				5C4B479D1FE3B51A0066776C /* DXShowPickedCollectionViewCell.m in Sources */,
 				5C4B47931FE3B51A0066776C /* DXPickFriendsViewController.m in Sources */,
+				E55A68901FE9FB7E00187444 /* ZLSharePackage.m in Sources */,
 				5C85E64F1FE79EB2001AFDA9 /* EditPostViewController.m in Sources */,
-				5CD008B11FE90C6600A653C2 /* ZLShareExtensionManager_Image.m in Sources */,
+				E55A68781FE9FB7E00187444 /* ZLShareExtensionManager+Image.m in Sources */,
+				E55A68861FE9FB7E00187444 /* HMURLUploadTask.m in Sources */,
+				E55A68761FE9FB7E00187444 /* ZLSharePackageEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -928,11 +962,11 @@
 				CODE_SIGN_ENTITLEMENTS = ZaloShare/ZaloShare.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QZQXR3HEM8;
+				DEVELOPMENT_TEAM = CL3BD6632V;
 				INFOPLIST_FILE = ZaloShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nhuduydoan.ZaloShare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zalo.ZaloShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -946,11 +980,11 @@
 				CODE_SIGN_ENTITLEMENTS = ZaloShare/ZaloShare.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QZQXR3HEM8;
+				DEVELOPMENT_TEAM = CL3BD6632V;
 				INFOPLIST_FILE = ZaloShare/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nhuduydoan.ZaloShare;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zalo.ZaloShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -992,11 +1026,11 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QZQXR3HEM8;
+				DEVELOPMENT_TEAM = CL3BD6632V;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nhuduydoan.ZaloShare.ShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zalo.ZaloShare.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1008,11 +1042,11 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = QZQXR3HEM8;
+				DEVELOPMENT_TEAM = CL3BD6632V;
 				INFOPLIST_FILE = ShareExtension/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.nhuduydoan.ZaloShare.ShareExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zalo.ZaloShare.ShareExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -11,7 +11,7 @@
 #import "ZLShareExtensionManager.h"
 #import "ZLUpLoadingViewController.h"
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "ZLShareExtensionManager_Image.h"
+#import "ZLShareExtensionManager+Image.h"
 
 @interface ShareRootViewController ()
 
