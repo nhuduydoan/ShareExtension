@@ -24,7 +24,6 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 @property (strong, nonatomic) UISearchBar *searchBar;
 @property (strong, nonatomic) UIBarButtonItem *closeBarButtonItem;
 @property (strong, nonatomic) UIBarButtonItem *searchBarButtonItem;
-@property (strong, nonatomic) UIBarButtonItem *cancelSearchItem;
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIView *sectionTitleView;
 
@@ -88,10 +87,6 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
                                 initWithImage:[UIImage imageNamed:@"icon_search"]
                                 style:UIBarButtonItemStylePlain
                                 target:self action:@selector(touchUpInsideSearchBarItem)];
-    self.cancelSearchItem = [[UIBarButtonItem alloc]
-                             initWithTitle:@"Huỷ"
-                             style:UIBarButtonItemStylePlain
-                             target:self action:@selector(touchUpInsideCancelSearchItem)];
     self.navigationItem.leftBarButtonItem = self.closeBarButtonItem;
     self.navigationItem.rightBarButtonItem = self.searchBarButtonItem;
     
@@ -209,10 +204,14 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
 - (void)updateNavigationItems {
     if (self.isSearching) {
-        self.navigationItem.rightBarButtonItem = self.cancelSearchItem;
-        
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
+                                 initWithTitle:@"Huỷ"
+                                 style:UIBarButtonItemStylePlain
+                                 target:self action:@selector(touchUpInsideCancelSearchItem)];
+        self.navigationItem.leftBarButtonItem = nil;
     } else {
         self.navigationItem.rightBarButtonItem = self.searchBarButtonItem;
+        self.navigationItem.leftBarButtonItem = self.closeBarButtonItem;
     }
 }
 
@@ -233,7 +232,15 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 
 - (void)touchUpInsideCloseBarItem {
     [self hideKeyBoardScreen];
-    self.completionHandler(self.navigationController, nil, @"");
+    
+    UIAlertController  *alertController = [UIAlertController alertControllerWithTitle:@"" message:@"Do you want to quit ?" preferredStyle:UIAlertControllerStyleAlert];
+    __weak typeof(self) selfWeak = self;
+    UIAlertAction *quitAction = [UIAlertAction actionWithTitle:@"Quit" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        selfWeak.completionHandler(self.navigationController, nil, @"");
+    }];
+    [alertController addAction:quitAction];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)touchUpInsideSearchBarItem {
@@ -417,7 +424,6 @@ NSString* const kShareFriendViewCell = @"kShareFriendViewCell";
 #pragma EditPostViewController Delegate
 
 - (void)editPostViewController:(UIViewController *)viewController changeEditing:(BOOL)isEditing {
-    [self updateNavigationItems];
 }
 
 @end
